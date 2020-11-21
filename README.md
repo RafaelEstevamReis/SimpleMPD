@@ -1,18 +1,26 @@
 # Simple MPD
 
-A simple MPD implementation in C#
+A simple client MPD protocol implementation in C#
 
 Does it compile?
 > ![.NET Core](https://github.com/RafaelEstevamReis/SimpleMPD/workflows/.NET%20Core/badge.svg)
 
-
-# Content
 <!-- TOC -->
 - [Simple MPD](#simple-mpd)
-- [Content](#content)
+  - [What is MPD ?](#what-is-mpd-)
   - [Protocol documentation](#protocol-documentation)
   - [What this repo does ?](#what-this-repo-does-)
 <!-- /TOC -->
+
+## What is MPD ?
+
+MPD is a Server-Side application for playing music
+
+This repository is a C# implementation of the Client-Side protocol, this code allow you to communicate with a MPD
+
+MPD Website: https://www.musicpd.org/
+
+[MPD Documentation](https://www.musicpd.org/doc/html/user.html)
 
 ## Protocol documentation
 
@@ -28,3 +36,4 @@ It connects, receives the Version and waits for commands, which I implemented:
 
 * Ping (I have to start on something ...)
 
+Once this code does something more useful, this section wil be replaced
