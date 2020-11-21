@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
+﻿using System.IO;
 using System.Threading.Tasks;
 
 namespace RafaelEstevam.Simple.MPD.Interfaces
@@ -10,7 +7,7 @@ namespace RafaelEstevam.Simple.MPD.Interfaces
     {
         string CommandName { get; }
 
-        Task WriteAsync(Stream stream);
+        Task WriteAsync(StreamWriter stream);
 
         IResponse GetResponseProcessor();
     }

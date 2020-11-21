@@ -14,10 +14,9 @@ namespace RafaelEstevam.Simple.MPD.Responses
             throw new NotImplementedException();
         }
 
-        public async Task ReadAsync(Stream stream)
+        public async Task ReadAsync(StreamReader stream)
         {
-            using StreamReader sr = new StreamReader(stream);
-            var response = await sr.ReadLineAsync();
+            var response = await stream.ReadLineAsync();
 
             if (Helper.ResponseHelper.IsError(response, out Exception ex)) 
             {

@@ -20,20 +20,19 @@ namespace RafaelEstevam.Simple.MPD
             {
                 await Connection.OpenAsync();
                 if (!Connection.IsConnected) throw new NotConnectedException();
-                var version = new Responses.Version();
-                await version.ReadAsync(Connection.GetStream());
 
+                var version = new Responses.Version();
+                await readResponseAsync(version);
                 ProtocolVersion = version.VersionInfo;
             }
 
-            await command.WriteAsync(Connection.GetStream());
+            await command.WriteAsync(Connection.GetWriter());
 
             return await readResponseAsync(command.GetResponseProcessor());
         }
-        private async Task<IResponse> readResponseAsync(IResponse response)
+        private async Task<T> readResponseAsync<T>(T response) where T : IResponse
         {
-            await response.ReadAsync(Connection.GetStream());
-
+            await response.ReadAsync(Connection.GetReader());
             return response;
         }
 

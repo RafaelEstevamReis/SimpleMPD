@@ -13,10 +13,9 @@ namespace RafaelEstevam.Simple.MPD.Commands
             return new Responses.Ok();
         }
 
-        public async Task WriteAsync(Stream stream)
+        public async Task WriteAsync(StreamWriter stream)
         {
-            using StreamWriter writer = new StreamWriter(stream, Constants.DefaultEncoding);
-            await writer.WriteAsync("ping\n");
+            await stream.WriteAsync("ping\n");
         }
     }
 }

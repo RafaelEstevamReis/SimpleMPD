@@ -11,6 +11,9 @@ namespace RafaelEstevam.Simple.MPD.Netwroking
 {
     public class TcpConnection : IConnection
     {
+        private StreamReader reader;
+        private StreamWriter writer;
+
         public IPEndPoint EndPoint { get; }
         public TcpClient tcpClient { get; private set; }
         public bool IsConnected
@@ -41,6 +44,12 @@ namespace RafaelEstevam.Simple.MPD.Netwroking
         {
             if (tcpClient == null) tcpClient = new TcpClient();
             await tcpClient.ConnectAsync(EndPoint.Address, EndPoint.Port);
+
+            reader = new StreamReader(tcpClient.GetStream(), leaveOpen: true);
+            
+            writer = new StreamWriter(tcpClient.GetStream(), leaveOpen: true);
+            writer.AutoFlush = true;
+
         }
         public void Open()
         {
@@ -54,9 +63,13 @@ namespace RafaelEstevam.Simple.MPD.Netwroking
             tcpClient.Close();
         }
 
-        public Stream GetStream()
+        public StreamReader GetReader()
         {
-            return tcpClient?.GetStream();
+            return reader;
+        }
+        public StreamWriter GetWriter()
+        {
+            return writer;
         }
     }
 }

@@ -15,6 +15,7 @@ namespace RafaelEstevam.Simple.MPD.Interfaces
 
         void Close();
 
-        Stream GetStream();
+        StreamReader GetReader();
+        StreamWriter GetWriter();
     }
 }
