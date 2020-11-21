@@ -10,12 +10,12 @@ namespace RafaelEstevam.Simple.MPD.Commands
 
         public IResponse GetResponseProcessor()
         {
-            throw new System.NotImplementedException();
+            return new Responses.Ok();
         }
 
         public async Task WriteAsync(Stream stream)
         {
-            StreamWriter writer = new StreamWriter(stream, Constants.DefaultEncoding);
+            using StreamWriter writer = new StreamWriter(stream, Constants.DefaultEncoding);
             await writer.WriteAsync("ping\n");
         }
     }

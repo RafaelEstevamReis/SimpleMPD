@@ -22,6 +22,9 @@ namespace RafaelEstevam.Simple.MPD.Netwroking
             }
         }
 
+        public TcpConnection(string Address, int Port = 6600)
+            : this(new IPEndPoint(IPAddress.Parse(Address), Port))
+        { }
         public TcpConnection(IPEndPoint endPoint)
         {
             EndPoint = endPoint;

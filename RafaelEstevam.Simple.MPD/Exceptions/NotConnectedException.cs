@@ -1,4 +1,4 @@
-﻿namespace RafaelEstevam.Simple.MPD
+﻿namespace RafaelEstevam.Simple.MPD.Exceptions
 {
     public class NotConnectedException : System.IO.IOException
     {

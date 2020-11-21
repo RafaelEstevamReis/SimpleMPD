@@ -12,7 +12,5 @@ namespace RafaelEstevam.Simple.MPD.Interfaces
         Task ReadAsync(Stream stream);
 
         ICommand GetCommand();
-
-        IResponse ErrorResponse { get; set; }
     }
 }

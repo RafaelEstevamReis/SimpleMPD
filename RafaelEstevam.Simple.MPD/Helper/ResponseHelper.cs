@@ -1,12 +1,16 @@
-﻿using RafaelEstevam.Simple.MPD.Interfaces;
+﻿using System;
 
 namespace RafaelEstevam.Simple.MPD.Helper
 {
     public class ResponseHelper
     {
-        public static void ProcessError(IResponse response, string ErrorText)
+        internal static bool IsError(string response, out Exception ex)
         {
-            response.ErrorResponse = new Responses.ErrorResponse(ErrorText);
+            ex = null;
+            if (!response.StartsWith("ACK")) return false;
+
+            ex = new Exceptions.NotConnectedException();
+            return true;
         }
     }
 }
