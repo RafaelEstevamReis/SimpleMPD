@@ -1,4 +1,5 @@
 ﻿using System;
+using RafaelEstevam.Simple.MPD.Exceptions;
 
 namespace RafaelEstevam.Simple.MPD.Helper
 {
@@ -9,7 +10,7 @@ namespace RafaelEstevam.Simple.MPD.Helper
             ex = null;
             if (!response.StartsWith("ACK")) return false;
 
-            ex = new Exceptions.NotConnectedException();
+            ex = FailureException.FromResponseText(response);
             return true;
         }
     }
