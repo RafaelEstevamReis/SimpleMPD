@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Threading.Tasks;
 using RafaelEstevam.Simple.MPD.Exceptions;
 
 namespace RafaelEstevam.Simple.MPD.Helper
@@ -12,6 +15,27 @@ namespace RafaelEstevam.Simple.MPD.Helper
 
             ex = FailureException.FromResponseText(response);
             return true;
+        }
+        internal static async IAsyncEnumerable<(string Key, string Value)> ReadValuesAsync(System.IO.StreamReader stream)
+        {
+            string line;
+            int idx;
+
+            while ((line = await stream.ReadLineAsync()) != "OK")
+            {
+                if (IsError(line, out Exception ex))
+                {
+                    throw ex;
+                }
+
+                idx = line.IndexOf(':');
+                var key = line[..idx].Trim();
+                string value = string.Empty;
+                if (idx > 0)
+                    value = line[(idx + 1)..].Trim();
+
+                yield return (key, value);
+            }
         }
     }
 }

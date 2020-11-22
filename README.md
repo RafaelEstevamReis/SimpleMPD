@@ -37,5 +37,6 @@ It connects, receives the Version and waits for commands, which I implemented:
 * Ping
 * Stats - General info
 * Status - Current song info
+* CurrentSong - Current song Name and File
 
 Once this code does something more useful, this section wil be replaced

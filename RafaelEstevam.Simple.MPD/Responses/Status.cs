@@ -40,31 +40,25 @@ namespace RafaelEstevam.Simple.MPD.Responses
 
         public async Task ReadAsync(StreamReader stream)
         {
-            string line;
-            while ((line = await stream.ReadLineAsync()) != "OK")
+            var values = Helper.ResponseHelper.ReadValuesAsync(stream);
+            await foreach (var pair in values)
             {
-                if (Helper.ResponseHelper.IsError(line, out Exception ex))
-                {
-                    throw ex;
-                }
-                var parts = line.Split(':');
-
-                switch (parts[0])
+                switch (pair.Key.ToLower())
                 {
                     case "partition":
-                        Partition = parts[1].Trim();
+                        Partition = pair.Value.Trim();
                         break;
                     case "volume":
-                        Volume = int.Parse(parts[1]);
+                        Volume = int.Parse(pair.Value);
                         break;
                     case "repeat":
-                        Repeat = int.Parse(parts[1]) == 1;
+                        Repeat = int.Parse(pair.Value) == 1;
                         break;
                     case "random":
-                        Random = int.Parse(parts[1]) == 1;
+                        Random = int.Parse(pair.Value) == 1;
                         break;
                     case "single":
-                        Single = parts[1].Trim() switch
+                        Single = pair.Value.Trim() switch
                         {
                             "0" => StatusSingle.S0,
                             "1" => StatusSingle.S1,
@@ -72,23 +66,23 @@ namespace RafaelEstevam.Simple.MPD.Responses
                         };
                         break;
                     case "consume":
-                        Consume = int.Parse(parts[1]) == 1;
+                        Consume = int.Parse(pair.Value) == 1;
                         break;
                     case "playlist":
-                        Playlist = int.Parse(parts[1]);
+                        Playlist = int.Parse(pair.Value);
                         break;
 
                     case "playlistlength":
-                        PlaylistLength = int.Parse(parts[1]);
+                        PlaylistLength = int.Parse(pair.Value);
                         break;
                     case "mixrampdb":
-                        MixRampDB = double.Parse(parts[1], CultureInfo.InvariantCulture);
+                        MixRampDB = double.Parse(pair.Value, CultureInfo.InvariantCulture);
                         break;
                     case "mixrampdelay":
-                        MixRampDelay = int.Parse(parts[1]);
+                        MixRampDelay = int.Parse(pair.Value);
                         break;
                     case "state":
-                        State = parts[1].Trim() switch
+                        State = pair.Value.Trim() switch
                         {
                             "play" => SongState.Play,
                             "pause" => SongState.Pause,
@@ -96,33 +90,31 @@ namespace RafaelEstevam.Simple.MPD.Responses
                         };
                         break;
                     case "song":
-                        Song = int.Parse(parts[1]);
+                        Song = int.Parse(pair.Value);
                         break;
                     case "songid":
-                        SongId = int.Parse(parts[1]);
+                        SongId = int.Parse(pair.Value);
                         break;
 
                     case "elapsed":
-                        Elapsed = TimeSpan.FromSeconds(double.Parse(parts[1], CultureInfo.InvariantCulture));
+                        Elapsed = TimeSpan.FromSeconds(double.Parse(pair.Value, CultureInfo.InvariantCulture));
                         break;
                     case "duration":
-                        Duration = TimeSpan.FromSeconds(double.Parse(parts[1], CultureInfo.InvariantCulture));
+                        Duration = TimeSpan.FromSeconds(double.Parse(pair.Value, CultureInfo.InvariantCulture));
                         break;
                     case "bitrate":
-                        Bitrate = int.Parse(parts[1]);
+                        Bitrate = int.Parse(pair.Value);
                         break;
                     case "audio":
-                        AudioFormat = line[6..].Trim();
+                        AudioFormat = pair.Value;
                         break;
-
 
                     case "updating_db":
-                        Updating_DB = int.Parse(parts[1]);
+                        Updating_DB = int.Parse(pair.Value);
                         break;
                     case "error":
-                        ErrorMessage = parts[1].Trim();
+                        ErrorMessage = pair.Value.Trim();
                         break;
-
                 }
             }
         }

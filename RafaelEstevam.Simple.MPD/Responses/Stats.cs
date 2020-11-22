@@ -43,37 +43,31 @@ namespace RafaelEstevam.Simple.MPD.Responses
 
         public async Task ReadAsync(StreamReader stream)
         {
-            string line;
-            while ((line = await stream.ReadLineAsync()) != "OK")
+            var values = Helper.ResponseHelper.ReadValuesAsync(stream);
+            await foreach (var pair in values)
             {
-                if (Helper.ResponseHelper.IsError(line, out Exception ex))
-                {
-                    throw ex;
-                }
-                var parts = line.Split(':');
-
-                switch (parts[0])
+                switch (pair.Key)
                 {
                     case "uptime":
-                        Uptime = int.Parse(parts[1]);
+                        Uptime = int.Parse(pair.Value);
                         break;
                     case "playtime":
-                        PlayTime = int.Parse(parts[1]);
+                        PlayTime = int.Parse(pair.Value);
                         break;
                     case "artists":
-                        Artists = int.Parse(parts[1]);
+                        Artists = int.Parse(pair.Value);
                         break;
                     case "albums":
-                        Albums = int.Parse(parts[1]);
+                        Albums = int.Parse(pair.Value);
                         break;
                     case "songs":
-                        Songs = int.Parse(parts[1]);
+                        Songs = int.Parse(pair.Value);
                         break;
                     case "db_playtime":
-                        DB_PlayTime = int.Parse(parts[1]);
+                        DB_PlayTime = int.Parse(pair.Value);
                         break;
                     case "db_update":
-                        DB_Update = DateTimeOffset.FromUnixTimeSeconds( int.Parse(parts[1]));
+                        DB_Update = DateTimeOffset.FromUnixTimeSeconds(int.Parse(pair.Value));
                         break;
                 }
             }

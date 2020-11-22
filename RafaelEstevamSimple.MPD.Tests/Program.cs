@@ -7,8 +7,10 @@ Console.WriteLine("Hello World!");
 MPD mpd = new MPD(new TcpConnection("192.168.0.13"));
 mpd.DoPingAsync().Wait();
 
-var stats = mpd.GetStatusAsync().Result;
-stats = stats;
+//var stats = mpd.GetStatsAsync().Result;
+//var status = mpd.GetStatusAsync().Result;
+var curr = mpd.GetCUrrentSongAsync().Result;
+mpd = mpd;
 
 
 

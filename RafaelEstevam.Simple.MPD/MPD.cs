@@ -52,5 +52,10 @@ namespace RafaelEstevam.Simple.MPD
             var rest = await ExecuteCommandAsync(new Commands.Status());
             return (Responses.Status)rest;
         }
+        public async Task<Responses.CurrentSong> GetCUrrentSongAsync()
+        {
+            var rest = await ExecuteCommandAsync(new Commands.CurrentSong());
+            return (Responses.CurrentSong)rest;
+        }
     }
 }
