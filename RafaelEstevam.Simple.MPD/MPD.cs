@@ -42,6 +42,15 @@ namespace RafaelEstevam.Simple.MPD
             // is either OK or Exception
             await ExecuteCommandAsync(new Commands.Ping());
         }
-
+        public async Task<Responses.Stats> GetStatsAsync()
+        {
+            var rest = await ExecuteCommandAsync(new Commands.Stats());
+            return (Responses.Stats)rest;
+        }
+        public async Task<Responses.Status> GetStatusAsync()
+        {
+            var rest = await ExecuteCommandAsync(new Commands.Status());
+            return (Responses.Status)rest;
+        }
     }
 }

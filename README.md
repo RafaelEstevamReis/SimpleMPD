@@ -34,6 +34,8 @@ Today ? Basically nothing, I'm still writing it.
 
 It connects, receives the Version and waits for commands, which I implemented:
 
-* Ping (I have to start on something ...)
+* Ping
+* Stats - General info
+* Status - Current song info
 
 Once this code does something more useful, this section wil be replaced
