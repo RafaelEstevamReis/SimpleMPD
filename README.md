@@ -35,14 +35,14 @@ Today ? Basically nothing, I'm still writing it.
 It connects, receives the Version and waits for commands, which I implemented:
 
 * Close - Closes the socket as docs request
-* Ping
-* Stats - General info
-* Status - Current song info
-* CurrentSong - Current song Name and File
 * Config - Gets configuration, only in local endpoint
 * Commands - List all available commands
 * NotCommands - List all **un**available commands
 * UrlHandlers - List all available Url Handlers
 * Decoders - List all available decoders
+* Ping
+* Stats - General info
+* Status - Current song info
+* CurrentSong - Current song Name and File
 
 Once this code does something more useful, this section wil be replaced
