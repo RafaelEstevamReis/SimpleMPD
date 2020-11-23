@@ -120,5 +120,27 @@ namespace RafaelEstevam.Simple.MPD
             await ExecuteCommandAsync(new Commands.SetVol(Volume));
         }
 
+        /* CONTROLLING PLAYBACK */
+        public async Task PauseAsync(Commands.Pause.State state)
+        {
+            // is either OK or Exception
+            await ExecuteCommandAsync(new Commands.Pause(state));
+        }
+        public async Task Next()
+        {
+            // is either OK or Exception
+            await ExecuteCommandAsync(new Commands.Next());
+        }
+        public async Task Previous()
+        {
+            // is either OK or Exception
+            await ExecuteCommandAsync(new Commands.Previous());
+        }
+        public async Task Stop()
+        {
+            // is either OK or Exception
+            await ExecuteCommandAsync(new Commands.Stop());
+        }
+
     }
 }

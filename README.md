@@ -49,5 +49,7 @@ It connects, receives the Version and waits for commands, which I implemented:
 * Random - Set Random mode On/Off
 * Repeat - Set Repeat mode On/Off
 * SetVol - Set volume value
+* Next / Previous
+* Pause / Stop
 
 Once this code does something more useful, this section wil be replaced
