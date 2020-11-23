@@ -36,12 +36,20 @@ namespace RafaelEstevam.Simple.MPD
             return response;
         }
 
-        /* ACTIONS */
+        /* CONNECTION SETTINGS */
+        public void CloseConnection()
+        {
+            // Clients should not use this command; 
+            //  instead, they should just close the socket.
+            Connection.Close();
+        }
         public async Task DoPingAsync()
         {
             // is either OK or Exception
             await ExecuteCommandAsync(new Commands.Ping());
         }
+
+        /* QUERYING MPD’S STATUS */
         public async Task<Responses.Stats> GetStatsAsync()
         {
             var rest = await ExecuteCommandAsync(new Commands.Stats());
@@ -52,10 +60,38 @@ namespace RafaelEstevam.Simple.MPD
             var rest = await ExecuteCommandAsync(new Commands.Status());
             return (Responses.Status)rest;
         }
-        public async Task<Responses.CurrentSong> GetCUrrentSongAsync()
+        public async Task<Responses.CurrentSong> GetCurrentSongAsync()
         {
             var rest = await ExecuteCommandAsync(new Commands.CurrentSong());
             return (Responses.CurrentSong)rest;
         }
+
+        /* REFLECTION */
+        public async Task<Responses.ValuesList> GetConfigAsync()
+        {
+            var rest = await ExecuteCommandAsync(new Commands.Config());
+            return (Responses.ValuesList)rest;
+        }
+        public async Task<Responses.ValuesList> GetCommandsAsync()
+        {
+            var rest = await ExecuteCommandAsync(new Commands.Commands());
+            return (Responses.ValuesList)rest;
+        }
+        public async Task<Responses.ValuesList> GetNotCommandsAsync()
+        {
+            var rest = await ExecuteCommandAsync(new Commands.NotCommands());
+            return (Responses.ValuesList)rest;
+        }
+        public async Task<Responses.ValuesList> GetUrlHandlersAsync()
+        {
+            var rest = await ExecuteCommandAsync(new Commands.UrlHandlers());
+            return (Responses.ValuesList)rest;
+        }
+        public async Task<Responses.ValuesList> GetDecodersAsync()
+        {
+            var rest = await ExecuteCommandAsync(new Commands.Decoders());
+            return (Responses.ValuesList)rest;
+        }
+
     }
 }

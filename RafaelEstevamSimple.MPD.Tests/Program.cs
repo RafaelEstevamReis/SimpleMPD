@@ -9,7 +9,12 @@ mpd.DoPingAsync().Wait();
 
 //var stats = mpd.GetStatsAsync().Result;
 //var status = mpd.GetStatusAsync().Result;
-var curr = mpd.GetCUrrentSongAsync().Result;
+var curr = mpd.GetCurrentSongAsync().Result;
+//var cfg = mpd.GetConfigAsync().Result;
+//var pairs = mpd.GetCommandsAsync().Result;
+//pairs = mpd.GetNotCommandsAsync().Result;
+//pairs = mpd.GetUrlHandlersAsync().Result;
+//pairs = mpd.GetDecodersAsync().Result;
 mpd = mpd;
 
 
