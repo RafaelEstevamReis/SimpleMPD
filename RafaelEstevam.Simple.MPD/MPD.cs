@@ -93,5 +93,33 @@ namespace RafaelEstevam.Simple.MPD
             return (Responses.ValuesList)rest;
         }
 
+        /* PLAYBACK OPTIONS */
+        public async Task SetConsume(bool ConsumeSong)
+        {
+            // is either OK or Exception
+            await ExecuteCommandAsync(new Commands.Consume(ConsumeSong));
+        }
+        public async Task SetCrossfade(int CrossfadeSeconds)
+        {
+            // is either OK or Exception
+            await ExecuteCommandAsync(new Commands.Crossfade(CrossfadeSeconds));
+        }
+        public async Task SetRandom(bool Random)
+        {
+            // is either OK or Exception
+            await ExecuteCommandAsync(new Commands.Random(Random));
+        }
+        public async Task SetRepeat(bool Repeat)
+        {
+            // is either OK or Exception
+            await ExecuteCommandAsync(new Commands.Repeat(Repeat));
+        }
+        public async Task SetVolume(int Volume)
+        {
+            // is either OK or Exception
+            await ExecuteCommandAsync(new Commands.SetVol(Volume));
+        }
+
+
     }
 }
