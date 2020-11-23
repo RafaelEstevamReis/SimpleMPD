@@ -15,9 +15,9 @@ var curr = mpd.GetCurrentSongAsync().Result;
 //pairs = mpd.GetNotCommandsAsync().Result;
 //pairs = mpd.GetUrlHandlersAsync().Result;
 //pairs = mpd.GetDecodersAsync().Result;
-mpd.SetVolume(100);
-mpd.SetVolume(0);
-mpd.SetVolume(50);
+mpd.SetVolumeAsync(100);
+mpd.SetVolumeAsync(0);
+mpd.SetVolumeAsync(50);
 
 mpd = mpd;
 
