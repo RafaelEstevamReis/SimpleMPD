@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <Version>0.4.2</Version>
+    <Authors>RafaelEstevam.Net</Authors>
+    <Company>RafaelEstevam.Net</Company>
+    <Product>Simple MPD protocol</Product>
+    <Description>A simple client implementation of the MPD protocol</Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/RafaelEstevamReis/SimpleMPD</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/RafaelEstevamReis/SimpleMPD</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>Music Daemon Protocol client</PackageTags>
+    <PackageReleaseNotes>See examples and documentation on the GitHub page
+Paired with commit 0f66d9b
+https://github.com/RafaelEstevamReis/SimpleMPD</PackageReleaseNotes>
+  </PropertyGroup>
+
+</Project>

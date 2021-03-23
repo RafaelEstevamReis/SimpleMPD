@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30711.63
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RafaelEstevam.Simple.MPD", "RafaelEstevam.Simple.MPD\RafaelEstevam.Simple.MPD.csproj", "{4C8C02FA-A7D9-493C-BDC4-7B9DFE11A368}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simple.MPD", "Simple.MPD\Simple.MPD.csproj", "{4C8C02FA-A7D9-493C-BDC4-7B9DFE11A368}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RafaelEstevamSimple.MPD.Tests", "RafaelEstevamSimple.MPD.Tests\RafaelEstevamSimple.MPD.Tests.csproj", "{BECB8A09-8440-48F8-AB79-4B8B20B14A27}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MPD.Tests", "Simple.MPD.Tests\Simple.MPD.Tests.csproj", "{BECB8A09-8440-48F8-AB79-4B8B20B14A27}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
