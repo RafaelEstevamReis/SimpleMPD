@@ -72,10 +72,10 @@ namespace Simple.MPD
             var rest = await ExecuteCommandAsync(new Commands.Status());
             return (Responses.Status)rest;
         }
-        public async Task<Responses.CurrentSong> GetCurrentSongAsync()
+        public async Task<Responses.SongInfo> GetCurrentSongAsync()
         {
             var rest = await ExecuteCommandAsync(new Commands.CurrentSong());
-            return (Responses.CurrentSong)rest;
+            return (Responses.SongInfo)rest;
         }
 
         /* REFLECTION */
@@ -133,6 +133,18 @@ namespace Simple.MPD
         }
 
         /* CONTROLLING PLAYBACK */
+        public async Task PlayAsync()
+        {
+            await ExecuteCommandAsync(new Commands.Play());
+        }
+        public async Task PlaySongPosAsync(int SongPosition)
+        {
+            await ExecuteCommandAsync(Commands.Play.PlaySongPosition(SongPosition));
+        }
+        public async Task PlaySongIdAsync(int SongId)
+        {
+            await ExecuteCommandAsync(Commands.Play.PlaySongId(SongId));
+        }
         public async Task PauseAsync(Commands.Pause.State state)
         {
             // is either OK or Exception
@@ -152,6 +164,13 @@ namespace Simple.MPD
         {
             // is either OK or Exception
             await ExecuteCommandAsync(new Commands.Stop());
+        }
+
+        /* QUEUE */
+        public async Task<Responses.SongInfoCollection> GetQueue()
+        {
+            var rest = await ExecuteCommandAsync(new Commands.PlayListInfo());
+            return (Responses.SongInfoCollection)rest;
         }
 
     }
