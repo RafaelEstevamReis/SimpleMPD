@@ -10,7 +10,7 @@ namespace Simple.MPD.Responses
         public string File { get; set; }
         public string Name { get; set; }
 
-        public TimeSpan Time { get; set; }
+        public TimeSpan Elapsed { get; set; }
         public TimeSpan Duration { get; set; }
 
         //public Guid MUSICBRAINZ_ARTISTID { get; set; }
@@ -46,31 +46,32 @@ namespace Simple.MPD.Responses
                         Name = pair.Value.Trim();
                         break;
 
-                    case "Artist":
+                    case "artist":
                         Artist = pair.Value.Trim();
                         break;
-                    case "AlbumArtist":
+                    case "albumartist":
                         AlbumArtist = pair.Value.Trim();
                         break;
-                    case "ArtistSort":
+                    case "artistsort":
                         ArtistSort = pair.Value.Trim();
                         break;
-                    case "AlbumArtistSort":
+                    case "albumartistsort":
                         AlbumArtistSort = pair.Value.Trim();
                         break;
-                    case "Title":
+                    case "title":
                         Title = pair.Value.Trim();
                         break;
-                    case "Album":
+                    case "album":
                         Album = pair.Value.Trim();
                         break;
-                    case "Track":
+                    case "track":
                         Track = pair.Value.Trim();
                         break;
 
                     case "time":
+                    case "elapsed":
                         dVal = double.Parse(pair.Value, System.Globalization.CultureInfo.InvariantCulture);
-                        Time = TimeSpan.FromSeconds(dVal);
+                        Elapsed = TimeSpan.FromSeconds(dVal);
                         break;
                     case "duration":
                         dVal = double.Parse(pair.Value, System.Globalization.CultureInfo.InvariantCulture);
