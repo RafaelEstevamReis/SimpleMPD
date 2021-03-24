@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using System.Net;
 using System.Net.Sockets;
+using System.Text;
 using System.Threading.Tasks;
 using Simple.MPD.Interfaces;
 
@@ -42,9 +43,14 @@ namespace Simple.MPD.Netwroking
             if (tcpClient == null) tcpClient = new TcpClient();
             await tcpClient.ConnectAsync(EndPoint.Address, EndPoint.Port);
 
+#if NETSTANDARD2_1
+            reader = new StreamReader(tcpClient.GetStream(), Encoding.Default, false, 512, leaveOpen: true);
+            writer = new StreamWriter(tcpClient.GetStream(), Encoding.Default, 512, leaveOpen: true);
+#else
             reader = new StreamReader(tcpClient.GetStream(), leaveOpen: true);
-            
             writer = new StreamWriter(tcpClient.GetStream(), leaveOpen: true);
+#endif
+
             writer.AutoFlush = true;
 
         }
