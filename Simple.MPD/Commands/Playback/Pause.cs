@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
+﻿using System.IO;
 using System.Threading.Tasks;
 using Simple.MPD.Interfaces;
 
@@ -12,7 +9,7 @@ namespace Simple.MPD.Commands
         public enum State
         {
             Pause,
-            Resumo,
+            Resume,
             Toggle
         }
         public State PauseState { get; set; }
