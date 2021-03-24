@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFrameworks>netstandard2.1;netcoreapp3.1;net5.0</TargetFrameworks>
     <LangVersion>8.0</LangVersion>
-    <Version>0.4.4</Version>
+    <Version>0.4.6</Version>
     <Authors>RafaelEstevam.Net</Authors>
     <Company>RafaelEstevam.Net</Company>
     <Product>Simple MPD protocol</Product>
@@ -14,7 +14,7 @@
     <RepositoryType>git</RepositoryType>
     <PackageTags>Music Daemon Protocol client</PackageTags>
     <PackageReleaseNotes>See examples and documentation on the GitHub page
-Paired with commit 12dbc18
+Paired with commit d6f8513
 https://github.com/RafaelEstevamReis/SimpleMPD</PackageReleaseNotes>
   </PropertyGroup>
 
