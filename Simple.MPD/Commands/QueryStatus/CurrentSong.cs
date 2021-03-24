@@ -10,7 +10,7 @@ namespace Simple.MPD.Commands
 
         public IResponse GetResponseProcessor()
         {
-            return new Responses.CurrentSong();
+            return new Responses.SongInfo();
         }
 
         public async Task WriteAsync(StreamWriter stream)
