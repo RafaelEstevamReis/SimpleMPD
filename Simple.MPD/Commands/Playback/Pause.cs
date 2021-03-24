@@ -29,7 +29,9 @@ namespace Simple.MPD.Commands
         public async Task WriteAsync(StreamWriter stream)
         {
             if (PauseState == State.Toggle)
+            {
                 await stream.WriteAsync($"pause\n");
+            }
             else
             {
                 await stream.WriteAsync($"pause { (PauseState == State.Pause ? 1 : 0) } \n");
