@@ -6,14 +6,19 @@ namespace Simple.MPD
 {
     public class MPD
     {
+        private readonly object lockObject;
+
         public IConnection Connection { get; }
         public System.Version ProtocolVersion { get; private set; }
 
         public MPD(IConnection connection)
         {
+            lockObject = new object();
             Connection = connection;
         }
-
+        /// <summary>
+        /// Executes a command in a concurrent-safe manmer
+        /// </summary>
         public async Task<IResponse> ExecuteCommandAsync(ICommand command)
         {
             if (!Connection.IsConnected)
@@ -26,10 +31,17 @@ namespace Simple.MPD
                 ProtocolVersion = version.VersionInfo;
             }
 
-            await command.WriteAsync(Connection.GetWriter());
-
-            return await readResponseAsync(command.GetResponseProcessor());
+            return await Task.Run(() => ExecuteCommandInternalLock(command));
         }
+        private IResponse ExecuteCommandInternalLock(ICommand command)
+        {
+            lock (lockObject)
+            {
+                command.WriteAsync(Connection.GetWriter()).Wait();
+                return readResponseAsync(command.GetResponseProcessor()).Result;
+            }
+        }
+    
         private async Task<T> readResponseAsync<T>(T response) where T : IResponse
         {
             await response.ReadAsync(Connection.GetReader());
@@ -126,17 +138,17 @@ namespace Simple.MPD
             // is either OK or Exception
             await ExecuteCommandAsync(new Commands.Pause(state));
         }
-        public async Task Next()
+        public async Task NextAsync()
         {
             // is either OK or Exception
             await ExecuteCommandAsync(new Commands.Next());
         }
-        public async Task Previous()
+        public async Task PreviousAsync()
         {
             // is either OK or Exception
             await ExecuteCommandAsync(new Commands.Previous());
         }
-        public async Task Stop()
+        public async Task StopAsync()
         {
             // is either OK or Exception
             await ExecuteCommandAsync(new Commands.Stop());
