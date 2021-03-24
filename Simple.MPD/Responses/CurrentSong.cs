@@ -26,6 +26,16 @@ namespace Simple.MPD.Responses
         public int Pos { get; set; }
         public int Id { get; set; }
 
+
+        public string SongDisplayName
+        {
+            get
+            {
+                if (Title != null) return $"{AlbumArtist ?? Artist ?? "[Unkown]"} - {Title}";
+                if (Name != null) return Name;
+                return File;
+            }
+        }
         public ICommand GetCommand()
         {
             return null;
