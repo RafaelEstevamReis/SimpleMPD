@@ -50,6 +50,6 @@ It connects, receives the Version and waits for commands, which I implemented:
 * Repeat - Set Repeat mode On/Off
 * SetVol - Set volume value
 * Next / Previous
-* Pause / Stop
+* Play / Pause / Stop
 
 Once this code does something more useful, this section wil be replaced
