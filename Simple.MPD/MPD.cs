@@ -194,5 +194,25 @@ namespace Simple.MPD
             var list = (Responses.ValuesList)resp;
             return int.Parse(list["Id"]);
         }
+
+        /* MUSIC DATABASE */
+        /// <summary>
+        /// Do not use this command.
+        /// Lists all songs and directories in URI.
+        /// Do not manage a client-side copy of MPD’s database. 
+        /// That is fragile and adds huge overhead. It will break with large databases. 
+        /// Instead, query MPD whenever you need something.
+        /// </summary>
+        /// <returns></returns>
+        public async Task<Responses.SongInfoCollection> ListAll()
+        {
+            var resp = await ExecuteCommandAsync(new Commands.ListAll());
+            return (Responses.SongInfoCollection)resp;
+        }
+        public async Task<Responses.SongInfoCollection> LsInfo(string Url = null)
+        {
+            var resp = await ExecuteCommandAsync(new Commands.LsInfo(Url));
+            return (Responses.SongInfoCollection)resp;
+        }
     }
 }
