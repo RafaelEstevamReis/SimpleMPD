@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using Simple.MPD.Interfaces;
 
@@ -9,6 +10,8 @@ namespace Simple.MPD.Responses
     public class ValuesList : IResponse
     {
         public (string Key, string Value)[] Items { get; set; }
+        public string this[string Key] => Items.First(i => i.Key == Key).Value;
+        public string this[int Index] => Items[Index].Value;
 
         public ICommand GetCommand()
         {
