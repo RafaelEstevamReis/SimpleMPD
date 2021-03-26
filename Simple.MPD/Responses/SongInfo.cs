@@ -10,6 +10,8 @@ namespace Simple.MPD.Responses
     public class SongInfo : IResponse
     {
         public string File { get; set; }
+        public string Directory { get; set; }
+        public string PlayList { get; set; }
         public string Name { get; set; }
 
         public TimeSpan Elapsed { get; set; }
@@ -39,7 +41,7 @@ namespace Simple.MPD.Responses
             {
                 if (Title != null) return $"{AlbumArtist ?? Artist ?? "[Unkown]"} - {Title}";
                 if (Name != null) return Name;
-                return File;
+                return File ?? Directory ?? PlayList ?? "[Unkown]";
             }
         }
         public ICommand GetCommand() => null;
@@ -64,6 +66,13 @@ namespace Simple.MPD.Responses
                 case "file":
                     File = pair.Value.Trim();
                     break;
+                case "directory":
+                    Directory = pair.Value.Trim();
+                    break;
+                case "playlist":
+                    PlayList = pair.Value.Trim();
+                    break;
+
                 case "name":
                     Name = pair.Value.Trim();
                     break;
