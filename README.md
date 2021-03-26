@@ -49,7 +49,8 @@ It connects, receives the Version and waits for commands, which I implemented:
 * Random - Set Random mode On/Off
 * Repeat - Set Repeat mode On/Off
 * SetVol - Set volume value
-* Next / Previous
 * Play / Pause / Stop
+* Next / Previous
+* PlayListInfo - Get Queue song's
 
 Once this code does something more useful, this section wil be replaced

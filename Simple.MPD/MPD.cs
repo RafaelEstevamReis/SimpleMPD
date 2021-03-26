@@ -61,23 +61,6 @@ namespace Simple.MPD
             await ExecuteCommandAsync(new Commands.Ping());
         }
 
-        /* QUERYING MPD’S STATUS */
-        public async Task<Responses.Stats> GetStatsAsync()
-        {
-            var rest = await ExecuteCommandAsync(new Commands.Stats());
-            return (Responses.Stats)rest;
-        }
-        public async Task<Responses.Status> GetStatusAsync()
-        {
-            var rest = await ExecuteCommandAsync(new Commands.Status());
-            return (Responses.Status)rest;
-        }
-        public async Task<Responses.SongInfo> GetCurrentSongAsync()
-        {
-            var rest = await ExecuteCommandAsync(new Commands.CurrentSong());
-            return (Responses.SongInfo)rest;
-        }
-
         /* REFLECTION */
         public async Task<Responses.ValuesList> GetConfigAsync()
         {
@@ -103,6 +86,23 @@ namespace Simple.MPD
         {
             var rest = await ExecuteCommandAsync(new Commands.Decoders());
             return (Responses.ValuesList)rest;
+        }
+
+        /* QUERYING MPD’S STATUS */
+        public async Task<Responses.Stats> GetStatsAsync()
+        {
+            var rest = await ExecuteCommandAsync(new Commands.Stats());
+            return (Responses.Stats)rest;
+        }
+        public async Task<Responses.Status> GetStatusAsync()
+        {
+            var rest = await ExecuteCommandAsync(new Commands.Status());
+            return (Responses.Status)rest;
+        }
+        public async Task<Responses.SongInfo> GetCurrentSongAsync()
+        {
+            var rest = await ExecuteCommandAsync(new Commands.CurrentSong());
+            return (Responses.SongInfo)rest;
         }
 
         /* PLAYBACK OPTIONS */
