@@ -127,21 +127,21 @@ namespace Simple.MPD.Responses
 
         public static async IAsyncEnumerable<SongInfo> ReadAllAsync(StreamReader stream)
         {
-            SongInfo current = new SongInfo();
+            SongInfo current = null;
 
             var values = Helper.ResponseHelper.ReadValuesAsync(stream);
             await foreach (var pair in values)
             {
-                current.assingKeyValuePair(pair);
-
                 // id is ever the last one
-                if (pair.Key == "Id")
+                if (pair.Key == "file" || pair.Key == "directory" || pair.Key == "playlist")
                 {
-                    yield return current;
+                    if (current != null) yield return current;
                     current = new SongInfo();
                 }
-            }
 
+                current.assingKeyValuePair(pair);
+            }
+            if (current != null) yield return current;
         }
 
         public override string ToString()
