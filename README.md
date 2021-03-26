@@ -52,5 +52,8 @@ It connects, receives the Version and waits for commands, which I implemented:
 * Play / Pause / Stop
 * Next / Previous
 * PlayListInfo - Get Queue song's
+* Clear - Clear queue
+* Add - Adds (recursively) to the queue
+* AddId - Add a file to the queue and return it's Id
 
 Once this code does something more useful, this section wil be replaced
