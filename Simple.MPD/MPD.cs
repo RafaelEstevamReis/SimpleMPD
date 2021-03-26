@@ -64,45 +64,45 @@ namespace Simple.MPD
         /* REFLECTION */
         public async Task<Responses.ValuesList> GetConfigAsync()
         {
-            var rest = await ExecuteCommandAsync(new Commands.Config());
-            return (Responses.ValuesList)rest;
+            var resp = await ExecuteCommandAsync(new Commands.Config());
+            return (Responses.ValuesList)resp;
         }
         public async Task<Responses.ValuesList> GetCommandsAsync()
         {
-            var rest = await ExecuteCommandAsync(new Commands.Commands());
-            return (Responses.ValuesList)rest;
+            var resp = await ExecuteCommandAsync(new Commands.Commands());
+            return (Responses.ValuesList)resp;
         }
         public async Task<Responses.ValuesList> GetNotCommandsAsync()
         {
-            var rest = await ExecuteCommandAsync(new Commands.NotCommands());
-            return (Responses.ValuesList)rest;
+            var resp = await ExecuteCommandAsync(new Commands.NotCommands());
+            return (Responses.ValuesList)resp;
         }
         public async Task<Responses.ValuesList> GetUrlHandlersAsync()
         {
-            var rest = await ExecuteCommandAsync(new Commands.UrlHandlers());
-            return (Responses.ValuesList)rest;
+            var resp = await ExecuteCommandAsync(new Commands.UrlHandlers());
+            return (Responses.ValuesList)resp;
         }
         public async Task<Responses.ValuesList> GetDecodersAsync()
         {
-            var rest = await ExecuteCommandAsync(new Commands.Decoders());
-            return (Responses.ValuesList)rest;
+            var resp = await ExecuteCommandAsync(new Commands.Decoders());
+            return (Responses.ValuesList)resp;
         }
 
         /* QUERYING MPD’S STATUS */
         public async Task<Responses.Stats> GetStatsAsync()
         {
-            var rest = await ExecuteCommandAsync(new Commands.Stats());
-            return (Responses.Stats)rest;
+            var resp = await ExecuteCommandAsync(new Commands.Stats());
+            return (Responses.Stats)resp;
         }
         public async Task<Responses.Status> GetStatusAsync()
         {
-            var rest = await ExecuteCommandAsync(new Commands.Status());
-            return (Responses.Status)rest;
+            var resp = await ExecuteCommandAsync(new Commands.Status());
+            return (Responses.Status)resp;
         }
         public async Task<Responses.SongInfo> GetCurrentSongAsync()
         {
-            var rest = await ExecuteCommandAsync(new Commands.CurrentSong());
-            return (Responses.SongInfo)rest;
+            var resp = await ExecuteCommandAsync(new Commands.CurrentSong());
+            return (Responses.SongInfo)resp;
         }
 
         /* PLAYBACK OPTIONS */
@@ -169,9 +169,30 @@ namespace Simple.MPD
         /* QUEUE */
         public async Task<Responses.SongInfoCollection> GetQueue()
         {
-            var rest = await ExecuteCommandAsync(new Commands.PlayListInfo());
-            return (Responses.SongInfoCollection)rest;
+            var resp = await ExecuteCommandAsync(new Commands.PlayListInfo());
+            return (Responses.SongInfoCollection)resp;
         }
-
+        public async Task QueueClear()
+        {
+            // is either OK or Exception
+            await ExecuteCommandAsync(new Commands.Clear());
+        }
+        /// <summary>
+        /// Adds the file URI to the playlist (directories add recursively). URI can also be a single file.
+        /// Clients that are connected via local socket may add arbitrary local files(URI is an absolute path)
+        /// </summary>
+        public async Task QueueAdd(string Uri)
+        {
+            await ExecuteCommandAsync(new Commands.Add(Uri));
+        }
+        /// <summary>
+        /// Adds a song to the playlist (non-recursive) and returns the song id. URI is always a single file or URL
+        /// </summary>
+        public async Task<int> QueueAddId(string Uri, int Position = -1)
+        {
+            var resp = await ExecuteCommandAsync(new Commands.AddId(Uri, Position));
+            var list = (Responses.ValuesList)resp;
+            return int.Parse(list["Id"]);
+        }
     }
 }
