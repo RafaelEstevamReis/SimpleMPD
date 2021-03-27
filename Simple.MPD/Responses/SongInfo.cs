@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using Simple.MPD.Interfaces;
 
@@ -9,6 +10,7 @@ namespace Simple.MPD.Responses
 {
     public class SongInfo : IResponse
     {
+
         public string File { get; set; }
         public string Directory { get; set; }
         public string PlayList { get; set; }
@@ -17,9 +19,9 @@ namespace Simple.MPD.Responses
         public TimeSpan Elapsed { get; set; }
         public TimeSpan Duration { get; set; }
 
-        public Guid MUSICBRAINZ_ALBUMID { get; set; }
-        public Guid MUSICBRAINZ_ARTISTID { get; set; }
-        public Guid MUSICBRAINZ_ALBUMARTISTID { get; set; }
+        public Guid[] MUSICBRAINZ_ALBUMID { get; set; }
+        public Guid[] MUSICBRAINZ_ARTISTID { get; set; }
+        public Guid[] MUSICBRAINZ_ALBUMARTISTID { get; set; }
         public Guid MUSICBRAINZ_RELEASETRACKID { get; set; }
         public Guid MUSICBRAINZ_TRACKID { get; set; }
 
@@ -29,17 +31,41 @@ namespace Simple.MPD.Responses
         public string AlbumArtistSort { get; set; }
         public string Title { get; set; }
         public string Album { get; set; }
+        public string AlbumSort { get; set; }
         public string Track { get; set; }
+        public string Composer { get; set; }
+        public string Performer { get; set; }
+        public string Conductor { get; set; }
+
+        private string[] format;
+        public string Format { get => string.Join(':', format); set => format = value.Split(':'); }
+
+        public int Format_SampleRate => parseFormatNumber(format[0]);
+        public int Format_Bits => parseFormatNumber(format[1]);
+        public int Format_Channels => parseFormatNumber(format[2]);
 
         public int Pos { get; set; }
         public int Id { get; set; }
 
-
+        public string DisplayArtist
+        {
+            get
+            {
+                if (AlbumArtist != null)
+                {
+                    if (!AlbumArtist.StartsWith("various ", StringComparison.InvariantCultureIgnoreCase)) return AlbumArtist;
+                }
+                return Artist ?? "[Unkown]";
+            }
+        }
         public string SongDisplayName
         {
             get
             {
-                if (Title != null) return $"{AlbumArtist ?? Artist ?? "[Unkown]"} - {Title}";
+                if (Title != null)
+                {
+                    return $"{DisplayArtist} - {Title}";
+                }
                 if (Name != null) return Name;
                 return File ?? Directory ?? PlayList ?? "[Unkown]";
             }
@@ -52,9 +78,6 @@ namespace Simple.MPD.Responses
             await foreach (var pair in values)
             {
                 assingKeyValuePair(pair);
-
-                // id is ever the last one
-                if (pair.Key == "Id") break;
             }
         }
 
@@ -95,8 +118,23 @@ namespace Simple.MPD.Responses
                 case "album":
                     Album = pair.Value.Trim();
                     break;
+                case "albumsort":
+                    AlbumSort = pair.Value.Trim();
+                    break;
+                case "composer":
+                    Composer = pair.Value.Trim();
+                    break;
+                case "performer":
+                    Performer = pair.Value.Trim();
+                    break;
+                case "conductor":
+                    Conductor = pair.Value.Trim();
+                    break;
                 case "track":
                     Track = pair.Value.Trim();
+                    break;
+                case "format":
+                    Format = pair.Value.Trim();
                     break;
 
                 case "time":
@@ -109,21 +147,21 @@ namespace Simple.MPD.Responses
                     Duration = TimeSpan.FromSeconds(dVal);
                     break;
 
-                // case "musicbrainz_albumid":
-                //     MUSICBRAINZ_ALBUMID = Guid.Parse(pair.Value);
-                //     break;
-                // case "musicbrainz_artistid":
-                //     MUSICBRAINZ_ARTISTID = Guid.Parse(pair.Value);
-                //     break;
-                // case "musicbrainz_albumartistid":
-                //     MUSICBRAINZ_ALBUMARTISTID = Guid.Parse(pair.Value);
-                //     break;
-                // case "musicbrainz_releasetrackid":
-                //     MUSICBRAINZ_RELEASETRACKID = Guid.Parse(pair.Value);
-                //     break;
-                // case "musicbrainz_trackid":
-                //     MUSICBRAINZ_TRACKID = Guid.Parse(pair.Value);
-                //     break;
+                case "musicbrainz_albumid":
+                    MUSICBRAINZ_ALBUMID = ParseGuids(pair.Value);
+                    break;
+                case "musicbrainz_artistid":
+                    MUSICBRAINZ_ARTISTID = ParseGuids(pair.Value);
+                    break;
+                case "musicbrainz_albumartistid":
+                    MUSICBRAINZ_ALBUMARTISTID = ParseGuids(pair.Value);
+                    break;
+                case "musicbrainz_releasetrackid":
+                    MUSICBRAINZ_RELEASETRACKID = Guid.Parse(pair.Value);
+                    break;
+                case "musicbrainz_trackid":
+                    MUSICBRAINZ_TRACKID = Guid.Parse(pair.Value);
+                    break;
 
                 case "pos":
                     Pos = int.Parse(pair.Value);
@@ -156,6 +194,19 @@ namespace Simple.MPD.Responses
         public override string ToString()
         {
             return $"Id: {Id} Pos: {Pos} {SongDisplayName}";
+        }
+
+        static int parseFormatNumber(string formatSection) 
+        {
+            int.TryParse(formatSection, out int value);
+            return value;
+        }
+
+        private static Guid[] ParseGuids(string guids)
+        {
+            return guids.Split('/')
+                        .Select(g => Guid.Parse(g))
+                        .ToArray();
         }
     }
 
