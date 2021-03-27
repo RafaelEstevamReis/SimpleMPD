@@ -1,0 +1,211 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Simple.MPD</name>
+    </assembly>
+    <members>
+        <member name="T:Simple.MPD.MPD">
+            <summary>
+            Music Protocol Deamon client
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.MPD.Connection">
+            <summary>
+            Gets current connection
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.MPD.ProtocolVersion">
+            <summary>
+            Current protocol version
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.MPD.ExecuteCommandAsync(Simple.MPD.Interfaces.ICommand)">
+            <summary>
+            Executes a command in a concurrent-safe manmer
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.MPD.DoPingAsync">
+            <summary>
+            Executes a Ping command
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.MPD.GetConfigAsync">
+            <summary>
+            Dumps configuration values that may be interesting for the client. 
+            This command is only permitted to “local” clients (connected via local socket).
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.MPD.GetCommandsAsync">
+            <summary>
+            Shows which commands the current user has access to
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.MPD.GetNotCommandsAsync">
+            <summary>
+            Shows which commands the current user does not have access to
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.MPD.GetUrlHandlersAsync">
+            <summary>
+            Gets a list of available URL handlers
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.MPD.GetDecodersAsync">
+            <summary>
+            Print a list of decoder plugins, followed by their supported suffixes and MIME types
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.MPD.GetStatsAsync">
+            <summary>
+            Displays statistics
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.MPD.GetStatusAsync">
+            <summary>
+            Reports the current status of the player and the volume level
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.MPD.GetCurrentSongAsync">
+            <summary>
+            Displays the song info of the current song
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.MPD.SetConsumeAsync(System.Boolean)">
+            <summary>
+            Sets consume state. When consume is activated, each song played is removed from playlist
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.MPD.SetCrossfadeAsync(System.Int32)">
+            <summary>
+            Sets crossfading between songs
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.MPD.SetRandomAsync(System.Boolean)">
+            <summary>
+            Enables/disables Random
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.MPD.SetRepeatAsync(System.Boolean)">
+            <summary>
+            Enable/Disable repeat
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.MPD.SetSingle(Simple.MPD.Commands.Single.States)">
+            <summary>
+            Sets single state, STATE should be On, Off or OneShot. 
+            When single is activated, playback is stopped after current song, or song is repeated if the ‘repeat’ mode is enabled
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.MPD.SetVolumeAsync(System.Int32)">
+            <summary>
+            Sets volume, the range of volume is 0-100. Out of range values will be truncated
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.MPD.PlayAsync">
+            <summary>
+            Begins playing the playlist at current song
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.MPD.PlaySongPosAsync(System.Int32)">
+            <summary>
+            Begins playing the playlist at song number SongPosition
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.MPD.PlaySongIdAsync(System.Int32)">
+            <summary>
+            Begins playing the playlist at song SongId
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.MPD.PauseAsync(Simple.MPD.Commands.Pause.State)">
+            <summary>
+            Pause or resume playback
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.MPD.NextAsync">
+            <summary>
+            Plays next song in the playlist
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.MPD.PreviousAsync">
+            <summary>
+            Plays previous song in the playlist
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.MPD.StopAsync">
+            <summary>
+            Stops playing
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.MPD.GetQueue">
+            <summary>
+            Displays a list of all songs in the queue, internally uses the `playlistinfo` command
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.MPD.QueueClear">
+            <summary>
+            Clears the queue
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.MPD.QueueAdd(System.String)">
+            <summary>
+            Adds the file URI to the playlist (directories add recursively). URI can also be a single file.
+            Clients that are connected via local socket may add arbitrary local files(URI is an absolute path)
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.MPD.QueueAddId(System.String,System.Int32)">
+            <summary>
+            Adds a song to the playlist (non-recursive) and returns the song id. URI is always a single file or URL
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.MPD.ListAll">
+            <summary>
+            Do not use this command.
+            Lists all songs and directories in URI.
+            Do not manage a client-side copy of MPD’s database. 
+            That is fragile and adds huge overhead. It will break with large databases. 
+            Instead, query MPD whenever you need something.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Simple.MPD.MPD.LsInfo(System.String)">
+            <summary>
+            Lists the contents of the directory URI
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Responses.Stats.Uptime">
+            <summary>
+            daemon uptime in seconds
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Responses.Stats.PlayTime">
+            <summary>
+            time length of music played
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Responses.Stats.Artists">
+            <summary>
+            number of artists
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Responses.Stats.Albums">
+            <summary>
+            number of albums
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Responses.Stats.Songs">
+            <summary>
+            number of songs
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Responses.Stats.DB_PlayTime">
+            <summary>
+            sum of all song times in the database in seconds
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Responses.Stats.DB_Update">
+            <summary>
+            last db update
+            </summary>
+        </member>
+    </members>
+</doc>

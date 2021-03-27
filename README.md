@@ -44,6 +44,7 @@ It connects, receives the Version and waits for commands, which I implemented:
 * NotCommands - List all **un**available commands
 * UrlHandlers - List all available Url Handlers
 * Decoders - List all available decoders
+* Idle - Waits for commands
 * Stats - General info
 * Status - Current song info
 * CurrentSong - Current song Name and File
@@ -52,6 +53,7 @@ It connects, receives the Version and waits for commands, which I implemented:
 * Random - Set Random mode On/Off
 * Repeat - Set Repeat mode On/Off
 * SetVol - Set volume value
+* Single - Set single mode
 * Play / Pause / Stop
 * Next / Previous
 * PlayListInfo - Get Queue song's
