@@ -27,7 +27,7 @@ namespace Simple.MPD.Commands
             string sUri = Helper.EscapingHelper.Escape(Uri);
             string sPos = Position >= 0 ? $" {Position}" : "";
 
-            await stream.WriteAsync($"add \"{sUri}\"{sPos}\n");
+            await stream.WriteAsync($"addid \"{sUri}\"{sPos}\n");
         }
     }
 }
