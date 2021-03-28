@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using Simple.MPD.Exceptions;
@@ -56,6 +58,7 @@ namespace Simple.MPD
             lock (lockObject)
             {
                 command.WriteAsync(Connection.GetWriter()).Wait();
+                Task.Delay(250).Wait();
                 return readResponseAsync(command.GetResponseProcessor()).Result;
             }
         }
@@ -352,5 +355,24 @@ namespace Simple.MPD
             var resp = await ExecuteCommandAsync(new Commands.LsInfo(Url));
             return (Responses.SongInfoCollection)resp;
         }
+
+
+        /* External */
+        /// <summary>
+        /// Rerads a Local m3u file with MPD music locations and adds to queue
+        /// </summary>
+        /// <param name="LocalFilePath">Local file, NOT MPD path</param>
+        /// <returns>Tup´le with MPD file added and it's SongID</returns>
+        public IEnumerable<(string,int)> AddLocalM3uFile(string LocalFilePath)
+        {
+            foreach (var line in File.ReadAllLines(LocalFilePath))
+            {
+                if (line.StartsWith("#")) continue;
+
+                var id = QueueAddId(line).Result;
+                yield return (line, id);
+            }
+        }
+
     }
 }
