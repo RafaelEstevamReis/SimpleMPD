@@ -4,9 +4,86 @@
         <name>Simple.MPD</name>
     </assembly>
     <members>
+        <member name="F:Simple.MPD.Commands.Idle.SubSystems.Database">
+            <summary>
+            the song database has been modified after update
+            </summary>
+        </member>
+        <member name="F:Simple.MPD.Commands.Idle.SubSystems.Update">
+            <summary>
+            a database update has started or finished. 
+            If the database was modified during the update, the database event is also emitted.
+            </summary>
+        </member>
+        <member name="F:Simple.MPD.Commands.Idle.SubSystems.Stored_Playlist">
+            <summary>
+            a stored playlist has been modified, renamed, created or deleted
+            </summary>
+        </member>
+        <member name="F:Simple.MPD.Commands.Idle.SubSystems.Playlist">
+            <summary>
+            the queue (i.e. the current playlist) has been modified
+            </summary>
+        </member>
+        <member name="F:Simple.MPD.Commands.Idle.SubSystems.Player">
+            <summary>
+            the player has been started, stopped or seeked or tags of the currently playing song have changed (e.g. received from stream)
+            </summary>
+        </member>
+        <member name="F:Simple.MPD.Commands.Idle.SubSystems.Mixer">
+            <summary>
+            the volume has been changed
+            </summary>
+        </member>
+        <member name="F:Simple.MPD.Commands.Idle.SubSystems.Output">
+            <summary>
+            an audio output has been added, removed or modified (e.g. renamed, enabled or disabled)
+            </summary>
+        </member>
+        <member name="F:Simple.MPD.Commands.Idle.SubSystems.Options">
+            <summary>
+            options like repeat, random, crossfade, replay gain
+            </summary>
+        </member>
+        <member name="F:Simple.MPD.Commands.Idle.SubSystems.Partition">
+            <summary>
+            a partition was added, removed or changed
+            </summary>
+        </member>
+        <member name="F:Simple.MPD.Commands.Idle.SubSystems.Sticker">
+            <summary>
+            the sticker database has been modified.
+            </summary>
+        </member>
+        <member name="F:Simple.MPD.Commands.Idle.SubSystems.Subscription">
+            <summary>
+            a client has subscribed or unsubscribed to a channel
+            </summary>
+        </member>
+        <member name="F:Simple.MPD.Commands.Idle.SubSystems.Message">
+            <summary>
+            a message was received on a channel this client is subscribed to; this event is only emitted when the queue is empty
+            </summary>
+        </member>
+        <member name="F:Simple.MPD.Commands.Idle.SubSystems.Neighbor">
+            <summary>
+            a neighbor was found or lost
+            </summary>
+        </member>
+        <member name="F:Simple.MPD.Commands.Idle.SubSystems.Mount">
+            <summary>
+            the mount list has changed
+            </summary>
+        </member>
         <member name="T:Simple.MPD.MPD">
             <summary>
             Music Protocol Deamon client
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.MPD.IsIdle">
+            <summary>
+            Reports if is in Idle.
+            Do NOT send commands while in Idle
             </summary>
         </member>
         <member name="P:Simple.MPD.MPD.Connection">
@@ -19,9 +96,19 @@
             Current protocol version
             </summary>
         </member>
+        <member name="M:Simple.MPD.MPD.#ctor(Simple.MPD.Interfaces.IConnection)">
+            <summary>
+            Create a new instance
+            </summary>
+        </member>
         <member name="M:Simple.MPD.MPD.ExecuteCommandAsync(Simple.MPD.Interfaces.ICommand)">
             <summary>
             Executes a command in a concurrent-safe manmer
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.MPD.CloseConnection">
+            <summary>
+            Closes the scoket
             </summary>
         </member>
         <member name="M:Simple.MPD.MPD.DoPingAsync">
@@ -68,6 +155,13 @@
         <member name="M:Simple.MPD.MPD.GetCurrentSongAsync">
             <summary>
             Displays the song info of the current song
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.MPD.Idle(System.Threading.CancellationToken)">
+            <summary>
+            Waits until there is a noteworthy change in one or more of MPD’s subsystems. 
+            As soon as there is one, it lists all changed systems in a line in the format `changed: SUBSYSTEM`
+            Any command sent while in Idle wil raise an IdleException
             </summary>
         </member>
         <member name="M:Simple.MPD.MPD.SetConsumeAsync(System.Boolean)">
@@ -170,6 +264,48 @@
         <member name="M:Simple.MPD.MPD.LsInfo(System.String)">
             <summary>
             Lists the contents of the directory URI
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.MPD.AddLocalM3uFile(System.String)">
+            <summary>
+            Rerads a Local m3u file with MPD music locations and adds to queue
+            </summary>
+            <param name="LocalFilePath">Local file, NOT MPD path</param>
+            <returns>Tup´le with MPD file added and it's SongID</returns>
+        </member>
+        <member name="T:Simple.MPD.MpdNotifier">
+            <summary>
+            Creates a MPD-Client connection and notifies events
+            </summary>
+        </member>
+        <member name="E:Simple.MPD.MpdNotifier.NotifyEvent">
+            <summary>
+            Notify on SubSystems change
+            </summary>
+        </member>
+        <member name="E:Simple.MPD.MpdNotifier.NotifyStatusChange">
+            <summary>
+            Notify on Player, Mixer or Options
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.MpdNotifier.#ctor(Simple.MPD.Interfaces.IConnection)">
+            <summary>
+            Creates a new instance
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.MpdNotifier.Start">
+            <summary>
+            Starts notifier
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.MpdNotifier.Stop">
+            <summary>
+            Stops notifier
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.MpdNotifier.Dispose">
+            <summary>
+            Disposes object
             </summary>
         </member>
         <member name="P:Simple.MPD.Responses.Stats.Uptime">
