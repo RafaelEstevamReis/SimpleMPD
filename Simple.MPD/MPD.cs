@@ -29,29 +29,35 @@ namespace Simple.MPD
         /// </summary>
         public Version ProtocolVersion { get; private set; }
 
+        /// <summary>
+        /// Create a new instance
+        /// </summary>
         public MPD(IConnection connection)
         {
             lockObject = new object();
             Connection = connection;
         }
+
         /// <summary>
         /// Executes a command in a concurrent-safe manmer
         /// </summary>
         public async Task<IResponse> ExecuteCommandAsync(ICommand command)
         {
             if (IsIdle) throw new IdleException();
-
-            if (!Connection.IsConnected)
-            {
-                await Connection.OpenAsync();
-                if (!Connection.IsConnected) throw new NotConnectedException();
-
-                var version = new Responses.Version();
-                await readResponseAsync(version);
-                ProtocolVersion = version.VersionInfo;
-            }
+            await checkConnection();
 
             return await Task.Run(() => ExecuteCommandInternalLock(command));
+        }
+        private async Task checkConnection()
+        {
+            if (Connection.IsConnected) return;
+
+            await Connection.OpenAsync();
+            if (!Connection.IsConnected) throw new NotConnectedException();
+
+            var version = new Responses.Version();
+            await readResponseAsync(version);
+            ProtocolVersion = version.VersionInfo;
         }
         private IResponse ExecuteCommandInternalLock(ICommand command)
         {
@@ -70,6 +76,9 @@ namespace Simple.MPD
         }
 
         /* CONNECTION SETTINGS */
+        /// <summary>
+        /// Closes the scoket
+        /// </summary>
         public void CloseConnection()
         {
             // Clients should not use this command; 
@@ -158,10 +167,11 @@ namespace Simple.MPD
         /// As soon as there is one, it lists all changed systems in a line in the format `changed: SUBSYSTEM`
         /// Any command sent while in Idle wil raise an IdleException
         /// </summary>
-        public async Task<string[]> Idle(CancellationToken token)
+        public async Task<Commands.Idle.SubSystems[]> Idle(CancellationToken token)
         {
-            if (IsIdle) throw new IdleException();
+            await checkConnection();
 
+            if (IsIdle) throw new IdleException();            
             IsIdle = true;
 
             var command = new Commands.Idle();
@@ -185,7 +195,7 @@ namespace Simple.MPD
             IsIdle = false;
 
             var response = await taskResponse;
-            return ((Responses.StringArray)response).Items;
+            return ((Responses.IdleResponse)response).SubSystems;
         }
 
         /* PLAYBACK OPTIONS */
