@@ -74,7 +74,7 @@ namespace Simple.MPD.Responses
 
         public async Task ReadAsync(StreamReader stream)
         {
-            var values = Helper.ResponseHelper.ReadValuesAsync(stream);
+            var values = Helper.ResponseHelper.ReadPairsAsync(stream);
             await foreach (var pair in values)
             {
                 assingKeyValuePair(pair);
@@ -176,7 +176,7 @@ namespace Simple.MPD.Responses
         {
             SongInfo current = null;
 
-            var values = Helper.ResponseHelper.ReadValuesAsync(stream);
+            var values = Helper.ResponseHelper.ReadPairsAsync(stream);
             await foreach (var pair in values)
             {
                 // id is ever the last one

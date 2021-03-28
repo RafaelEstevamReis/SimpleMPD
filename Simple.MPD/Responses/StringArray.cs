@@ -18,12 +18,12 @@ namespace Simple.MPD.Responses
         public async Task ReadAsync(StreamReader stream)
         {
             List<string> lst = new List<string>();
-            string line;
 
-            while ((line = await stream.ReadLineAsync()) != "OK")
+            await foreach (var line in Helper.ResponseHelper.ReadLinesAsync(stream))
             {
                 lst.Add(line);
             }
+
             Items = lst.ToArray();
         }
     }

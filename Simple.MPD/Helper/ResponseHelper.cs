@@ -14,7 +14,7 @@ namespace Simple.MPD.Helper
             ex = FailureException.FromResponseText(response);
             return true;
         }
-        internal static async IAsyncEnumerable<(string Key, string Value)> ReadValuesAsync(System.IO.StreamReader stream)
+        internal static async IAsyncEnumerable<(string Key, string Value)> ReadPairsAsync(System.IO.StreamReader stream)
         {
             string line;
             int idx;
@@ -33,6 +33,21 @@ namespace Simple.MPD.Helper
                     value = line[(idx + 1)..].Trim();
 
                 yield return (key, value);
+            }
+        } 
+
+        internal static async IAsyncEnumerable<string> ReadLinesAsync(System.IO.StreamReader stream)
+        {
+            string line;
+
+            while ((line = await stream.ReadLineAsync()) != "OK")
+            {
+                if (IsError(line, out Exception ex))
+                {
+                    throw ex;
+                }
+
+                yield return line;
             }
         }
     }

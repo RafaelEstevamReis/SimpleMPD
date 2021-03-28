@@ -21,7 +21,7 @@ namespace Simple.MPD.Responses
         public async Task ReadAsync(StreamReader stream)
         {
             List<(string Key, string Value)> lst = new List<(string Key, string Value)>();
-            await foreach (var i in Helper.ResponseHelper.ReadValuesAsync(stream))
+            await foreach (var i in Helper.ResponseHelper.ReadPairsAsync(stream))
             {
                 lst.Add(i);
             }

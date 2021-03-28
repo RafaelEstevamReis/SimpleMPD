@@ -40,7 +40,7 @@ namespace Simple.MPD.Responses
 
         public async Task ReadAsync(StreamReader stream)
         {
-            var values = Helper.ResponseHelper.ReadValuesAsync(stream);
+            var values = Helper.ResponseHelper.ReadPairsAsync(stream);
             await foreach (var pair in values)
             {
                 switch (pair.Key.ToLower())
