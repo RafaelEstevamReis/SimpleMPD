@@ -32,6 +32,7 @@ namespace Simple.MPD.Responses
         public string Title { get; set; }
         public string Album { get; set; }
         public string AlbumSort { get; set; }
+        public string Genre { get; set; }
         public string Track { get; set; }
         public string Composer { get; set; }
         public string Performer { get; set; }
@@ -120,6 +121,9 @@ namespace Simple.MPD.Responses
                     break;
                 case "albumsort":
                     AlbumSort = pair.Value.Trim();
+                    break;
+                case "genre":
+                    Genre = pair.Value.Trim();
                     break;
                 case "composer":
                     Composer = pair.Value.Trim();
