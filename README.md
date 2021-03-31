@@ -60,6 +60,9 @@ It connects, receives the Version and waits for commands, which I implemented:
 * Clear - Clear queue
 * Add - Adds (recursively) to the queue
 * AddId - Add a file to the queue and return it's Id
+* Delete - Deletes a song from the playlist
+* DeleteId - Deletes the song SONGID from the playlist
+* Shuffle - Shuffles the queue
 * ListAll - Lists all songs and directories in URI. Do not use this command
 * LsInfo - Lists the contents of the directory URI
 * Find - find files - Case-Sensitive

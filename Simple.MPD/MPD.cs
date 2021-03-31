@@ -342,6 +342,30 @@ namespace Simple.MPD
             var list = (Responses.ValuesList)resp;
             return int.Parse(list["Id"]);
         }
+        /// <summary>
+        /// Deletes a song from the playlist
+        /// </summary>
+        public async Task QueueDelete(string Uri)
+        {
+            await ExecuteCommandAsync(new Commands.Delete(Uri));
+        }
+        /// <summary>
+        /// Deletes the song SONGID from the playlist
+        /// </summary>
+        public async Task<int> QueueDeleteId(string Uri)
+        {
+            var resp = await ExecuteCommandAsync(new Commands.DeleteId(Uri));
+            var list = (Responses.ValuesList)resp;
+            return int.Parse(list["Id"]);
+        }
+        /// <summary>
+        /// Shuffles the queue
+        /// </summary>
+        public async Task Shuffle()
+        {
+            // is either OK or Exception
+            await ExecuteCommandAsync(new Commands.Shuffle());
+        }
 
         /* MUSIC DATABASE */
         /// <summary>
@@ -382,7 +406,6 @@ namespace Simple.MPD
             var resp = await ExecuteCommandAsync(new Commands.Find(exp));
             return (Responses.SongInfoCollection)resp;
         }
-
         /// <summary>
         /// Search the database for songs matching expression (case-INsensitive)
         /// </summary>
@@ -400,7 +423,6 @@ namespace Simple.MPD
             var resp = await ExecuteCommandAsync(new Commands.Search(exp));
             return (Responses.SongInfoCollection)resp;
         }
-
 
         /* External */
         /// <summary>
