@@ -75,6 +75,26 @@
             the mount list has changed
             </summary>
         </member>
+        <member name="T:Simple.MPD.FilterMatch">
+            <summary>
+            Filter match for 'find'-like Expressions
+            </summary>
+        </member>
+        <member name="F:Simple.MPD.FilterMatch.Equals">
+            <summary>
+            Compiles to '=='
+            </summary>
+        </member>
+        <member name="F:Simple.MPD.FilterMatch.Different">
+            <summary>
+            Compiles to '!='
+            </summary>
+        </member>
+        <member name="F:Simple.MPD.FilterMatch.Contains">
+            <summary>
+            Compiles to 'contains'
+            </summary>
+        </member>
         <member name="T:Simple.MPD.MPD">
             <summary>
             Music Protocol Deamon client
@@ -251,6 +271,21 @@
             Adds a song to the playlist (non-recursive) and returns the song id. URI is always a single file or URL
             </summary>
         </member>
+        <member name="M:Simple.MPD.MPD.QueueDelete(System.String)">
+            <summary>
+            Deletes a song from the playlist
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.MPD.QueueDeleteId(System.String)">
+            <summary>
+            Deletes the song SONGID from the playlist
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.MPD.Shuffle">
+            <summary>
+            Shuffles the queue
+            </summary>
+        </member>
         <member name="M:Simple.MPD.MPD.ListAll">
             <summary>
             Do not use this command.
@@ -264,6 +299,26 @@
         <member name="M:Simple.MPD.MPD.LsInfo(System.String)">
             <summary>
             Lists the contents of the directory URI
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.MPD.Find(System.String)">
+            <summary>
+            Search the database for songs matching expression (case-sensitive)
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.MPD.Find(Simple.MPD.Tags,Simple.MPD.FilterMatch,System.String)">
+            <summary>
+            Search the database for songs matching expression (case-sensitive)
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.MPD.Search(System.String)">
+            <summary>
+            Search the database for songs matching expression (case-INsensitive)
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.MPD.Search(Simple.MPD.Tags,Simple.MPD.FilterMatch,System.String)">
+            <summary>
+            Search the database for songs matching expression (case-INsensitive)
             </summary>
         </member>
         <member name="M:Simple.MPD.MPD.AddLocalM3uFile(System.String)">
