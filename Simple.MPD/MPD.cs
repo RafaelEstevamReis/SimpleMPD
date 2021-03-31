@@ -366,26 +366,41 @@ namespace Simple.MPD
             return (Responses.SongInfoCollection)resp;
         }
         /// <summary>
-        /// Search the database for songs matching expression
+        /// Search the database for songs matching expression (case-sensitive)
         /// </summary>
         public async Task<Responses.SongInfoCollection> Find(string expression)
         {
             var resp = await ExecuteCommandAsync(new Commands.Find(expression));
             return (Responses.SongInfoCollection)resp;
         }
-
         /// <summary>
-        /// Search the database for songs matching expression
+        /// Search the database for songs matching expression (case-sensitive)
         /// </summary>
-        /// <param name="tag">Tag to filter</param>
-        /// <param name="match">How the filter should be matched with Search</param>
-        /// <param name="search">Case-sensitive search text</param>
         public async Task<Responses.SongInfoCollection> Find(Tags tag, FilterMatch match, string search)
         {
             string exp = Commands.Find.ExpressionBuilder(tag, match, search);
             var resp = await ExecuteCommandAsync(new Commands.Find(exp));
             return (Responses.SongInfoCollection)resp;
         }
+
+        /// <summary>
+        /// Search the database for songs matching expression (case-INsensitive)
+        /// </summary>
+        public async Task<Responses.SongInfoCollection> Search(string expression)
+        {
+            var resp = await ExecuteCommandAsync(new Commands.Search(expression));
+            return (Responses.SongInfoCollection)resp;
+        }
+        /// <summary>
+        /// Search the database for songs matching expression (case-INsensitive)
+        /// </summary>
+        public async Task<Responses.SongInfoCollection> Search(Tags tag, FilterMatch match, string search)
+        {
+            string exp = Commands.Find.ExpressionBuilder(tag, match, search);
+            var resp = await ExecuteCommandAsync(new Commands.Search(exp));
+            return (Responses.SongInfoCollection)resp;
+        }
+
 
         /* External */
         /// <summary>
