@@ -62,5 +62,6 @@ It connects, receives the Version and waits for commands, which I implemented:
 * AddId - Add a file to the queue and return it's Id
 * ListAll - Lists all songs and directories in URI. Do not use this command
 * LsInfo - Lists the contents of the directory URI
+* Find - find files
 
 Once this code does something more useful, this section wil be replaced

@@ -365,7 +365,23 @@ namespace Simple.MPD
             var resp = await ExecuteCommandAsync(new Commands.LsInfo(Url));
             return (Responses.SongInfoCollection)resp;
         }
-
+        /// <summary>
+        /// Search the database for songs matching expression
+        /// </summary>
+        public async Task<Responses.SongInfoCollection> Find(string expression)
+        {
+            var resp = await ExecuteCommandAsync(new Commands.Find(expression));
+            return (Responses.SongInfoCollection)resp;
+        }
+        /// <summary>
+        /// Search the database for songs matching expression
+        /// </summary>
+        public async Task<Responses.SongInfoCollection> Find(Tags tag, FilterMatch match, string search)
+        {
+            string exp = Commands.Find.ExpressionBuilder(tag, match, search);
+            var resp = await ExecuteCommandAsync(new Commands.Find(exp));
+            return (Responses.SongInfoCollection)resp;
+        }
 
         /* External */
         /// <summary>
