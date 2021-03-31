@@ -373,9 +373,13 @@ namespace Simple.MPD
             var resp = await ExecuteCommandAsync(new Commands.Find(expression));
             return (Responses.SongInfoCollection)resp;
         }
+
         /// <summary>
         /// Search the database for songs matching expression
         /// </summary>
+        /// <param name="tag">Tag to filter</param>
+        /// <param name="match">How the filter should be matched with Search</param>
+        /// <param name="search">Case-sensitive search text</param>
         public async Task<Responses.SongInfoCollection> Find(Tags tag, FilterMatch match, string search)
         {
             string exp = Commands.Find.ExpressionBuilder(tag, match, search);
