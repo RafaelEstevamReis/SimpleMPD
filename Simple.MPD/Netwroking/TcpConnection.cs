@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
@@ -24,7 +25,7 @@ namespace Simple.MPD.Netwroking
         }
 
         public TcpConnection(string Address, int Port = 6600)
-            : this(new IPEndPoint(IPAddress.Parse(Address), Port))
+            : this(createEndPoint(Address, Port))
         { }
         public TcpConnection(IPEndPoint endPoint)
         {
@@ -74,5 +75,19 @@ namespace Simple.MPD.Netwroking
         {
             return writer;
         }
+
+        private static IPEndPoint createEndPoint(string address, int port)
+        {
+            if (address.Split('.').Length == 4)
+            {
+                if (IPAddress.TryParse(address, out IPAddress ip))
+                    return new IPEndPoint(ip, port);
+            }
+            var addresses = System.Net.Dns.GetHostAddresses(address);
+            if (addresses.Length == 0) throw new Exception($"Invalid address: '{address}'");
+
+            return new IPEndPoint(addresses[0], port);
+        }
+
     }
 }
