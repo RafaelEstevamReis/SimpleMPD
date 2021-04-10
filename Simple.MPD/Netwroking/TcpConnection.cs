@@ -41,7 +41,7 @@ namespace Simple.MPD.Netwroking
 
         public async Task OpenAsync()
         {
-            if (tcpClient == null) tcpClient = new TcpClient();
+            if (tcpClient == null || tcpClient.Client == null) tcpClient = new TcpClient();
             await tcpClient.ConnectAsync(EndPoint.Address, EndPoint.Port);
 
 #if NETSTANDARD2_1
