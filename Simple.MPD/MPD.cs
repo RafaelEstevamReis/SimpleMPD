@@ -435,8 +435,18 @@ namespace Simple.MPD
             foreach (var line in File.ReadAllLines(LocalFilePath))
             {
                 if (line.StartsWith("#")) continue;
+                int id = -1;
 
-                var id = QueueAddId(line).Result;
+                try
+                {
+                    id = QueueAddId(line).Result;
+                }
+                catch (Exception ex)
+                {
+                    id = -1;
+                    Connection.Close(); // must re-open
+                }
+
                 yield return (line, id);
             }
         }
