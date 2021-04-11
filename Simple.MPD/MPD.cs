@@ -277,7 +277,7 @@ namespace Simple.MPD
         /// <summary>
         /// Pause or resume playback
         /// </summary>
-        public async Task PauseAsync(Commands.Pause.State state)
+        public async Task PauseAsync(PauseState state)
         {
             // is either OK or Exception
             await ExecuteCommandAsync(new Commands.Pause(state));
@@ -494,6 +494,7 @@ namespace Simple.MPD
         /// Rerads a Local m3u file with MPD music locations and adds to queue
         /// </summary>
         /// <param name="LocalFilePath">Local file, NOT MPD path</param>
+        /// <param name="pathConverter">Function to convert local path to remote path</param>
         /// <returns>Tup´le with MPD file added and it's SongID</returns>
         public IEnumerable<(string,int)> AddLocalM3uFile(string LocalFilePath, Func<string,string> pathConverter = null)
         {
