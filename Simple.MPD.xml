@@ -310,6 +310,36 @@
             Writes command to stream
             </summary>
         </member>
+        <member name="T:Simple.MPD.Commands.Single">
+            <summary>
+            Executes "Single"
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Commands.Single.State">
+            <summary>
+            State to set
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Commands.Single.CommandName">
+            <summary>
+            Command name
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.Single.#ctor(Simple.MPD.SingleStates)">
+            <summary>
+            Creates a new instance
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.Single.GetResponseProcessor">
+            <summary>
+            Default Response processor
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.Single.WriteAsync(System.IO.StreamWriter)">
+            <summary>
+            Writes command to stream
+            </summary>
+        </member>
         <member name="T:Simple.MPD.Commands.Next">
             <summary>
             Executes "Next"
@@ -335,26 +365,6 @@
             Executes "Pause"
             </summary>
         </member>
-        <member name="T:Simple.MPD.Commands.Pause.State">
-            <summary>
-            Pause states
-            </summary>
-        </member>
-        <member name="F:Simple.MPD.Commands.Pause.State.Pause">
-            <summary>
-            Pause playback
-            </summary>
-        </member>
-        <member name="F:Simple.MPD.Commands.Pause.State.Resume">
-            <summary>
-            Resume paused playback
-            </summary>
-        </member>
-        <member name="F:Simple.MPD.Commands.Pause.State.Toggle">
-            <summary>
-            Toogle playbakc pause state
-            </summary>
-        </member>
         <member name="P:Simple.MPD.Commands.Pause.PauseState">
             <summary>
             Pause state for the current command
@@ -365,7 +375,7 @@
             Command name
             </summary>
         </member>
-        <member name="M:Simple.MPD.Commands.Pause.#ctor(Simple.MPD.Commands.Pause.State)">
+        <member name="M:Simple.MPD.Commands.Pause.#ctor(Simple.MPD.PauseState)">
             <summary>
             Creates a new instance
             </summary>
@@ -431,56 +441,6 @@
             </summary>
         </member>
         <member name="M:Simple.MPD.Commands.Previous.WriteAsync(System.IO.StreamWriter)">
-            <summary>
-            Writes command to stream
-            </summary>
-        </member>
-        <member name="T:Simple.MPD.Commands.Single">
-            <summary>
-            Executes "Single"
-            </summary>
-        </member>
-        <member name="T:Simple.MPD.Commands.Single.States">
-            <summary>
-            States for the SINGLE command
-            </summary>
-        </member>
-        <member name="F:Simple.MPD.Commands.Single.States.On">
-            <summary>
-            Enables SINGLE mode
-            </summary>
-        </member>
-        <member name="F:Simple.MPD.Commands.Single.States.Off">
-            <summary>
-            Disables SINGLE mode
-            </summary>
-        </member>
-        <member name="F:Simple.MPD.Commands.Single.States.OneShot">
-            <summary>
-            Sets SINGLE to OneShot mode
-            </summary>
-        </member>
-        <member name="P:Simple.MPD.Commands.Single.State">
-            <summary>
-            State to set
-            </summary>
-        </member>
-        <member name="P:Simple.MPD.Commands.Single.CommandName">
-            <summary>
-            Command name
-            </summary>
-        </member>
-        <member name="M:Simple.MPD.Commands.Single.#ctor(Simple.MPD.Commands.Single.States)">
-            <summary>
-            Creates a new instance
-            </summary>
-        </member>
-        <member name="M:Simple.MPD.Commands.Single.GetResponseProcessor">
-            <summary>
-            Default Response processor
-            </summary>
-        </member>
-        <member name="M:Simple.MPD.Commands.Single.WriteAsync(System.IO.StreamWriter)">
             <summary>
             Writes command to stream
             </summary>
@@ -1201,6 +1161,71 @@
             Writes command to stream
             </summary>
         </member>
+        <member name="T:Simple.MPD.SingleStates">
+            <summary>
+            States for the SINGLE command
+            </summary>
+        </member>
+        <member name="F:Simple.MPD.SingleStates.On">
+            <summary>
+            Enables SINGLE mode
+            </summary>
+        </member>
+        <member name="F:Simple.MPD.SingleStates.Off">
+            <summary>
+            Disables SINGLE mode
+            </summary>
+        </member>
+        <member name="F:Simple.MPD.SingleStates.OneShot">
+            <summary>
+            Sets SINGLE to OneShot mode
+            </summary>
+        </member>
+        <member name="T:Simple.MPD.PauseState">
+            <summary>
+            Pause states
+            </summary>
+        </member>
+        <member name="F:Simple.MPD.PauseState.Pause">
+            <summary>
+            Pause playback
+            </summary>
+        </member>
+        <member name="F:Simple.MPD.PauseState.Resume">
+            <summary>
+            Resume paused playback
+            </summary>
+        </member>
+        <member name="F:Simple.MPD.PauseState.Toggle">
+            <summary>
+            Toogle playbakc pause state
+            </summary>
+        </member>
+        <member name="T:Simple.MPD.PlaybackState">
+            <summary>
+            Playback state
+            </summary>
+        </member>
+        <member name="F:Simple.MPD.PlaybackState.Play">
+            <summary>
+            Playback playing
+            </summary>
+        </member>
+        <member name="F:Simple.MPD.PlaybackState.Pause">
+            <summary>
+            Playback paused
+            </summary>
+        </member>
+        <member name="F:Simple.MPD.PlaybackState.Stop">
+            <summary>
+            Playback stopped
+            </summary>
+        </member>
+        <member name="T:Simple.MPD.Tags">
+            <summary>
+            Available tags
+            </summary>
+        </member>
         <member name="T:Simple.MPD.FilterMatch">
             <summary>
             Filter match for 'find'-like Expressions
@@ -1296,6 +1321,16 @@
             Creates a new exception from text
             </summary>
         </member>
+        <member name="T:Simple.MPD.Exceptions.IdleException">
+            <summary>
+            Idle exception class
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Exceptions.IdleException.#ctor">
+            <summary>
+            Creates a new instance
+            </summary>
+        </member>
         <member name="T:Simple.MPD.Exceptions.NotConnectedException">
             <summary>
             Not connected exception
@@ -1374,11 +1409,6 @@
         <member name="M:Simple.MPD.Interfaces.IResponse.ReadAsync(System.IO.StreamReader)">
             <summary>
             Read response from stream
-            </summary>
-        </member>
-        <member name="M:Simple.MPD.Interfaces.IResponse.GetCommand">
-            <summary>
-            Get command
             </summary>
         </member>
         <member name="T:Simple.MPD.MPD">
@@ -1490,7 +1520,7 @@
             Enable/Disable repeat
             </summary>
         </member>
-        <member name="M:Simple.MPD.MPD.SetSingle(Simple.MPD.Commands.Single.States)">
+        <member name="M:Simple.MPD.MPD.SetSingle(Simple.MPD.SingleStates)">
             <summary>
             Sets single state, STATE should be On, Off or OneShot. 
             When single is activated, playback is stopped after current song, or song is repeated if the ‘repeat’ mode is enabled
@@ -1516,7 +1546,7 @@
             Begins playing the playlist at song SongId
             </summary>
         </member>
-        <member name="M:Simple.MPD.MPD.PauseAsync(Simple.MPD.Commands.Pause.State)">
+        <member name="M:Simple.MPD.MPD.PauseAsync(Simple.MPD.PauseState)">
             <summary>
             Pause or resume playback
             </summary>
@@ -1652,6 +1682,7 @@
             Rerads a Local m3u file with MPD music locations and adds to queue
             </summary>
             <param name="LocalFilePath">Local file, NOT MPD path</param>
+            <param name="pathConverter">Function to convert local path to remote path</param>
             <returns>Tup´le with MPD file added and it's SongID</returns>
         </member>
         <member name="T:Simple.MPD.MpdNotifier">
@@ -1750,6 +1781,36 @@
             Get writter stream
             </summary>
         </member>
+        <member name="T:Simple.MPD.Responses.IdleResponse">
+            <summary>
+            Idle response
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Responses.IdleResponse.SubSystems">
+            <summary>
+            Get subsystems
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Responses.IdleResponse.ReadAsync(System.IO.StreamReader)">
+            <summary>
+            Read response from stream
+            </summary>
+        </member>
+        <member name="T:Simple.MPD.Responses.Ok">
+            <summary>
+            OK response
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Responses.Ok.ReadAsync(System.IO.StreamReader)">
+            <summary>
+            Read response from stream
+            </summary>
+        </member>
+        <member name="T:Simple.MPD.Responses.Stats">
+            <summary>
+            Stats response
+            </summary>
+        </member>
         <member name="P:Simple.MPD.Responses.Stats.Uptime">
             <summary>
             daemon uptime in seconds
@@ -1783,6 +1844,66 @@
         <member name="P:Simple.MPD.Responses.Stats.DB_Update">
             <summary>
             last db update
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Responses.Stats.ReadAsync(System.IO.StreamReader)">
+            <summary>
+            Read response from stream
+            </summary>
+        </member>
+        <member name="T:Simple.MPD.Responses.StringArray">
+            <summary>
+            String collection response
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Responses.StringArray.Items">
+            <summary>
+            Get response items
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Responses.StringArray.ReadAsync(System.IO.StreamReader)">
+            <summary>
+            Read response from stream
+            </summary>
+        </member>
+        <member name="T:Simple.MPD.Responses.ValuesList">
+            <summary>
+            OK response
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Responses.ValuesList.Items">
+            <summary>
+            Get response items pairs
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Responses.ValuesList.Item(System.String)">
+            <summary>
+            Get response items
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Responses.ValuesList.Item(System.Int32)">
+            <summary>
+            Get response items
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Responses.ValuesList.ReadAsync(System.IO.StreamReader)">
+            <summary>
+            Read response from stream
+            </summary>
+        </member>
+        <member name="T:Simple.MPD.Responses.Version">
+            <summary>
+            Version response
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Responses.Version.VersionInfo">
+            <summary>
+            Protocol version info
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Responses.Version.ReadAsync(System.IO.StreamReader)">
+            <summary>
+            Read response from stream
             </summary>
         </member>
     </members>
