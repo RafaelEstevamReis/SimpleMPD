@@ -11,28 +11,9 @@ namespace Simple.MPD.Commands
     public class Single : ICommand
     {
         /// <summary>
-        /// States for the SINGLE command
-        /// </summary>
-        public enum States
-        {
-            /// <summary>
-            /// Enables SINGLE mode
-            /// </summary>
-            On,
-            /// <summary>
-            /// Disables SINGLE mode
-            /// </summary>
-            Off,
-            /// <summary>
-            /// Sets SINGLE to OneShot mode
-            /// </summary>
-            OneShot,
-        }
-
-        /// <summary>
         /// State to set
         /// </summary>
-        public States State { get; set; }
+        public SingleStates State { get; set; }
         /// <summary>
         /// Command name
         /// </summary>
@@ -40,7 +21,7 @@ namespace Simple.MPD.Commands
         /// <summary>
         /// Creates a new instance
         /// </summary>
-        public Single(States state)
+        public Single(SingleStates state)
         {
             State = state;
         }
@@ -58,9 +39,9 @@ namespace Simple.MPD.Commands
         {
             string sVal = State switch
             {
-                States.On => "1",
-                States.Off => "0",
-                States.OneShot => "oneshot",
+                SingleStates.On => "1",
+                SingleStates.Off => "0",
+                SingleStates.OneShot => "oneshot",
                 _ => throw new InvalidOperationException($"Invalid state {State}"),
             };
             await stream.WriteAsync($"single {sVal}\n");
