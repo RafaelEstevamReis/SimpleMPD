@@ -33,7 +33,7 @@ MPD Website: https://www.musicpd.org/
 
 ## What this repo does ?
 
-Today ? Basically nothing, I'm still writing it. 
+Today ? Some cool stuff but not all, I'm still writing it. 
 
 It connects, receives the Version and waits for commands, which I implemented:
 
@@ -67,5 +67,11 @@ It connects, receives the Version and waits for commands, which I implemented:
 * LsInfo - Lists the contents of the directory URI
 * Find - find files - Case-Sensitive
 * Search - find files - Case-Insensitive
+* ListplayLists - List all playlists
+* ListPlaylistInfo - List files in playlist
+* Rename - Rename a playlist
+* Rm - Delete a playlist
+* Save - Save the queue as a playlist
+
 
 Once this code does something more useful, this section wil be replaced

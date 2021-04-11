@@ -68,7 +68,7 @@ namespace Simple.MPD
                 return readResponseAsync(command.GetResponseProcessor()).Result;
             }
         }
-    
+
         private async Task<T> readResponseAsync<T>(T response) where T : IResponse
         {
             await response.ReadAsync(Connection.GetReader());
@@ -171,7 +171,7 @@ namespace Simple.MPD
         {
             await checkConnection();
 
-            if (IsIdle) throw new IdleException();            
+            if (IsIdle) throw new IdleException();
             IsIdle = true;
 
             var command = new Commands.Idle();
@@ -185,7 +185,7 @@ namespace Simple.MPD
                 if (taskResponse.IsCompleted) break;
                 if (token.IsCancellationRequested) break;
                 await Task.Delay(50, token);
-            }            
+            }
             // was cancelled ?
             if (!taskResponse.IsCompleted)
             {
@@ -367,6 +367,49 @@ namespace Simple.MPD
             await ExecuteCommandAsync(new Commands.Shuffle());
         }
 
+        /* PLAYLIST */
+        /// <summary>
+        /// Prints a list of the playlist directory
+        /// </summary>
+        public async Task<Responses.SongInfoCollection> ListPlaylists()
+        {
+            var resp = await ExecuteCommandAsync(new Commands.ListplayLists());
+            return (Responses.SongInfoCollection)resp;
+        }
+        /// <summary>
+        /// Lists the songs with metadata in the playlist
+        /// </summary>
+        public async Task<Responses.SongInfoCollection> ListPlaylistInfo(string listName)
+        {
+            var resp = await ExecuteCommandAsync(new Commands.ListPlaylistInfo(listName));
+            return (Responses.SongInfoCollection)resp;
+        }
+        /// <summary>
+        /// Renames the playlist
+        /// </summary>
+        public async Task<Responses.SongInfoCollection> RenamePlaylist(string oldName, string newName)
+        {
+            var resp = await ExecuteCommandAsync(new Commands.Rename(oldName, newName));
+            return (Responses.SongInfoCollection)resp;
+        }
+        /// <summary>
+        /// Removes the playlist
+        /// </summary>
+        public async Task<Responses.SongInfoCollection> RemovePlaylist(string listName)
+        {
+            var resp = await ExecuteCommandAsync(new Commands.Rm(listName));
+            return (Responses.SongInfoCollection)resp;
+        }
+        /// <summary>
+        /// Saves the queue as a playlist
+        /// </summary>
+        public async Task<Responses.SongInfoCollection> SaveQueue(string listName)
+        {
+            var resp = await ExecuteCommandAsync(new Commands.ListPlaylistInfo(listName));
+            return (Responses.SongInfoCollection)resp;
+        }
+
+
         /* MUSIC DATABASE */
         /// <summary>
         /// Do not use this command.
@@ -451,5 +494,6 @@ namespace Simple.MPD
             }
         }
 
+        // https://www.musicpd.org/doc/html/protocol.html
     }
 }
