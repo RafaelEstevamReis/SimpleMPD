@@ -4,8 +4,14 @@ using Simple.MPD.Interfaces;
 
 namespace Simple.MPD.Commands
 {
+    /// <summary>
+    /// Executes "Idle"
+    /// </summary>
     public class Idle : ICommand
     {
+        /// <summary>
+        /// Possible subsystems
+        /// </summary>
         public enum SubSystems
         {
             /// <summary>
@@ -79,14 +85,20 @@ namespace Simple.MPD.Commands
             /// </summary>
             Mount,
         }
-
+        /// <summary>
+        /// Command name
+        /// </summary>
         public string CommandName => "Idle";
-
+        /// <summary>
+        /// Default Response processor
+        /// </summary>
         public IResponse GetResponseProcessor()
         {
             return new Responses.IdleResponse();
         }
-
+        /// <summary>
+        /// Writes command to stream
+        /// </summary>
         public async Task WriteAsync(StreamWriter stream)
         {
             await stream.WriteAsync("idle\n");
