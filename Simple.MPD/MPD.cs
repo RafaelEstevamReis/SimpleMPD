@@ -351,9 +351,9 @@ namespace Simple.MPD
         /// <summary>
         /// Deletes the song SONGID from the playlist
         /// </summary>
-        public async Task<int> QueueDeleteId(string Uri)
+        public async Task<int> QueueDeleteId(int id)
         {
-            var resp = await ExecuteCommandAsync(new Commands.DeleteId(Uri));
+            var resp = await ExecuteCommandAsync(new Commands.DeleteId(id));
             var list = (Responses.ValuesList)resp;
             return int.Parse(list["Id"]);
         }
