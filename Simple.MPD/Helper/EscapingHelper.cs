@@ -1,7 +1,13 @@
 ﻿namespace Simple.MPD.Helper
 {
-    public class EscapingHelper
+    /// <summary>
+    /// Helper for scaping texts
+    /// </summary>
+    public static class EscapingHelper
     {
+        /// <summary>
+        /// Scapes a text
+        /// </summary>
         public static string Escape(string argument)
         {
             // First escape backslashes
