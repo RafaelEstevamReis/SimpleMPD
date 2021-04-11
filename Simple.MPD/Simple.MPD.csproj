@@ -19,7 +19,7 @@ https://github.com/RafaelEstevamReis/SimpleMPD</PackageReleaseNotes>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netstandard2.1|AnyCPU'">
-    <DocumentationFile></DocumentationFile>
+    <DocumentationFile>..\Simple.MPD.xml</DocumentationFile>
   </PropertyGroup>
 
 </Project>

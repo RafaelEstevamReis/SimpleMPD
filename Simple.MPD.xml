@@ -4,6 +4,792 @@
         <name>Simple.MPD</name>
     </assembly>
     <members>
+        <member name="T:Simple.MPD.Commands.Range">
+            <summary>
+            Represents a range of songs or entries
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Commands.Range.Start">
+            <summary>
+            First entry
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Commands.Range.End">
+            <summary>
+            End of the range, NOT included
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.Range.ToString">
+            <summary>
+            Prints the format "START:END"
+            </summary>
+        </member>
+        <member name="T:Simple.MPD.Commands.Ping">
+            <summary>
+            Executes "Ping"
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Commands.Ping.CommandName">
+            <summary>
+            Command name
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.Ping.GetResponseProcessor">
+            <summary>
+            Default Response processor
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.Ping.WriteAsync(System.IO.StreamWriter)">
+            <summary>
+            Writes command to stream
+            </summary>
+        </member>
+        <member name="T:Simple.MPD.Commands.Find">
+            <summary>
+            Executes "Find"
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Commands.Find.Expression">
+            <summary>
+            Expression to search/filter
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Commands.Find.CommandName">
+            <summary>
+            Command name
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.Find.#ctor(System.String)">
+            <summary>
+            Creates a new instance
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.Find.GetResponseProcessor">
+            <summary>
+            Default Response processor
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.Find.WriteAsync(System.IO.StreamWriter)">
+            <summary>
+            Writes command to stream
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.Find.ExpressionBuilder(Simple.MPD.Tags,Simple.MPD.FilterMatch,System.String)">
+            <summary>
+            Builds an filter Expression
+            </summary>
+        </member>
+        <member name="T:Simple.MPD.Commands.ListAll">
+            <summary>
+            Executes "ListAll" - avoid using this command
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Commands.ListAll.CommandName">
+            <summary>
+            Command name
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.ListAll.GetResponseProcessor">
+            <summary>
+            Default Response processor
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.ListAll.WriteAsync(System.IO.StreamWriter)">
+            <summary>
+            Writes command to stream
+            </summary>
+        </member>
+        <member name="T:Simple.MPD.Commands.LsInfo">
+            <summary>
+            Executes "LsInfo"
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Commands.LsInfo.Uri">
+            <summary>
+            Uri to list
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Commands.LsInfo.CommandName">
+            <summary>
+            Command name
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.LsInfo.#ctor(System.String)">
+            <summary>
+            Creates a new instance
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.LsInfo.GetResponseProcessor">
+            <summary>
+            Default Response processor
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.LsInfo.WriteAsync(System.IO.StreamWriter)">
+            <summary>
+            Writes command to stream
+            </summary>
+        </member>
+        <member name="T:Simple.MPD.Commands.Search">
+            <summary>
+            Executes "Search"
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Commands.Search.Expression">
+            <summary>
+            Expression to search/filter
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Commands.Search.CommandName">
+            <summary>
+            Command name
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.Search.#ctor(System.String)">
+            <summary>
+            Creates a new instance
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.Search.GetResponseProcessor">
+            <summary>
+            Default Response processor
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.Search.WriteAsync(System.IO.StreamWriter)">
+            <summary>
+            Writes command to stream
+            </summary>
+        </member>
+        <member name="T:Simple.MPD.Commands.Consume">
+            <summary>
+            Executes "Consume"
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Commands.Consume.ConsumeSong">
+            <summary>
+            Comsume song mode value
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Commands.Consume.CommandName">
+            <summary>
+            Command name
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.Consume.#ctor(System.Boolean)">
+            <summary>
+            Creates a new instance
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.Consume.GetResponseProcessor">
+            <summary>
+            Default Response processor
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.Consume.WriteAsync(System.IO.StreamWriter)">
+            <summary>
+            Writes command to stream
+            </summary>
+        </member>
+        <member name="T:Simple.MPD.Commands.Crossfade">
+            <summary>
+            Executes "Crossfade"
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Commands.Crossfade.XFade">
+            <summary>
+            Crossfade value in seconds
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Commands.Crossfade.CommandName">
+            <summary>
+            Command name
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.Crossfade.#ctor(System.Int32)">
+            <summary>
+            Creates a new instance
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.Crossfade.GetResponseProcessor">
+            <summary>
+            Default Response processor
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.Crossfade.WriteAsync(System.IO.StreamWriter)">
+            <summary>
+            Writes command to stream
+            </summary>
+        </member>
+        <member name="T:Simple.MPD.Commands.Random">
+            <summary>
+            Executes "Random"
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Commands.Random.SetRandom">
+            <summary>
+            Set random mode value
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Commands.Random.CommandName">
+            <summary>
+            Command name
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.Random.#ctor(System.Boolean)">
+            <summary>
+            Creates a new instance
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.Random.GetResponseProcessor">
+            <summary>
+            Default Response processor
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.Random.WriteAsync(System.IO.StreamWriter)">
+            <summary>
+            Writes command to stream
+            </summary>
+        </member>
+        <member name="T:Simple.MPD.Commands.Repeat">
+            <summary>
+            Executes "Repeat"
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Commands.Repeat.SetRepeat">
+            <summary>
+            Set repeat value
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Commands.Repeat.CommandName">
+            <summary>
+            Command name
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.Repeat.#ctor(System.Boolean)">
+            <summary>
+            Creates a new instance
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.Repeat.GetResponseProcessor">
+            <summary>
+            Default Response processor
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.Repeat.WriteAsync(System.IO.StreamWriter)">
+            <summary>
+            Writes command to stream
+            </summary>
+        </member>
+        <member name="T:Simple.MPD.Commands.SetVol">
+            <summary>
+            Executes "SetVol"
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Commands.SetVol.Volume">
+            <summary>
+            Volume value to SET
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Commands.SetVol.CommandName">
+            <summary>
+            Command name
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.SetVol.#ctor(System.Int32)">
+            <summary>
+            Creates a new instance
+            </summary>
+            <param name="volume">Between 0 and 100, out of range values throws an exception</param>
+        </member>
+        <member name="M:Simple.MPD.Commands.SetVol.GetResponseProcessor">
+            <summary>
+            Default Response processor
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.SetVol.WriteAsync(System.IO.StreamWriter)">
+            <summary>
+            Writes command to stream
+            </summary>
+        </member>
+        <member name="T:Simple.MPD.Commands.Next">
+            <summary>
+            Executes "Next"
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Commands.Next.CommandName">
+            <summary>
+            Command name
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.Next.GetResponseProcessor">
+            <summary>
+            Default Response processor
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.Next.WriteAsync(System.IO.StreamWriter)">
+            <summary>
+            Writes command to stream
+            </summary>
+        </member>
+        <member name="T:Simple.MPD.Commands.Pause">
+            <summary>
+            Executes "Pause"
+            </summary>
+        </member>
+        <member name="T:Simple.MPD.Commands.Pause.State">
+            <summary>
+            Pause states
+            </summary>
+        </member>
+        <member name="F:Simple.MPD.Commands.Pause.State.Pause">
+            <summary>
+            Pause playback
+            </summary>
+        </member>
+        <member name="F:Simple.MPD.Commands.Pause.State.Resume">
+            <summary>
+            Resume paused playback
+            </summary>
+        </member>
+        <member name="F:Simple.MPD.Commands.Pause.State.Toggle">
+            <summary>
+            Toogle playbakc pause state
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Commands.Pause.PauseState">
+            <summary>
+            Pause state for the current command
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Commands.Pause.CommandName">
+            <summary>
+            Command name
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.Pause.#ctor(Simple.MPD.Commands.Pause.State)">
+            <summary>
+            Creates a new instance
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.Pause.GetResponseProcessor">
+            <summary>
+            Default Response processor
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.Pause.WriteAsync(System.IO.StreamWriter)">
+            <summary>
+            Writes command to stream
+            </summary>
+        </member>
+        <member name="T:Simple.MPD.Commands.Play">
+            <summary>
+            Executes "Play" or "PlayId" commands
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Commands.Play.CommandName">
+            <summary>
+            Command name
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.Play.#ctor">
+            <summary>
+            Creates a new instance without arguments
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.Play.GetResponseProcessor">
+            <summary>
+            Default Response processor
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.Play.WriteAsync(System.IO.StreamWriter)">
+            <summary>
+            Writes command to stream
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.Play.PlaySongId(System.Int32)">
+            <summary>
+            Creates a new instance of "playid" command with SongId argument
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.Play.PlaySongPosition(System.Int32)">
+            <summary>
+            Creates a new instance of "play" command with SongPos argument
+            </summary>
+        </member>
+        <member name="T:Simple.MPD.Commands.Previous">
+            <summary>
+            Executes "Find"
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Commands.Previous.CommandName">
+            <summary>
+            Command name
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.Previous.GetResponseProcessor">
+            <summary>
+            Default Response processor
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.Previous.WriteAsync(System.IO.StreamWriter)">
+            <summary>
+            Writes command to stream
+            </summary>
+        </member>
+        <member name="T:Simple.MPD.Commands.Single">
+            <summary>
+            Executes "Single"
+            </summary>
+        </member>
+        <member name="T:Simple.MPD.Commands.Single.States">
+            <summary>
+            States for the SINGLE command
+            </summary>
+        </member>
+        <member name="F:Simple.MPD.Commands.Single.States.On">
+            <summary>
+            Enables SINGLE mode
+            </summary>
+        </member>
+        <member name="F:Simple.MPD.Commands.Single.States.Off">
+            <summary>
+            Disables SINGLE mode
+            </summary>
+        </member>
+        <member name="F:Simple.MPD.Commands.Single.States.OneShot">
+            <summary>
+            Sets SINGLE to OneShot mode
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Commands.Single.State">
+            <summary>
+            State to set
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Commands.Single.CommandName">
+            <summary>
+            Command name
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.Single.#ctor(Simple.MPD.Commands.Single.States)">
+            <summary>
+            Creates a new instance
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.Single.GetResponseProcessor">
+            <summary>
+            Default Response processor
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.Single.WriteAsync(System.IO.StreamWriter)">
+            <summary>
+            Writes command to stream
+            </summary>
+        </member>
+        <member name="T:Simple.MPD.Commands.Stop">
+            <summary>
+            Executes "Stop"
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Commands.Stop.CommandName">
+            <summary>
+            Command name
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.Stop.GetResponseProcessor">
+            <summary>
+            Default Response processor
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.Stop.WriteAsync(System.IO.StreamWriter)">
+            <summary>
+            Writes command to stream
+            </summary>
+        </member>
+        <member name="T:Simple.MPD.Commands.ListPlaylistInfo">
+            <summary>
+            Executes "Find"
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Commands.ListPlaylistInfo.Name">
+            <summary>
+            Playlist name
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.ListPlaylistInfo.#ctor(System.String)">
+            <summary>
+            Creates a new instance
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Commands.ListPlaylistInfo.CommandName">
+            <summary>
+            Command name
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.ListPlaylistInfo.GetResponseProcessor">
+            <summary>
+            Default Response processor
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.ListPlaylistInfo.WriteAsync(System.IO.StreamWriter)">
+            <summary>
+            Writes command to stream
+            </summary>
+        </member>
+        <member name="T:Simple.MPD.Commands.ListPlaylists">
+            <summary>
+            Executes "ListPlaylists"
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Commands.ListPlaylists.CommandName">
+            <summary>
+            Command name
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.ListPlaylists.GetResponseProcessor">
+            <summary>
+            Default Response processor
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.ListPlaylists.WriteAsync(System.IO.StreamWriter)">
+            <summary>
+            Writes command to stream
+            </summary>
+        </member>
+        <member name="T:Simple.MPD.Commands.Load">
+            <summary>
+            Executes "Load"
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Commands.Load.Name">
+            <summary>
+            Playlist name
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Commands.Load.Range">
+            <summary>
+            Optional name to be loaded
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Commands.Load.CommandName">
+            <summary>
+            Command name
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.Load.#ctor(System.String,Simple.MPD.Commands.Range)">
+            <summary>
+            Creates a new instance
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.Load.GetResponseProcessor">
+            <summary>
+            Default Response processor
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.Load.WriteAsync(System.IO.StreamWriter)">
+            <summary>
+            Writes command to stream
+            </summary>
+        </member>
+        <member name="T:Simple.MPD.Commands.PlaylistDelete">
+            <summary>
+            Executes "PlaylistDelete"
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Commands.PlaylistDelete.Name">
+            <summary>
+            Playlist name
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Commands.PlaylistDelete.SongPos">
+            <summary>
+            Song position to delete
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Commands.PlaylistDelete.CommandName">
+            <summary>
+            Command name
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.PlaylistDelete.#ctor(System.String,System.Int32)">
+            <summary>
+            Creates a new instance
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.PlaylistDelete.GetResponseProcessor">
+            <summary>
+            Default Response processor
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.PlaylistDelete.WriteAsync(System.IO.StreamWriter)">
+            <summary>
+            Writes command to stream
+            </summary>
+        </member>
+        <member name="T:Simple.MPD.Commands.PlaylistMove">
+            <summary>
+            Executes "PlaylistMove"
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Commands.PlaylistMove.Name">
+            <summary>
+            Playlist name
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Commands.PlaylistMove.From">
+            <summary>
+            Original position
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Commands.PlaylistMove.To">
+            <summary>
+            Mew position
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Commands.PlaylistMove.CommandName">
+            <summary>
+            Command name
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.PlaylistMove.#ctor(System.String,System.Int32,System.Int32)">
+            <summary>
+            Creates a new instance
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.PlaylistMove.GetResponseProcessor">
+            <summary>
+            Default Response processor
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.PlaylistMove.WriteAsync(System.IO.StreamWriter)">
+            <summary>
+            Writes command to stream
+            </summary>
+        </member>
+        <member name="T:Simple.MPD.Commands.Rename">
+            <summary>
+            Executes "Rename"
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Commands.Rename.OldName">
+            <summary>
+            Old (current) playlist name
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Commands.Rename.NewName">
+            <summary>
+            New playlist name
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Commands.Rename.CommandName">
+            <summary>
+            Command name
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.Rename.#ctor(System.String,System.String)">
+            <summary>
+            Creates a new instance
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.Rename.GetResponseProcessor">
+            <summary>
+            Default Response processor
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.Rename.WriteAsync(System.IO.StreamWriter)">
+            <summary>
+            Writes command to stream
+            </summary>
+        </member>
+        <member name="T:Simple.MPD.Commands.Rm">
+            <summary>
+            Executes "Rm"
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Commands.Rm.Name">
+            <summary>
+            Playlist name
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Commands.Rm.CommandName">
+            <summary>
+            Command name
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.Rm.#ctor(System.String)">
+            <summary>
+            Creates a new instance
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.Rm.GetResponseProcessor">
+            <summary>
+            Default Response processor
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.Rm.WriteAsync(System.IO.StreamWriter)">
+            <summary>
+            Writes command to stream
+            </summary>
+        </member>
+        <member name="T:Simple.MPD.Commands.Save">
+            <summary>
+            Executes "Save"
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Commands.Save.Name">
+            <summary>
+            Name of the playlist
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Commands.Save.CommandName">
+            <summary>
+            Command name
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.Save.#ctor(System.String)">
+            <summary>
+            Creates a new instance
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.Save.GetResponseProcessor">
+            <summary>
+            Default Response processor
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.Save.WriteAsync(System.IO.StreamWriter)">
+            <summary>
+            Writes command to stream
+            </summary>
+        </member>
+        <member name="T:Simple.MPD.Commands.CurrentSong">
+            <summary>
+            Executes "CurrentSong"
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Commands.CurrentSong.CommandName">
+            <summary>
+            Command name
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.CurrentSong.GetResponseProcessor">
+            <summary>
+            Default Response processor
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.CurrentSong.WriteAsync(System.IO.StreamWriter)">
+            <summary>
+            Writes command to stream
+            </summary>
+        </member>
+        <member name="T:Simple.MPD.Commands.Idle">
+            <summary>
+            Executes "Idle"
+            </summary>
+        </member>
+        <member name="T:Simple.MPD.Commands.Idle.SubSystems">
+            <summary>
+            Possible subsystems
+            </summary>
+        </member>
         <member name="F:Simple.MPD.Commands.Idle.SubSystems.Database">
             <summary>
             the song database has been modified after update
@@ -75,6 +861,346 @@
             the mount list has changed
             </summary>
         </member>
+        <member name="P:Simple.MPD.Commands.Idle.CommandName">
+            <summary>
+            Command name
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.Idle.GetResponseProcessor">
+            <summary>
+            Default Response processor
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.Idle.WriteAsync(System.IO.StreamWriter)">
+            <summary>
+            Writes command to stream
+            </summary>
+        </member>
+        <member name="T:Simple.MPD.Commands.Stats">
+            <summary>
+            Executes "Stats"
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Commands.Stats.CommandName">
+            <summary>
+            Command name
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.Stats.GetResponseProcessor">
+            <summary>
+            Default Response processor
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.Stats.WriteAsync(System.IO.StreamWriter)">
+            <summary>
+            Writes command to stream
+            </summary>
+        </member>
+        <member name="T:Simple.MPD.Commands.Status">
+            <summary>
+            Executes "Status"
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Commands.Status.CommandName">
+            <summary>
+            Command name
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.Status.GetResponseProcessor">
+            <summary>
+            Default Response processor
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.Status.WriteAsync(System.IO.StreamWriter)">
+            <summary>
+            Writes command to stream
+            </summary>
+        </member>
+        <member name="T:Simple.MPD.Commands.Add">
+            <summary>
+            Executes "Find"
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Commands.Add.Uri">
+            <summary>
+            Uri of the song
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Commands.Add.CommandName">
+            <summary>
+            Command name
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.Add.#ctor(System.String)">
+            <summary>
+            Creates a new instance
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.Add.GetResponseProcessor">
+            <summary>
+            Default Response processor
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.Add.WriteAsync(System.IO.StreamWriter)">
+            <summary>
+            Writes command to stream
+            </summary>
+        </member>
+        <member name="T:Simple.MPD.Commands.AddId">
+            <summary>
+            Executes "Find"
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Commands.AddId.Uri">
+            <summary>
+            File Uri to be added
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Commands.AddId.Position">
+            <summary>
+            Position to be added to
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Commands.AddId.CommandName">
+            <summary>
+            Command name
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.AddId.#ctor(System.String,System.Int32)">
+            <summary>
+            Creates a new instance
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.AddId.GetResponseProcessor">
+            <summary>
+            Default Response processor
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.AddId.WriteAsync(System.IO.StreamWriter)">
+            <summary>
+            Writes command to stream
+            </summary>
+        </member>
+        <member name="T:Simple.MPD.Commands.Clear">
+            <summary>
+            Executes "Clear"
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Commands.Clear.CommandName">
+            <summary>
+            Command name
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.Clear.GetResponseProcessor">
+            <summary>
+            Default Response processor
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.Clear.WriteAsync(System.IO.StreamWriter)">
+            <summary>
+            Writes command to stream
+            </summary>
+        </member>
+        <member name="T:Simple.MPD.Commands.Delete">
+            <summary>
+            Executes "Delete"
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Commands.Delete.Uri">
+            <summary>
+            Song uri
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Commands.Delete.CommandName">
+            <summary>
+            Command name
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.Delete.#ctor(System.String)">
+            <summary>
+            Creates a new instance
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.Delete.GetResponseProcessor">
+            <summary>
+            Default Response processor
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.Delete.WriteAsync(System.IO.StreamWriter)">
+            <summary>
+            Writes command to stream
+            </summary>
+        </member>
+        <member name="T:Simple.MPD.Commands.DeleteId">
+            <summary>
+            Executes "DeleteId"
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Commands.DeleteId.Id">
+            <summary>
+            Id of the song
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Commands.DeleteId.CommandName">
+            <summary>
+            Command name
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.DeleteId.#ctor(System.Int32)">
+            <summary>
+            Creates a new instance
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.DeleteId.GetResponseProcessor">
+            <summary>
+            Default Response processor
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.DeleteId.WriteAsync(System.IO.StreamWriter)">
+            <summary>
+            Writes command to stream
+            </summary>
+        </member>
+        <member name="T:Simple.MPD.Commands.PlayListInfo">
+            <summary>
+            Executes "PlayListInfo"
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Commands.PlayListInfo.CommandName">
+            <summary>
+            Command name
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.PlayListInfo.GetResponseProcessor">
+            <summary>
+            Default Response processor
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.PlayListInfo.WriteAsync(System.IO.StreamWriter)">
+            <summary>
+            Writes command to stream
+            </summary>
+        </member>
+        <member name="T:Simple.MPD.Commands.Shuffle">
+            <summary>
+            Executes "Shuffle"
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Commands.Shuffle.CommandName">
+            <summary>
+            Command name
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.Shuffle.GetResponseProcessor">
+            <summary>
+            Default Response processor
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.Shuffle.WriteAsync(System.IO.StreamWriter)">
+            <summary>
+            Writes command to stream
+            </summary>
+        </member>
+        <member name="T:Simple.MPD.Commands.Commands">
+            <summary>
+            Executes "Commands"
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Commands.Commands.CommandName">
+            <summary>
+            Command name
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.Commands.GetResponseProcessor">
+            <summary>
+            Default Response processor
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.Commands.WriteAsync(System.IO.StreamWriter)">
+            <summary>
+            Writes command to stream
+            </summary>
+        </member>
+        <member name="T:Simple.MPD.Commands.Config">
+            <summary>
+            Executes "Find"
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Commands.Config.CommandName">
+            <summary>
+            Command name
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.Config.GetResponseProcessor">
+            <summary>
+            Default Response processor
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.Config.WriteAsync(System.IO.StreamWriter)">
+            <summary>
+            Writes command to stream
+            </summary>
+        </member>
+        <member name="T:Simple.MPD.Commands.Decoders">
+            <summary>
+            Executes "Decoders"
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Commands.Decoders.CommandName">
+            <summary>
+            Command name
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.Decoders.GetResponseProcessor">
+            <summary>
+            Default Response processor
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.Decoders.WriteAsync(System.IO.StreamWriter)">
+            <summary>
+            Writes command to stream
+            </summary>
+        </member>
+        <member name="T:Simple.MPD.Commands.NotCommands">
+            <summary>
+            Executes "NotCommands"
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Commands.NotCommands.CommandName">
+            <summary>
+            Command name
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.NotCommands.GetResponseProcessor">
+            <summary>
+            Default Response processor
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.NotCommands.WriteAsync(System.IO.StreamWriter)">
+            <summary>
+            Writes command to stream
+            </summary>
+        </member>
+        <member name="T:Simple.MPD.Commands.UrlHandlers">
+            <summary>
+            Executes "UrlHandlers"
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Commands.UrlHandlers.CommandName">
+            <summary>
+            Command name
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.UrlHandlers.GetResponseProcessor">
+            <summary>
+            Default Response processor
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.UrlHandlers.WriteAsync(System.IO.StreamWriter)">
+            <summary>
+            Writes command to stream
+            </summary>
+        </member>
         <member name="T:Simple.MPD.FilterMatch">
             <summary>
             Filter match for 'find'-like Expressions
@@ -93,6 +1219,166 @@
         <member name="F:Simple.MPD.FilterMatch.Contains">
             <summary>
             Compiles to 'contains'
+            </summary>
+        </member>
+        <member name="T:Simple.MPD.Events.NotifyEventArgs">
+            <summary>
+            Notification event
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Events.NotifyEventArgs.SystemsChanged">
+            <summary>
+            Gets changed subsystems
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Events.NotifyEventArgs.#ctor(Simple.MPD.Commands.Idle.SubSystems[])">
+            <summary>
+            Creates a new instance
+            </summary>
+        </member>
+        <member name="T:Simple.MPD.Events.SatusChangedEventArgs">
+            <summary>
+            Changed status event args
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Events.SatusChangedEventArgs.Systems">
+            <summary>
+            Get subsystems
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Events.SatusChangedEventArgs.Status">
+            <summary>
+            Get statuses
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Events.SatusChangedEventArgs.CurrentSong">
+            <summary>
+            Gt current song
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Events.SatusChangedEventArgs.#ctor(Simple.MPD.Commands.Idle.SubSystems[],Simple.MPD.Responses.Status,Simple.MPD.Responses.SongInfo)">
+            <summary>
+            Creates a new instance
+            </summary>
+        </member>
+        <member name="T:Simple.MPD.Exceptions.FailureException">
+            <summary>
+            MPD failure error
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Exceptions.FailureException.Error">
+            <summary>
+            MPD error code
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Exceptions.FailureException.CommandListNum">
+            <summary>
+            Command list num
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Exceptions.FailureException.CurrentCommand">
+            <summary>
+            Current command
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Exceptions.FailureException.#ctor">
+            <summary>
+            Creates a new instance
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Exceptions.FailureException.#ctor(System.Int32,System.String)">
+            <summary>
+            Creates a new instance
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Exceptions.FailureException.FromResponseText(System.String)">
+            <summary>
+            Creates a new exception from text
+            </summary>
+        </member>
+        <member name="T:Simple.MPD.Exceptions.NotConnectedException">
+            <summary>
+            Not connected exception
+            </summary>
+        </member>
+        <member name="T:Simple.MPD.Helper.EscapingHelper">
+            <summary>
+            Helper for scaping texts
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Helper.EscapingHelper.Escape(System.String)">
+            <summary>
+            Scapes a text
+            </summary>
+        </member>
+        <member name="T:Simple.MPD.Interfaces.ICommand">
+            <summary>
+            Command interface
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Interfaces.ICommand.CommandName">
+            <summary>
+            Command name
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Interfaces.ICommand.WriteAsync(System.IO.StreamWriter)">
+            <summary>
+            Writes the command to stream
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Interfaces.ICommand.GetResponseProcessor">
+            <summary>
+            Gets default response processor
+            </summary>
+        </member>
+        <member name="T:Simple.MPD.Interfaces.IConnection">
+            <summary>
+            Connection interface
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Interfaces.IConnection.IsConnected">
+            <summary>
+            Get if the connection is active
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Interfaces.IConnection.OpenAsync">
+            <summary>
+            Opens the connection
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Interfaces.IConnection.Open">
+            <summary>
+            Opens the connection
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Interfaces.IConnection.Close">
+            <summary>
+            Closes the connection
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Interfaces.IConnection.GetReader">
+            <summary>
+            Get reader stream
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Interfaces.IConnection.GetWriter">
+            <summary>
+            Get writter stream
+            </summary>
+        </member>
+        <member name="T:Simple.MPD.Interfaces.IResponse">
+            <summary>
+            Response interface
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Interfaces.IResponse.ReadAsync(System.IO.StreamReader)">
+            <summary>
+            Read response from stream
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Interfaces.IResponse.GetCommand">
+            <summary>
+            Get command
             </summary>
         </member>
         <member name="T:Simple.MPD.MPD">
@@ -276,7 +1562,7 @@
             Deletes a song from the playlist
             </summary>
         </member>
-        <member name="M:Simple.MPD.MPD.QueueDeleteId(System.String)">
+        <member name="M:Simple.MPD.MPD.QueueDeleteId(System.Int32)">
             <summary>
             Deletes the song SONGID from the playlist
             </summary>
@@ -284,6 +1570,46 @@
         <member name="M:Simple.MPD.MPD.Shuffle">
             <summary>
             Shuffles the queue
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.MPD.ListPlaylists">
+            <summary>
+            Prints a list of the playlist directory
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.MPD.ListPlaylistInfo(System.String)">
+            <summary>
+            Lists the songs with metadata in the playlist
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.MPD.RenamePlaylist(System.String,System.String)">
+            <summary>
+            Renames the playlist
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.MPD.RemovePlaylist(System.String)">
+            <summary>
+            Removes the playlist
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.MPD.Load(System.String,Simple.MPD.Commands.Range)">
+            <summary>
+            Loads the playlist (or a range) into the current queue
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.MPD.SaveQueue(System.String)">
+            <summary>
+            Saves the queue as a playlist
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.MPD.PlaylistDelete(System.String,System.Int32)">
+            <summary>
+            Deletes SONGPOS from the playlist
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.MPD.PlaylistMove(System.String,System.Int32,System.Int32)">
+            <summary>
+            Moves the song at position FROM to the position TO
             </summary>
         </member>
         <member name="M:Simple.MPD.MPD.ListAll">
@@ -321,7 +1647,7 @@
             Search the database for songs matching expression (case-INsensitive)
             </summary>
         </member>
-        <member name="M:Simple.MPD.MPD.AddLocalM3uFile(System.String)">
+        <member name="M:Simple.MPD.MPD.AddLocalM3uFile(System.String,System.Func{System.String,System.String})">
             <summary>
             Rerads a Local m3u file with MPD music locations and adds to queue
             </summary>
@@ -361,6 +1687,67 @@
         <member name="M:Simple.MPD.MpdNotifier.Dispose">
             <summary>
             Disposes object
+            </summary>
+        </member>
+        <member name="T:Simple.MPD.Netwroking.TcpConnection">
+            <summary>
+            Implements IConnection with TCP
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Netwroking.TcpConnection.EndPoint">
+            <summary>
+            Gets the endpoint
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Netwroking.TcpConnection.TcpClient">
+            <summary>
+            Gets TCP Client
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Netwroking.TcpConnection.IsConnected">
+            <summary>
+            Gets if the connection is active
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Netwroking.TcpConnection.#ctor(System.String,System.Int32)">
+            <summary>
+            Creates a new instance
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Netwroking.TcpConnection.#ctor(System.Net.IPEndPoint)">
+            <summary>
+            Creates a new instance
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Netwroking.TcpConnection.TryConnectAsync">
+            <summary>
+            Tries to connect
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Simple.MPD.Netwroking.TcpConnection.OpenAsync">
+            <summary>
+            Opens the connection
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Netwroking.TcpConnection.Open">
+            <summary>
+            Opens the connection
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Netwroking.TcpConnection.Close">
+            <summary>
+            Closes the connection
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Netwroking.TcpConnection.GetReader">
+            <summary>
+            Get reader stream
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Netwroking.TcpConnection.GetWriter">
+            <summary>
+            Get writter stream
             </summary>
         </member>
         <member name="P:Simple.MPD.Responses.Stats.Uptime">
