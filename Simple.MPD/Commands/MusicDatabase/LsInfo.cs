@@ -4,22 +4,36 @@ using Simple.MPD.Interfaces;
 
 namespace Simple.MPD.Commands
 {
+    /// <summary>
+    /// Executes "LsInfo"
+    /// </summary>
     public class LsInfo : ICommand
     {
+        /// <summary>
+        /// Uri to list
+        /// </summary>
+        public string Uri { get; }
+        /// <summary>
+        /// Command name
+        /// </summary>
         public string CommandName => "LsInfo";
-
+        /// <summary>
+        /// Creates a new instance
+        /// </summary>
         public LsInfo(string uri)
         {
             Uri = uri;
         }
-
-        public string Uri { get; }
-
+        /// <summary>
+        /// Default Response processor
+        /// </summary>
         public IResponse GetResponseProcessor()
         {
             return new Responses.SongInfoCollection();
         }
-
+        /// <summary>
+        /// Writes command to stream
+        /// </summary>
         public async Task WriteAsync(StreamWriter stream)
         {
             if (!string.IsNullOrWhiteSpace(Uri))
