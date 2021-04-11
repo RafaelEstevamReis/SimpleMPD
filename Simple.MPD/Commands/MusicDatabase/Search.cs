@@ -1,44 +1,43 @@
-﻿using System;
+﻿using Simple.MPD.Interfaces;
 using System.IO;
 using System.Threading.Tasks;
-using Simple.MPD.Interfaces;
 
 namespace Simple.MPD.Commands
 {
+    /// <summary>
+    /// Executes "Search"
+    /// </summary>
     public class Search : ICommand
     {
+        /// <summary>
+        /// Expression to search/filter
+        /// </summary>
         public string Expression { get; }
+        /// <summary>
+        /// Command name
+        /// </summary>
         public string CommandName => "Search";
-
+        /// <summary>
+        /// Creates a new instance
+        /// </summary>
         public Search(string expression)
         {
             Expression = expression;
         }
-
+        /// <summary>
+        /// Default Response processor
+        /// </summary>
         public IResponse GetResponseProcessor()
         {
             return new Responses.SongInfoCollection();
         }
-
+        /// <summary>
+        /// Writes command to stream
+        /// </summary>
         public async Task WriteAsync(StreamWriter stream)
         {
             var expr = Helper.EscapingHelper.Escape(Expression);
             await stream.WriteAsync($"search \"({expr})\"\n");
         }
-
-        //public static string ExpressionBuilder(Tags tag, FilterMatch match, string search)
-        //{
-        //    string strMatch = match switch
-        //    {
-        //        FilterMatch.Equals => "==",
-        //        FilterMatch.Different => "!=",
-        //        FilterMatch.Contains => "contains",
-        //        _ => throw new ArgumentException("Invalid FilterMatch"),
-        //    };
-
-        //    string scapedSearch = Helper.EscapingHelper.Escape(search);
-
-        //    return $"{tag} {strMatch} \"{scapedSearch}\"";
-        //}
     }
 }
