@@ -8,69 +8,101 @@ using Simple.MPD.Interfaces;
 
 namespace Simple.MPD.Netwroking
 {
+    /// <summary>
+    /// Implements IConnection with TCP
+    /// </summary>
     public class TcpConnection : IConnection
     {
         private StreamReader reader;
         private StreamWriter writer;
-
+        /// <summary>
+        /// Gets the endpoint
+        /// </summary>
         public IPEndPoint EndPoint { get; }
-        public TcpClient tcpClient { get; private set; }
+        /// <summary>
+        /// Gets TCP Client
+        /// </summary>
+        public TcpClient TcpClient { get; private set; }
+        /// <summary>
+        /// Gets if the connection is active
+        /// </summary>
         public bool IsConnected
         {
             get
             {
-                if (tcpClient == null) return false;
-                return tcpClient.Connected;
+                if (TcpClient == null) return false;
+                return TcpClient.Connected;
             }
         }
-
+        /// <summary>
+        /// Creates a new instance
+        /// </summary>
         public TcpConnection(string Address, int Port = 6600)
             : this(createEndPoint(Address, Port))
         { }
+        /// <summary>
+        /// Creates a new instance
+        /// </summary>
         public TcpConnection(IPEndPoint endPoint)
         {
             EndPoint = endPoint;
         }
-
+        /// <summary>
+        /// Tries to connect
+        /// </summary>
+        /// <returns></returns>
         public async Task< bool> TryConnectAsync()
         {
             if (IsConnected) return true;
             await OpenAsync();
             return IsConnected;
         }
-
+        /// <summary>
+        /// Opens the connection
+        /// </summary>
         public async Task OpenAsync()
         {
-            if (tcpClient == null || tcpClient.Client == null) tcpClient = new TcpClient();
-            await tcpClient.ConnectAsync(EndPoint.Address, EndPoint.Port);
+            if (TcpClient == null || TcpClient.Client == null) TcpClient = new TcpClient();
+            await TcpClient.ConnectAsync(EndPoint.Address, EndPoint.Port);
 
 #if NETSTANDARD2_1
-            reader = new StreamReader(tcpClient.GetStream(), Encoding.Default, false, 512, leaveOpen: true);
-            writer = new StreamWriter(tcpClient.GetStream(), Encoding.Default, 512, leaveOpen: true);
+            reader = new StreamReader(TcpClient.GetStream(), Encoding.Default, false, 512, leaveOpen: true);
+            writer = new StreamWriter(TcpClient.GetStream(), Encoding.Default, 512, leaveOpen: true);
 #else
-            reader = new StreamReader(tcpClient.GetStream(), leaveOpen: true);
-            writer = new StreamWriter(tcpClient.GetStream(), leaveOpen: true);
+            reader = new StreamReader(TcpClient.GetStream(), leaveOpen: true);
+            writer = new StreamWriter(TcpClient.GetStream(), leaveOpen: true);
 #endif
 
             writer.AutoFlush = true;
 
         }
+        /// <summary>
+        /// Opens the connection
+        /// </summary>
         public void Open()
         {
             OpenAsync().Wait();
         }
-
+        /// <summary>
+        /// Closes the connection
+        /// </summary>
         public void Close()
         {
-            if (tcpClient == null) return;
+            if (TcpClient == null) return;
             if (!IsConnected) return;
-            tcpClient.Close();
+            TcpClient.Close();
         }
 
+        /// <summary>
+        /// Get reader stream
+        /// </summary>
         public StreamReader GetReader()
         {
             return reader;
         }
+        /// <summary>
+        /// Get writter stream
+        /// </summary>
         public StreamWriter GetWriter()
         {
             return writer;
