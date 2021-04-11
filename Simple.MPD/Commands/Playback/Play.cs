@@ -4,11 +4,11 @@ using Simple.MPD.Interfaces;
 
 namespace Simple.MPD.Commands
 {
+    /// <summary>
+    /// Executes "Play" or "PlayId" commands
+    /// </summary>
     public class Play : ICommand
     {
-        int playSongValue;
-        private PlayType playType;
-
         enum PlayType
         {
             Empty,
@@ -16,19 +16,32 @@ namespace Simple.MPD.Commands
             SongId,
         }
 
+        int playSongValue;
+        private PlayType playType;
+
+        /// <summary>
+        /// Command name
+        /// </summary>
+        public string CommandName => "Play";
+        /// <summary>
+        /// Creates a new instance without arguments
+        /// </summary>
         public Play()
         {
             playSongValue = 0;
             playType = PlayType.Empty;
         }
 
-        public string CommandName => "Play";
-
+        /// <summary>
+        /// Default Response processor
+        /// </summary>
         public IResponse GetResponseProcessor()
         {
             return new Responses.Ok();
         }
-
+        /// <summary>
+        /// Writes command to stream
+        /// </summary>
         public async Task WriteAsync(StreamWriter stream)
         {
             if (playType == PlayType.SongPos)
@@ -44,7 +57,9 @@ namespace Simple.MPD.Commands
                 await stream.WriteAsync($"play\n");
             }
         }
-
+        /// <summary>
+        /// Creates a new instance of "playid" command with SongId argument
+        /// </summary>
         public static Play PlaySongId(int SongId)
         {
             return new Play()
@@ -53,6 +68,9 @@ namespace Simple.MPD.Commands
                 playType = PlayType.SongId
             };
         }
+        /// <summary>
+        /// Creates a new instance of "play" command with SongPos argument
+        /// </summary>
         public static Play PlaySongPosition(int SongPos)
         {
             return new Play()
