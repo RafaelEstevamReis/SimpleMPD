@@ -5,30 +5,55 @@ using Simple.MPD.Interfaces;
 
 namespace Simple.MPD.Commands
 {
+    /// <summary>
+    /// Executes "Single"
+    /// </summary>
     public class Single : ICommand
     {
-        public States State { get; set; }
-
+        /// <summary>
+        /// States for the SINGLE command
+        /// </summary>
         public enum States
         {
+            /// <summary>
+            /// Enables SINGLE mode
+            /// </summary>
             On,
+            /// <summary>
+            /// Disables SINGLE mode
+            /// </summary>
             Off,
+            /// <summary>
+            /// Sets SINGLE to OneShot mode
+            /// </summary>
             OneShot,
         }
 
+        /// <summary>
+        /// State to set
+        /// </summary>
+        public States State { get; set; }
+        /// <summary>
+        /// Command name
+        /// </summary>
+        public string CommandName => "Single";
+        /// <summary>
+        /// Creates a new instance
+        /// </summary>
         public Single(States state)
         {
             State = state;
         }
-
-        public string CommandName => "Single";
-
-
+        /// <summary>
+        /// Default Response processor
+        /// </summary>
         public IResponse GetResponseProcessor()
         {
             return new Responses.Ok();
         }
-
+        /// <summary>
+        /// Writes command to stream
+        /// </summary>
         public async Task WriteAsync(StreamWriter stream)
         {
             string sVal = State switch
