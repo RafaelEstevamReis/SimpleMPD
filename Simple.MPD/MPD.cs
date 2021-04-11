@@ -234,7 +234,7 @@ namespace Simple.MPD
         /// Sets single state, STATE should be On, Off or OneShot. 
         /// When single is activated, playback is stopped after current song, or song is repeated if the ‘repeat’ mode is enabled
         /// </summary>
-        public async Task SetSingle(Commands.Single.States state)
+        public async Task SetSingle(SingleStates state)
         {
             // is either OK or Exception
             await ExecuteCommandAsync(new Commands.Single(state));

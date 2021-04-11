@@ -13,11 +13,11 @@ namespace Simple.MPD.Responses
         public bool Repeat { get; set; }
         public bool Random { get; set; }
 
-        public StatusSingle Single { get; set; }
+        public SingleStates Single { get; set; }
         public bool Consume { get; set; }
         public int Playlist { get; set; }
         public int PlaylistLength { get; set; }
-        public SongState State { get; set; }
+        public PlaybackState State { get; set; }
         public int Song { get; set; }
         public int SongId { get; set; }
         public int NextSong { get; set; }
@@ -60,9 +60,9 @@ namespace Simple.MPD.Responses
                     case "single":
                         Single = pair.Value.Trim() switch
                         {
-                            "0" => StatusSingle.S0,
-                            "1" => StatusSingle.S1,
-                            _ => StatusSingle.Oneshot
+                            "0" => SingleStates.Off,
+                            "1" => SingleStates.On,
+                            _ => SingleStates.OneShot
                         };
                         break;
                     case "consume":
@@ -84,9 +84,9 @@ namespace Simple.MPD.Responses
                     case "state":
                         State = pair.Value.Trim() switch
                         {
-                            "play" => SongState.Play,
-                            "pause" => SongState.Pause,
-                            _ => SongState.Stop
+                            "play" => PlaybackState.Play,
+                            "pause" => PlaybackState.Pause,
+                            _ => PlaybackState.Stop
                         };
                         break;
                     case "song":

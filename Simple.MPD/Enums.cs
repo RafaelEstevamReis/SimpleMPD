@@ -1,12 +1,25 @@
 ﻿namespace Simple.MPD
 {
-    public enum StatusSingle
+    /// <summary>
+    /// States for the SINGLE command
+    /// </summary>
+    public enum SingleStates
     {
-        S0,
-        S1,
-        Oneshot
+        /// <summary>
+        /// Enables SINGLE mode
+        /// </summary>
+        On,
+        /// <summary>
+        /// Disables SINGLE mode
+        /// </summary>
+        Off,
+        /// <summary>
+        /// Sets SINGLE to OneShot mode
+        /// </summary>
+        OneShot,
     }
-    public enum SongState
+
+    public enum PlaybackState
     {
         Play,
         Pause,
