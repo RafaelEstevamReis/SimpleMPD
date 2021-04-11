@@ -5,15 +5,18 @@ using Simple.MPD.Interfaces;
 
 namespace Simple.MPD.Responses
 {
+    /// <summary>
+    /// Version response
+    /// </summary>
     public class Version : IResponse
     {
+        /// <summary>
+        /// Protocol version info
+        /// </summary>
         public System.Version VersionInfo { get; private set; }
-
-        public ICommand GetCommand()
-        {
-            throw new NotImplementedException();
-        }
-
+        /// <summary>
+        /// Read response from stream
+        /// </summary>
         public async Task ReadAsync(StreamReader stream)
         {
             var response = await stream.ReadLineAsync();

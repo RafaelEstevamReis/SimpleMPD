@@ -17,13 +17,6 @@ namespace Simple.MPD.Responses
         /// </summary>
         public Commands.Idle.SubSystems[] SubSystems { get; set; }
         /// <summary>
-        /// Get command
-        /// </summary>
-        public ICommand GetCommand()
-        {
-            return null;
-        }
-        /// <summary>
         /// Read response from stream
         /// </summary>
         public async Task ReadAsync(StreamReader stream)

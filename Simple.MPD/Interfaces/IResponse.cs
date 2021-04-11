@@ -12,9 +12,5 @@ namespace Simple.MPD.Interfaces
         /// Read response from stream
         /// </summary>
         Task ReadAsync(StreamReader stream);
-        /// <summary>
-        /// Get command
-        /// </summary>
-        ICommand GetCommand();
     }
 }

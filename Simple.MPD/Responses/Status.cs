@@ -33,11 +33,6 @@ namespace Simple.MPD.Responses
 
         public string ErrorMessage { get; set; }
 
-        public ICommand GetCommand()
-        {
-            return null;
-        }
-
         public async Task ReadAsync(StreamReader stream)
         {
             var values = Helper.ResponseHelper.ReadPairsAsync(stream);

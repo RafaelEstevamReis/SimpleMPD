@@ -6,15 +6,18 @@ using Simple.MPD.Interfaces;
 
 namespace Simple.MPD.Responses
 {
+    /// <summary>
+    /// String collection response
+    /// </summary>
     public class StringArray : IResponse
     {
+        /// <summary>
+        /// Get response items
+        /// </summary>
         public string[] Items { get; set; }
-
-        public ICommand GetCommand()
-        {
-            throw new NotImplementedException();
-        }
-
+        /// <summary>
+        /// Read response from stream
+        /// </summary>
         public async Task ReadAsync(StreamReader stream)
         {
             List<string> lst = new List<string>();

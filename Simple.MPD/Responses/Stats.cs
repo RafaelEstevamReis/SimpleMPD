@@ -5,6 +5,9 @@ using Simple.MPD.Interfaces;
 
 namespace Simple.MPD.Responses
 {
+    /// <summary>
+    /// Stats response
+    /// </summary>
     public class Stats : IResponse
     {
         /// <summary>
@@ -36,11 +39,9 @@ namespace Simple.MPD.Responses
         /// </summary>
         public DateTimeOffset DB_Update { get; set; }
 
-        public ICommand GetCommand()
-        {
-            return null;
-        }
-
+        /// <summary>
+        /// Read response from stream
+        /// </summary>
         public async Task ReadAsync(StreamReader stream)
         {
             var values = Helper.ResponseHelper.ReadPairsAsync(stream);

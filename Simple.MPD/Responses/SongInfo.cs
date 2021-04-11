@@ -75,8 +75,6 @@ namespace Simple.MPD.Responses
                 return File ?? Directory ?? PlayList ?? "[Unkown]";
             }
         }
-        public ICommand GetCommand() => null;
-
         public async Task ReadAsync(StreamReader stream)
         {
             var values = Helper.ResponseHelper.ReadPairsAsync(stream);
