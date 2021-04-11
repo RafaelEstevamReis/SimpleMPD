@@ -4,15 +4,25 @@ using Simple.MPD.Interfaces;
 
 namespace Simple.MPD.Commands
 {
+    /// <summary>
+    /// Executes "NotCommands"
+    /// </summary>
     public class NotCommands : ICommand
     {
+        /// <summary>
+        /// Command name
+        /// </summary>
         public string CommandName => "NotCommands";
-
+        /// <summary>
+        /// Default Response processor
+        /// </summary>
         public IResponse GetResponseProcessor()
         {
             return new Responses.ValuesList();
         }
-
+        /// <summary>
+        /// Writes command to stream
+        /// </summary>
         public async Task WriteAsync(StreamWriter stream)
         {
             await stream.WriteAsync("notcommands\n");
