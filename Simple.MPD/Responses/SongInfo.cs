@@ -37,7 +37,7 @@ namespace Simple.MPD.Responses
         public string Composer { get; set; }
         public string Performer { get; set; }
         public string Conductor { get; set; }
-
+        public DateTime LastModified { get; set; }
         private string[] format = new string[0];
         public string Format
         {
@@ -153,6 +153,9 @@ namespace Simple.MPD.Responses
                 case "duration":
                     dVal = double.Parse(pair.Value, System.Globalization.CultureInfo.InvariantCulture);
                     Duration = TimeSpan.FromSeconds(dVal);
+                    break;
+                case "last-modified":
+                    LastModified = DateTime.Parse(pair.Value, System.Globalization.CultureInfo.InvariantCulture);
                     break;
 
                 case "musicbrainz_albumid":
