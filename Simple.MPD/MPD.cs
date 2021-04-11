@@ -64,7 +64,6 @@ namespace Simple.MPD
             lock (lockObject)
             {
                 command.WriteAsync(Connection.GetWriter()).Wait();
-                Task.Delay(250).Wait();
                 return readResponseAsync(command.GetResponseProcessor()).Result;
             }
         }
@@ -387,26 +386,26 @@ namespace Simple.MPD
         /// <summary>
         /// Renames the playlist
         /// </summary>
-        public async Task<Responses.SongInfoCollection> RenamePlaylist(string oldName, string newName)
+        public async Task<Responses.Ok> RenamePlaylist(string oldName, string newName)
         {
             var resp = await ExecuteCommandAsync(new Commands.Rename(oldName, newName));
-            return (Responses.SongInfoCollection)resp;
+            return (Responses.Ok)resp;
         }
         /// <summary>
         /// Removes the playlist
         /// </summary>
-        public async Task<Responses.SongInfoCollection> RemovePlaylist(string listName)
+        public async Task<Responses.Ok> RemovePlaylist(string listName)
         {
             var resp = await ExecuteCommandAsync(new Commands.Rm(listName));
-            return (Responses.SongInfoCollection)resp;
+            return (Responses.Ok)resp;
         }
         /// <summary>
         /// Saves the queue as a playlist
         /// </summary>
-        public async Task<Responses.SongInfoCollection> SaveQueue(string listName)
+        public async Task<Responses.Ok> SaveQueue(string listName)
         {
-            var resp = await ExecuteCommandAsync(new Commands.ListPlaylistInfo(listName));
-            return (Responses.SongInfoCollection)resp;
+            var resp = await ExecuteCommandAsync(new Commands.Save(listName));
+            return (Responses.Ok)resp;
         }
 
 

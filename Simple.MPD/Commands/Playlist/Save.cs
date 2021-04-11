@@ -2,7 +2,7 @@
 using System.IO;
 using System.Threading.Tasks;
 
-namespace Simple.MPD.Commands.Playlist
+namespace Simple.MPD.Commands
 {
     public class Save : ICommand
     {
