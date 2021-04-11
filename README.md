@@ -72,6 +72,9 @@ It connects, receives the Version and waits for commands, which I implemented:
 * Rename - Rename a playlist
 * Rm - Delete a playlist
 * Save - Save the queue as a playlist
+* Load - Load the queue as a playlist
+* PlaylistDelete - Deletes SONGPOS from the playlist
+* PlaylistMove - Moves the song at position FROM to the position TO
 
 
 Once this code does something more useful, this section wil be replaced

@@ -372,7 +372,7 @@ namespace Simple.MPD
         /// </summary>
         public async Task<Responses.SongInfoCollection> ListPlaylists()
         {
-            var resp = await ExecuteCommandAsync(new Commands.ListplayLists());
+            var resp = await ExecuteCommandAsync(new Commands.ListPlaylists());
             return (Responses.SongInfoCollection)resp;
         }
         /// <summary>
@@ -400,6 +400,14 @@ namespace Simple.MPD
             return (Responses.Ok)resp;
         }
         /// <summary>
+        /// Loads the playlist (or a range) into the current queue
+        /// </summary>
+        public async Task<Responses.Ok> Load(string listName, Commands.Range range = null)
+        {
+            var resp = await ExecuteCommandAsync(new Commands.Load(listName, range));
+            return (Responses.Ok)resp;
+        }
+        /// <summary>
         /// Saves the queue as a playlist
         /// </summary>
         public async Task<Responses.Ok> SaveQueue(string listName)
@@ -407,7 +415,22 @@ namespace Simple.MPD
             var resp = await ExecuteCommandAsync(new Commands.Save(listName));
             return (Responses.Ok)resp;
         }
-
+        /// <summary>
+        /// Deletes SONGPOS from the playlist
+        /// </summary>
+        public async Task<Responses.Ok> PlaylistDelete(string listName, int SongPos)
+        {
+            var resp = await ExecuteCommandAsync(new Commands.PlaylistDelete(listName, SongPos));
+            return (Responses.Ok)resp;
+        }
+        /// <summary>
+        /// Moves the song at position FROM to the position TO
+        /// </summary>
+        public async Task<Responses.Ok> PlaylistMove(string listName, int from, int to)
+        {
+            var resp = await ExecuteCommandAsync(new Commands.PlaylistMove(listName, from, to));
+            return (Responses.Ok)resp;
+        }
 
         /* MUSIC DATABASE */
         /// <summary>
@@ -472,18 +495,20 @@ namespace Simple.MPD
         /// </summary>
         /// <param name="LocalFilePath">Local file, NOT MPD path</param>
         /// <returns>Tup´le with MPD file added and it's SongID</returns>
-        public IEnumerable<(string,int)> AddLocalM3uFile(string LocalFilePath)
+        public IEnumerable<(string,int)> AddLocalM3uFile(string LocalFilePath, Func<string,string> pathConverter = null)
         {
             foreach (var line in File.ReadAllLines(LocalFilePath))
             {
                 if (line.StartsWith("#")) continue;
-                int id = -1;
-
+                int id;
                 try
                 {
-                    id = QueueAddId(line).Result;
+                    string path = line;
+                    if (pathConverter != null) path = pathConverter(line);
+
+                    id = QueueAddId(path).Result;
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     id = -1;
                     Connection.Close(); // must re-open
