@@ -4,9 +4,9 @@ using System.Threading.Tasks;
 
 namespace Simple.MPD.Commands
 {
-    public class ListplayLists : ICommand
+    public class ListPlaylists : ICommand
     {
-        public string CommandName => "ListplayLists";
+        public string CommandName => "ListPlaylists";
 
         public IResponse GetResponseProcessor()
         {
