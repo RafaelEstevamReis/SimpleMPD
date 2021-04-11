@@ -7,15 +7,25 @@ using Simple.MPD.Interfaces;
 
 namespace Simple.MPD.Responses
 {
+    /// <summary>
+    /// Idle response
+    /// </summary>
     public class IdleResponse : IResponse
     {
+        /// <summary>
+        /// Get subsystems
+        /// </summary>
         public Commands.Idle.SubSystems[] SubSystems { get; set; }
-
+        /// <summary>
+        /// Get command
+        /// </summary>
         public ICommand GetCommand()
         {
             return null;
         }
-
+        /// <summary>
+        /// Read response from stream
+        /// </summary>
         public async Task ReadAsync(StreamReader stream)
         {
             var idleOptions = Enum.GetValues(typeof(Commands.Idle.SubSystems))
