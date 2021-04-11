@@ -4,26 +4,40 @@ using Simple.MPD.Interfaces;
 
 namespace Simple.MPD.Commands
 {
+    /// <summary>
+    /// Executes "DeleteId"
+    /// </summary>
     public class DeleteId : ICommand
     {
-        public string Uri { get; }
+        /// <summary>
+        /// Id of the song
+        /// </summary>
+        public int Id { get; }
 
-        public DeleteId(string uri)
-        {
-            Uri = uri;
-        }
-
+        /// <summary>
+        /// Command name
+        /// </summary>
         public string CommandName => "DeleteId";
-
+        /// <summary>
+        /// Creates a new instance
+        /// </summary>
+        public DeleteId(int id)
+        {
+            Id = id;
+        }
+        /// <summary>
+        /// Default Response processor
+        /// </summary>
         public IResponse GetResponseProcessor()
         {
             return new Responses.ValuesList();
         }
-
+        /// <summary>
+        /// Writes command to stream
+        /// </summary>
         public async Task WriteAsync(StreamWriter stream)
         {
-            string sUri = Helper.EscapingHelper.Escape(Uri);
-            await stream.WriteAsync($"deleteid \"{sUri}\"\n");
+            await stream.WriteAsync($"deleteid {Id}\n");
         }
     }
 }
