@@ -4,7 +4,7 @@ using Simple.MPD.Exceptions;
 
 namespace Simple.MPD.Helper
 {
-    public class ResponseHelper
+    internal class ResponseHelper
     {
         internal static bool IsError(string response, out Exception ex)
         {
