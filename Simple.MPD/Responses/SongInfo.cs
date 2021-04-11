@@ -38,8 +38,12 @@ namespace Simple.MPD.Responses
         public string Performer { get; set; }
         public string Conductor { get; set; }
 
-        private string[] format;
-        public string Format { get => string.Join(':', format); set => format = value.Split(':'); }
+        private string[] format = new string[0];
+        public string Format
+        {
+            get => string.Join(':', format);
+            set => format = value.Split(':');
+        }
 
         public int Format_SampleRate => parseFormatNumber(format[0]);
         public int Format_Bits => parseFormatNumber(format[1]);
