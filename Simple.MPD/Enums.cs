@@ -18,13 +18,45 @@
         /// </summary>
         OneShot,
     }
-
+    /// <summary>
+    /// Pause states
+    /// </summary>
+    public enum PauseState
+    {
+        /// <summary>
+        /// Pause playback
+        /// </summary>
+        Pause,
+        /// <summary>
+        /// Resume paused playback
+        /// </summary>
+        Resume,
+        /// <summary>
+        /// Toogle playbakc pause state
+        /// </summary>
+        Toggle
+    }
+    /// <summary>
+    /// Playback state
+    /// </summary>
     public enum PlaybackState
     {
+        /// <summary>
+        /// Playback playing
+        /// </summary>
         Play,
+        /// <summary>
+        /// Playback paused
+        /// </summary>
         Pause,
+        /// <summary>
+        /// Playback stopped
+        /// </summary>
         Stop
     }
+    /// <summary>
+    /// Available tags
+    /// </summary>
     public enum Tags
     {
         Album,
