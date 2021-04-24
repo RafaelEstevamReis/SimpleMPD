@@ -1021,6 +1021,76 @@
             Writes command to stream
             </summary>
         </member>
+        <member name="P:Simple.MPD.Commands.Move.CommandName">
+            <summary>
+            Command name
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Commands.Move.Range">
+            <summary>
+            Range of songs
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Commands.Move.From">
+            <summary>
+            From song
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Commands.Move.ToPosition">
+            <summary>
+            To queue position
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.Move.#ctor(Simple.MPD.Commands.Range,System.Int32)">
+            <summary>
+            Creates a new instance
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.Move.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Creates a new instance
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.Move.GetResponseProcessor">
+            <summary>
+            Default Response processor
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.Move.WriteAsync(System.IO.StreamWriter)">
+            <summary>
+            Writes command to stream
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Commands.MoveId.CommandName">
+            <summary>
+            Command name
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Commands.MoveId.FromId">
+            <summary>
+            From song
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Commands.MoveId.ToPosition">
+            <summary>
+            To song
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.MoveId.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Creates a new instance
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.MoveId.GetResponseProcessor">
+            <summary>
+            Default Response processor
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.MoveId.WriteAsync(System.IO.StreamWriter)">
+            <summary>
+            Writes command to stream
+            </summary>
+        </member>
         <member name="T:Simple.MPD.Commands.PlayListInfo">
             <summary>
             Executes "PlayListInfo"
@@ -1051,12 +1121,87 @@
             Command name
             </summary>
         </member>
+        <member name="P:Simple.MPD.Commands.Shuffle.Range">
+            <summary>
+            Optional range to shuffle
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.Shuffle.#ctor">
+            <summary>
+            Creates a new instance
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.Shuffle.#ctor(Simple.MPD.Commands.Range)">
+            <summary>
+            Creates a new instance with range
+            </summary>
+        </member>
         <member name="M:Simple.MPD.Commands.Shuffle.GetResponseProcessor">
             <summary>
             Default Response processor
             </summary>
         </member>
         <member name="M:Simple.MPD.Commands.Shuffle.WriteAsync(System.IO.StreamWriter)">
+            <summary>
+            Writes command to stream
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Commands.Swap.CommandName">
+            <summary>
+            Command name
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Commands.Swap.Pos1">
+            <summary>
+            First song position
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Commands.Swap.Pos2">
+            <summary>
+            Second song position
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.Swap.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Creates a new instance
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.Swap.GetResponseProcessor">
+            <summary>
+            Default Response processor
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.Swap.WriteAsync(System.IO.StreamWriter)">
+            <summary>
+            Writes command to stream
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Commands.SwapId.CommandName">
+            <summary>
+            Command name
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Commands.SwapId.Id1">
+            <summary>
+            First song position
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Commands.SwapId.Id2">
+            <summary>
+            Second song position
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.SwapId.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Creates a new instance
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.SwapId.GetResponseProcessor">
+            <summary>
+            Default Response processor
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.SwapId.WriteAsync(System.IO.StreamWriter)">
             <summary>
             Writes command to stream
             </summary>
@@ -1336,6 +1481,11 @@
             Not connected exception
             </summary>
         </member>
+        <member name="M:Simple.MPD.Helper.DirectoryHelper.ReadAll(Simple.MPD.MPD,System.Action{System.String})">
+            <summary>
+            Recursive and SLOW call
+            </summary>
+        </member>
         <member name="T:Simple.MPD.Helper.EscapingHelper">
             <summary>
             Helper for scaping texts
@@ -1600,6 +1750,37 @@
         <member name="M:Simple.MPD.MPD.Shuffle">
             <summary>
             Shuffles the queue
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.MPD.Shuffle(Simple.MPD.Commands.Range)">
+            <summary>
+            Shuffles the queue
+            </summary>
+            <param name="range">Specifies the range to shuffle</param>
+        </member>
+        <member name="M:Simple.MPD.MPD.SwapPos(System.Int32,System.Int32)">
+            <summary>
+            Swaps the positions of pos1 and pos2
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.MPD.SwapId(System.Int32,System.Int32)">
+            <summary>
+            Swaps the positions of id1 and id2
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.MPD.MoveRange(Simple.MPD.Commands.Range,System.Int32)">
+            <summary>
+            Move songs at range to specified position
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.MPD.MovePos(System.Int32,System.Int32)">
+            <summary>
+            Move song from to specified position
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.MPD.MoveId(System.Int32,System.Int32)">
+            <summary>
+            Move song with Id to specified position
             </summary>
         </member>
         <member name="M:Simple.MPD.MPD.ListPlaylists">
