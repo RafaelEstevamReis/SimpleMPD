@@ -14,6 +14,24 @@ namespace Simple.MPD.Commands
         /// </summary>
         public string CommandName => "Shuffle";
         /// <summary>
+        /// Optional range to shuffle
+        /// </summary>
+        public Range Range { get; }
+        /// <summary>
+        /// Creates a new instance
+        /// </summary>
+        public Shuffle()
+        {
+            Range = null;
+        }
+        /// <summary>
+        /// Creates a new instance with range
+        /// </summary>
+        public Shuffle(Range range)
+        {
+            Range = range;
+        }
+        /// <summary>
         /// Default Response processor
         /// </summary>
         public IResponse GetResponseProcessor()
@@ -25,7 +43,14 @@ namespace Simple.MPD.Commands
         /// </summary>
         public async Task WriteAsync(StreamWriter stream)
         {
-            await stream.WriteAsync("shuffle\n");
+            if (Range == null)
+            {
+                await stream.WriteAsync("shuffle\n");
+            }
+            else
+            {
+                await stream.WriteAsync($"shuffle {Range}\n");
+            }
         }
     }
 }
