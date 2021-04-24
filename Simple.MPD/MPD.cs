@@ -365,6 +365,31 @@ namespace Simple.MPD
             // is either OK or Exception
             await ExecuteCommandAsync(new Commands.Shuffle());
         }
+        /// <summary>
+        /// Shuffles the queue
+        /// </summary>
+        /// <param name="range">Specifies the range to shuffle</param>
+        public async Task Shuffle(Commands.Range range)
+        {
+            // is either OK or Exception
+            await ExecuteCommandAsync(new Commands.Shuffle(range));
+        }
+        /// <summary>
+        /// Swaps the positions of pos1 and pos2
+        /// </summary>
+        public async Task SwapPos(int pos1, int pos2)
+        {
+            // is either OK or Exception
+            await ExecuteCommandAsync(new Commands.Swap(pos1, pos2));
+        }
+        /// <summary>
+        /// Swaps the positions of id1 and id2
+        /// </summary>
+        public async Task SwapId(int id1, int id2)
+        {
+            // is either OK or Exception
+            await ExecuteCommandAsync(new Commands.SwapId(id1, id2));
+        }
 
         /* PLAYLIST */
         /// <summary>
