@@ -64,6 +64,7 @@ It connects, receives the Version and waits for commands, which I implemented:
 * DeleteId - Deletes the song SONGID from the queue
 * Shuffle - Shuffles the queue
 * Swap - Swap two songs
+* Move - Move song to position
 * ListAll - Lists all songs and directories in URI. Do not use this command
 * LsInfo - Lists the contents of the directory URI
 * Find - find files - Case-Sensitive

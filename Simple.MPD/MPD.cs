@@ -390,6 +390,27 @@ namespace Simple.MPD
             // is either OK or Exception
             await ExecuteCommandAsync(new Commands.SwapId(id1, id2));
         }
+        /// <summary>
+        /// Move songs at range to specified position
+        /// </summary>
+        public async Task MoveRange(Commands.Range range, int to)
+        {
+            await ExecuteCommandAsync(new Commands.Move(range, to));
+        }
+        /// <summary>
+        /// Move song from to specified position
+        /// </summary>
+        public async Task MovePos(int from, int to)
+        {
+            await ExecuteCommandAsync(new Commands.Move(from, to));
+        }
+        /// <summary>
+        /// Move song with Id to specified position
+        /// </summary>
+        public async Task MoveId(int fromId, int toPosition)
+        {
+            await ExecuteCommandAsync(new Commands.MoveId(fromId, toPosition));
+        }
 
         /* PLAYLIST */
         /// <summary>
