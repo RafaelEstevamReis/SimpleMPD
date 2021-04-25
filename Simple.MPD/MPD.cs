@@ -536,12 +536,7 @@ namespace Simple.MPD
         }
 
         /* External */
-        /// <summary>
-        /// Rerads a Local m3u file with MPD music locations and adds to queue
-        /// </summary>
-        /// <param name="LocalFilePath">Local file, NOT MPD path</param>
-        /// <param name="pathConverter">Function to convert local path to remote path</param>
-        /// <returns>Tup´le with MPD file added and it's SongID</returns>
+        
       
 
         // https://www.musicpd.org/doc/html/protocol.html
