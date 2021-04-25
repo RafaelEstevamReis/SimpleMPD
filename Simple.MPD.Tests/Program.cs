@@ -7,21 +7,19 @@ Console.WriteLine("Hello World!");
 MPD mpd = new MPD(new TcpConnection("rasp"));
 mpd.DoPingAsync().Wait();
 
-//var db = Simple.MPD.Helper.DirectoryHelper.ReadAll(mpd, (d) => System.Console.WriteLine(d));
-//var list = mpd.LsInfo("").Result;
 var status = mpd.GetStatusAsync().Result;
 var stats = mpd.GetStatsAsync().Result;
+var list = mpd.GetQueue().Result;
 
 //mpd.QueueClear().Wait();
 //mpd.QueueAdd("Musicas Rafa").Wait();
 
-var list = mpd.GetQueue().Result;
 
-list = list;
-mpd.PlayAsync().Wait();
+//mpd.PlayAsync().Wait();
 //mpd.QueueAdd("uiuaa.mp4").Wait();
 //list = mpd.LsInfo("NAS/NAS/Musicas Le").Result;
-list = list;
+//var db = Simple.MPD.Helper.DirectoryHelper.ReadAll(mpd, (d) => System.Console.WriteLine(d));
+//var list = mpd.LsInfo("").Result;
 //mpd.PlayAsync().Wait();
 //var playList = mpd.LsInfo("NAS/NAS/Musicas Le").Result;
 //var stats = mpd.GetStatsAsync().Result;
@@ -53,13 +51,3 @@ list = list;
 //Console.WriteLine("Press enter to stop notifying");
 //Console.ReadLine();
 //notifier.Stop();
-
-
-
-mpd = mpd;
-mpd = mpd;
-mpd = mpd;
-mpd = mpd;
-mpd = mpd;
-mpd = mpd;
-
