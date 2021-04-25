@@ -1021,6 +1021,11 @@
             Writes command to stream
             </summary>
         </member>
+        <member name="T:Simple.MPD.Commands.Move">
+            <summary>
+            Executes "Move"
+            </summary>
+        </member>
         <member name="P:Simple.MPD.Commands.Move.CommandName">
             <summary>
             Command name
@@ -1059,6 +1064,11 @@
         <member name="M:Simple.MPD.Commands.Move.WriteAsync(System.IO.StreamWriter)">
             <summary>
             Writes command to stream
+            </summary>
+        </member>
+        <member name="T:Simple.MPD.Commands.MoveId">
+            <summary>
+            Executes "MoveId"
             </summary>
         </member>
         <member name="P:Simple.MPD.Commands.MoveId.CommandName">
@@ -1146,6 +1156,11 @@
             Writes command to stream
             </summary>
         </member>
+        <member name="T:Simple.MPD.Commands.Swap">
+            <summary>
+            Executes "Swap"
+            </summary>
+        </member>
         <member name="P:Simple.MPD.Commands.Swap.CommandName">
             <summary>
             Command name
@@ -1174,6 +1189,11 @@
         <member name="M:Simple.MPD.Commands.Swap.WriteAsync(System.IO.StreamWriter)">
             <summary>
             Writes command to stream
+            </summary>
+        </member>
+        <member name="T:Simple.MPD.Commands.SwapId">
+            <summary>
+            Executes "SwapId"
             </summary>
         </member>
         <member name="P:Simple.MPD.Commands.SwapId.CommandName">
@@ -1500,6 +1520,7 @@
             <summary>
             Rerads a Local m3u file with MPD music locations and adds to queue
             </summary>
+            <param name="mpd">MPD instance</param>
             <param name="LocalFilePath">Local file, NOT MPD path</param>
             <param name="pathConverter">Function to convert local path to remote path</param>
             <returns>Tup´le with MPD file added and it's SongID</returns>

@@ -8,6 +8,9 @@ using Simple.MPD.Interfaces;
 
 namespace Simple.MPD.Responses
 {
+    /// <summary>
+    /// Song info response
+    /// </summary>
     public class SongInfo : IResponse
     {
 
@@ -205,7 +208,15 @@ namespace Simple.MPD.Responses
 
         public override string ToString()
         {
-            return $"Id: {Id} Pos: {Pos} {SongDisplayName}";
+            if (Id > 0)
+                return $"[{Id}] {Pos:00} - {SongDisplayName}";
+
+            if (Directory != null) return $"DIR: {Directory}";
+            if (PlayList != null) return $"PlayList: {PlayList}";
+
+            if (File != null) return File;
+
+            return $"{SongDisplayName}";
         }
 
         static int parseFormatNumber(string formatSection)
@@ -221,7 +232,9 @@ namespace Simple.MPD.Responses
                         .ToArray();
         }
     }
-
+    /// <summary>
+    /// A collection of songs information
+    /// </summary>
     public class SongInfoCollection : IResponse, IEnumerable<SongInfo>
     {
         public SongInfo[] Songs { get; private set; }

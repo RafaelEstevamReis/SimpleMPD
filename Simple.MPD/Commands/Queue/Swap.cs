@@ -4,6 +4,9 @@ using System.Threading.Tasks;
 
 namespace Simple.MPD.Commands
 {
+    /// <summary>
+    /// Executes "Swap"
+    /// </summary>
     public class Swap : ICommand
     {
         /// <summary>

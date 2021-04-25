@@ -5,6 +5,9 @@ using System.Threading.Tasks;
 
 namespace Simple.MPD.Commands
 {
+    /// <summary>
+    /// Executes "Move"
+    /// </summary>
     public class Move : ICommand
     {
         /// <summary>
