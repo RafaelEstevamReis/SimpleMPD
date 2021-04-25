@@ -6,33 +6,102 @@ using Simple.MPD.Interfaces;
 
 namespace Simple.MPD.Responses
 {
+    /// <summary>
+    /// Reports the current status of the player and the volume level
+    /// </summary>
     public class Status : IResponse
     {
+        /// <summary>
+        /// the name of the current partition
+        /// </summary>
         public string Partition { get; set; }
+        /// <summary>
+        /// Volume in the range 0-100
+        /// </summary>
         public int Volume { get; set; }
+        /// <summary>
+        /// If repeat is enabled
+        /// </summary>
         public bool Repeat { get; set; }
+        /// <summary>
+        /// If random is enabled
+        /// </summary>
         public bool Random { get; set; }
-
+        /// <summary>
+        /// Current 'Single' status
+        /// </summary>
         public SingleStates Single { get; set; }
+        /// <summary>
+        /// If consume mode is enabled
+        /// </summary>
         public bool Consume { get; set; }
+        /// <summary>
+        /// Playlist (queue) version number
+        /// </summary>
         public int Playlist { get; set; }
+        /// <summary>
+        /// The length of the playlist (queue)
+        /// </summary>
         public int PlaylistLength { get; set; }
+        /// <summary>
+        /// Current playback state
+        /// </summary>
         public PlaybackState State { get; set; }
+        /// <summary>
+        /// Playlist (queue) song number of the current song stopped on or playing
+        /// </summary>
         public int Song { get; set; }
+        /// <summary>
+        /// Playlist (queue) songid of the current song stopped on or playing
+        /// </summary>
         public int SongId { get; set; }
+        /// <summary>
+        /// Playlist (queue) song number of the next song to be played
+        /// </summary>
         public int NextSong { get; set; }
+        /// <summary>
+        /// Playlist (queue) songid of the next song to be played
+        /// </summary>
         public int NextSongId { get; set; }
+        /// <summary>
+        /// Total time elapsed of the current (playing/paused) song
+        /// </summary>
         public TimeSpan Elapsed { get; set; }
+        /// <summary>
+        /// Duration of the current song
+        /// </summary>
         public TimeSpan Duration { get; set; }
+        /// <summary>
+        /// instantaneous bitrate in kbps
+        /// </summary>
         public int Bitrate { get; set; }
+        /// <summary>
+        /// Crissfade in seconds
+        /// </summary>
         public int XFade { get; set; }
+        /// <summary>
+        /// Mix ramp threshold in dB
+        /// </summary>
         public double MixRampDB { get; set; }
+        /// <summary>
+        /// Mix ramp delay in seconds
+        /// </summary>
         public int MixRampDelay { get; set; }
+        /// <summary>
+        /// The format emitted by the decoder plugin during playback, format: samplerate:bits:channels.
+        /// </summary>
         public string AudioFormat { get; set; }
+        /// <summary>
+        /// DB updating job id
+        /// </summary>
         public int Updating_DB { get; set; }
-
+        /// <summary>
+        /// If there is an error, returns message here
+        /// </summary>
         public string ErrorMessage { get; set; }
-
+        /// <summary>
+        /// Read a response from the stream
+        /// </summary>
         public async Task ReadAsync(StreamReader stream)
         {
             await Task.Run(() => read(stream));

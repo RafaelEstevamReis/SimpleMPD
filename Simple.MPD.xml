@@ -2032,6 +2032,126 @@
             Read response from stream
             </summary>
         </member>
+        <member name="T:Simple.MPD.Responses.Status">
+            <summary>
+            Reports the current status of the player and the volume level
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Responses.Status.Partition">
+            <summary>
+            the name of the current partition
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Responses.Status.Volume">
+            <summary>
+            Volume in the range 0-100
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Responses.Status.Repeat">
+            <summary>
+            If repeat is enabled
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Responses.Status.Random">
+            <summary>
+            If random is enabled
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Responses.Status.Single">
+            <summary>
+            Current 'Single' status
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Responses.Status.Consume">
+            <summary>
+            If consume mode is enabled
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Responses.Status.Playlist">
+            <summary>
+            Playlist (queue) version number
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Responses.Status.PlaylistLength">
+            <summary>
+            The length of the playlist (queue)
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Responses.Status.State">
+            <summary>
+            Current playback state
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Responses.Status.Song">
+            <summary>
+            Playlist (queue) song number of the current song stopped on or playing
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Responses.Status.SongId">
+            <summary>
+            Playlist (queue) songid of the current song stopped on or playing
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Responses.Status.NextSong">
+            <summary>
+            Playlist (queue) song number of the next song to be played
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Responses.Status.NextSongId">
+            <summary>
+            Playlist (queue) songid of the next song to be played
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Responses.Status.Elapsed">
+            <summary>
+            Total time elapsed of the current (playing/paused) song
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Responses.Status.Duration">
+            <summary>
+            Duration of the current song
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Responses.Status.Bitrate">
+            <summary>
+            instantaneous bitrate in kbps
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Responses.Status.XFade">
+            <summary>
+            Crissfade in seconds
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Responses.Status.MixRampDB">
+            <summary>
+            Mix ramp threshold in dB
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Responses.Status.MixRampDelay">
+            <summary>
+            Mix ramp delay in seconds
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Responses.Status.AudioFormat">
+            <summary>
+            The format emitted by the decoder plugin during playback, format: samplerate:bits:channels.
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Responses.Status.Updating_DB">
+            <summary>
+            DB updating job id
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Responses.Status.ErrorMessage">
+            <summary>
+            If there is an error, returns message here
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Responses.Status.ReadAsync(System.IO.StreamReader)">
+            <summary>
+            Read a response from the stream
+            </summary>
+        </member>
         <member name="T:Simple.MPD.Responses.StringArray">
             <summary>
             String collection response
