@@ -42,10 +42,10 @@ namespace Simple.MPD.Responses
         /// <summary>
         /// Read response from stream
         /// </summary>
-        public async Task ReadAsync(StreamReader stream)
+        public Task ReadAsync(StreamReader stream)
         {
-            var values = Helper.ResponseHelper.ReadPairsAsync(stream);
-            await foreach (var pair in values)
+            var values = Helper.ResponseHelper.ReadPairs(stream);
+            foreach (var pair in values)
             {
                 switch (pair.Key)
                 {
@@ -72,6 +72,8 @@ namespace Simple.MPD.Responses
                         break;
                 }
             }
+            
+            return Task.CompletedTask;
         }
     }
 }

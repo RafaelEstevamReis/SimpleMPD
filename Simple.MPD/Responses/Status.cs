@@ -33,10 +33,10 @@ namespace Simple.MPD.Responses
 
         public string ErrorMessage { get; set; }
 
-        public async Task ReadAsync(StreamReader stream)
+        public Task ReadAsync(StreamReader stream)
         {
-            var values = Helper.ResponseHelper.ReadPairsAsync(stream);
-            await foreach (var pair in values)
+            var values = Helper.ResponseHelper.ReadPairs(stream);
+            foreach (var pair in values)
             {
                 switch (pair.Key.ToLower())
                 {
@@ -112,6 +112,7 @@ namespace Simple.MPD.Responses
                         break;
                 }
             }
+            return Task.CompletedTask;
         }
     }
 }

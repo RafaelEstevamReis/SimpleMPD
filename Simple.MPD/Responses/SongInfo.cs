@@ -75,13 +75,14 @@ namespace Simple.MPD.Responses
                 return File ?? Directory ?? PlayList ?? "[Unkown]";
             }
         }
-        public async Task ReadAsync(StreamReader stream)
+        public Task ReadAsync(StreamReader stream)
         {
-            var values = Helper.ResponseHelper.ReadPairsAsync(stream);
-            await foreach (var pair in values)
+            var values = Helper.ResponseHelper.ReadPairs(stream);
+            foreach (var pair in values)
             {
                 assingKeyValuePair(pair);
             }
+            return Task.CompletedTask;
         }
 
         private void assingKeyValuePair((string Key, string Value) pair)
@@ -181,12 +182,12 @@ namespace Simple.MPD.Responses
             }
         }
 
-        public static async IAsyncEnumerable<SongInfo> ReadAllAsync(StreamReader stream)
+        public static IEnumerable<SongInfo> ReadAll(StreamReader stream)
         {
             SongInfo current = null;
 
-            var values = Helper.ResponseHelper.ReadPairsAsync(stream);
-            await foreach (var pair in values)
+            var values = Helper.ResponseHelper.ReadPairs(stream);
+            foreach (var pair in values)
             {
                 // id is ever the last one
                 if (pair.Key == "file" || pair.Key == "directory" || pair.Key == "playlist")
@@ -225,14 +226,15 @@ namespace Simple.MPD.Responses
 
         public ICommand GetCommand() => null;
 
-        public async Task ReadAsync(StreamReader stream)
+        public Task ReadAsync(StreamReader stream)
         {
             List<SongInfo> list = new List<SongInfo>();
-            await foreach (var s in SongInfo.ReadAllAsync(stream))
+            foreach (var s in SongInfo.ReadAll(stream))
             {
                 list.Add(s);
             }
             Songs = list.ToArray();
+            return Task.CompletedTask;
         }
 
         public IEnumerator<SongInfo> GetEnumerator()

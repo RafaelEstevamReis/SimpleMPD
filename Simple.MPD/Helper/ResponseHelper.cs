@@ -14,12 +14,12 @@ namespace Simple.MPD.Helper
             ex = FailureException.FromResponseText(response);
             return true;
         }
-        internal static async IAsyncEnumerable<(string Key, string Value)> ReadPairsAsync(System.IO.StreamReader stream)
+        internal static  IEnumerable<(string Key, string Value)> ReadPairs(System.IO.StreamReader stream)
         {
             string line;
             int idx;
 
-            while ((line = await stream.ReadLineAsync()) != "OK")
+            while ((line = stream.ReadLine()) != "OK")
             {
                 if (IsError(line, out Exception ex))
                 {
@@ -36,11 +36,11 @@ namespace Simple.MPD.Helper
             }
         } 
 
-        internal static async IAsyncEnumerable<string> ReadLinesAsync(System.IO.StreamReader stream)
+        internal static IEnumerable<string> ReadLines(System.IO.StreamReader stream)
         {
             string line;
 
-            while ((line = await stream.ReadLineAsync()) != "OK")
+            while ((line = stream.ReadLine()) != "OK")
             {
                 if (IsError(line, out Exception ex))
                 {

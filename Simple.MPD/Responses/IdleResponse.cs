@@ -19,14 +19,14 @@ namespace Simple.MPD.Responses
         /// <summary>
         /// Read response from stream
         /// </summary>
-        public async Task ReadAsync(StreamReader stream)
+        public Task ReadAsync(StreamReader stream)
         {
             var idleOptions = Enum.GetValues(typeof(Commands.Idle.SubSystems))
                                   .Cast<Commands.Idle.SubSystems>()
                                   .ToArray();
             var lst = new List<Commands.Idle.SubSystems>();
 
-            await foreach (var line in Helper.ResponseHelper.ReadLinesAsync(stream))
+            foreach (var line in Helper.ResponseHelper.ReadLines(stream))
             {
                 Commands.Idle.SubSystems subSustem = idleOptions
                     .First(opt => opt.ToString().ToLower() == line.Split(':')[1].Trim());
@@ -35,6 +35,8 @@ namespace Simple.MPD.Responses
             }
 
             SubSystems = lst.ToArray();
+
+            return Task.CompletedTask;
         }
     }
 }
