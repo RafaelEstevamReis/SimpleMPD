@@ -535,9 +535,6 @@ namespace Simple.MPD
             return (Responses.SongInfoCollection)resp;
         }
 
-        /* External */
-        
-      
 
         // https://www.musicpd.org/doc/html/protocol.html
     }

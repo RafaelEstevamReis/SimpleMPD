@@ -1481,11 +1481,6 @@
             Not connected exception
             </summary>
         </member>
-        <member name="M:Simple.MPD.Helper.DirectoryHelper.ReadAll(Simple.MPD.MPD,System.Action{System.String})">
-            <summary>
-            Recursive and SLOW call
-            </summary>
-        </member>
         <member name="T:Simple.MPD.Helper.EscapingHelper">
             <summary>
             Helper for scaping texts
@@ -1495,6 +1490,19 @@
             <summary>
             Scapes a text
             </summary>
+        </member>
+        <member name="M:Simple.MPD.MpdExtension.ReadAll(Simple.MPD.MPD,System.Action{System.String})">
+            <summary>
+            Recursive and SLOW call
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.MpdExtension.AddLocalM3uFile(Simple.MPD.MPD,System.String,System.Func{System.String,System.String})">
+            <summary>
+            Rerads a Local m3u file with MPD music locations and adds to queue
+            </summary>
+            <param name="LocalFilePath">Local file, NOT MPD path</param>
+            <param name="pathConverter">Function to convert local path to remote path</param>
+            <returns>Tup´le with MPD file added and it's SongID</returns>
         </member>
         <member name="T:Simple.MPD.Interfaces.ICommand">
             <summary>
@@ -1857,14 +1865,6 @@
             <summary>
             Search the database for songs matching expression (case-INsensitive)
             </summary>
-        </member>
-        <member name="M:Simple.MPD.MPD.AddLocalM3uFile(System.String,System.Func{System.String,System.String})">
-            <summary>
-            Rerads a Local m3u file with MPD music locations and adds to queue
-            </summary>
-            <param name="LocalFilePath">Local file, NOT MPD path</param>
-            <param name="pathConverter">Function to convert local path to remote path</param>
-            <returns>Tup´le with MPD file added and it's SongID</returns>
         </member>
         <member name="T:Simple.MPD.MpdNotifier">
             <summary>
