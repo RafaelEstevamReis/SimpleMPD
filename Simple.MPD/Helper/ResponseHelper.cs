@@ -14,7 +14,7 @@ namespace Simple.MPD.Helper
             ex = FailureException.FromResponseText(response);
             return true;
         }
-        internal static  IEnumerable<(string Key, string Value)> ReadPairs(System.IO.StreamReader stream)
+        internal static  IEnumerable<KeyValuePair<string,string>> ReadPairs(System.IO.StreamReader stream)
         {
             string line;
             int idx;
@@ -34,7 +34,7 @@ namespace Simple.MPD.Helper
                 if (idx > 0)
                     value = line.Substring(idx + 1).Trim();
 
-                yield return (key, value);
+                yield return new KeyValuePair<string, string>(key, value);
             }
         } 
 
