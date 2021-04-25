@@ -542,28 +542,7 @@ namespace Simple.MPD
         /// <param name="LocalFilePath">Local file, NOT MPD path</param>
         /// <param name="pathConverter">Function to convert local path to remote path</param>
         /// <returns>Tup´le with MPD file added and it's SongID</returns>
-        public IEnumerable<KeyValuePair<string,int>> AddLocalM3uFile(string LocalFilePath, Func<string,string> pathConverter = null)
-        {
-            foreach (var line in File.ReadAllLines(LocalFilePath))
-            {
-                if (line.StartsWith("#")) continue;
-                int id;
-                try
-                {
-                    string path = line;
-                    if (pathConverter != null) path = pathConverter(line);
-
-                    id = QueueAddId(path).Result;
-                }
-                catch (Exception)
-                {
-                    id = -1;
-                    Connection.Close(); // must re-open
-                }
-
-                yield return new KeyValuePair<string, int>(line, id);
-            }
-        }
+      
 
         // https://www.musicpd.org/doc/html/protocol.html
     }

@@ -1,11 +1,11 @@
-﻿using System;
+﻿using Simple.MPD.Helper;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
-namespace Simple.MPD.Helper
+namespace Simple.MPD
 {
-    public static class DirectoryHelper
+    public static class MpdExtension
     {
         /// <summary>
         /// Recursive and SLOW call
@@ -40,6 +40,29 @@ namespace Simple.MPD.Helper
                 Files = info.Where(e => e.File != null).ToArray(),
                 Directories = lstDirs.ToArray(),
             };
+        }
+
+        public static IEnumerable<KeyValuePair<string, int>> AddLocalM3uFile(this MPD mpd, string LocalFilePath, Func<string, string> pathConverter = null)
+        {
+            foreach (var line in System.IO.File.ReadAllLines(LocalFilePath))
+            {
+                if (line.StartsWith("#")) continue;
+                int id;
+                try
+                {
+                    string path = line;
+                    if (pathConverter != null) path = pathConverter(line);
+
+                    id = mpd.QueueAddId(path).Result;
+                }
+                catch (Exception)
+                {
+                    id = -1;
+                    mpd.Connection.Close(); // must re-open
+                }
+
+                yield return new KeyValuePair<string, int>(line, id);
+            }
         }
     }
 }
