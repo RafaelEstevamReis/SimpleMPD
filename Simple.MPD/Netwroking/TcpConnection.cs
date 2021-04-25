@@ -65,7 +65,7 @@ namespace Simple.MPD.Netwroking
             if (TcpClient == null || TcpClient.Client == null) TcpClient = new TcpClient();
             await TcpClient.ConnectAsync(EndPoint.Address, EndPoint.Port);
 
-#if NETSTANDARD2_1
+#if NETSTANDARD
             reader = new StreamReader(TcpClient.GetStream(), Encoding.Default, false, 512, leaveOpen: true);
             writer = new StreamWriter(TcpClient.GetStream(), Encoding.Default, 512, leaveOpen: true);
 #else
