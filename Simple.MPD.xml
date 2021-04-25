@@ -1511,6 +1511,31 @@
             Scapes a text
             </summary>
         </member>
+        <member name="T:Simple.MPD.Helper.MpdDirectory">
+            <summary>
+            Represents a directory structure in the MPD server
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Helper.MpdDirectory.Name">
+            <summary>
+            Directory path
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Helper.MpdDirectory.Directories">
+            <summary>
+            Mpd's sub-directories
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Helper.MpdDirectory.Files">
+            <summary>
+            Directory's files
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Helper.MpdDirectory.ToString">
+            <summary>
+            Returns a string that represents the current object.
+            </summary>
+        </member>
         <member name="T:Simple.MPD.MpdExtension">
             <summary>
             MPD extenssions class
@@ -1521,12 +1546,17 @@
             Recursive and SLOW call
             </summary>
         </member>
+        <member name="M:Simple.MPD.MpdExtension.ReadAll(Simple.MPD.MPD,System.String,System.Action{System.String})">
+            <summary>
+            Recursive and SLOW call
+            </summary>
+        </member>
         <member name="M:Simple.MPD.MpdExtension.AddLocalM3uFile(Simple.MPD.MPD,System.String,System.Func{System.String,System.String})">
             <summary>
             Rerads a Local m3u file with MPD music locations and adds to queue
             </summary>
             <param name="mpd">MPD instance</param>
-            <param name="LocalFilePath">Local file, NOT MPD path</param>
+            <param name="LocalFilePath">Local file, NOT MPD's path</param>
             <param name="pathConverter">Function to convert local path to remote path</param>
             <returns>Tup´le with MPD file added and it's SongID</returns>
         </member>
@@ -2018,9 +2048,201 @@
             Song info response
             </summary>
         </member>
+        <member name="P:Simple.MPD.Responses.SongInfo.File">
+            <summary>
+            Underlying file, NULL for directories
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Responses.SongInfo.Directory">
+            <summary>
+            Directory name, NULL for files, playlists, etc
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Responses.SongInfo.PlayList">
+            <summary>
+            Playlist file path, NULL for songs and directories
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Responses.SongInfo.Name">
+            <summary>
+            A name for this song. This is not the song title. The exact meaning of this tag is not well-defined in the standard
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Responses.SongInfo.Elapsed">
+            <summary>
+            Total time elapsed within the song
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Responses.SongInfo.Duration">
+            <summary>
+            Duration of the song
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Responses.SongInfo.MUSICBRAINZ_ALBUMID">
+            <summary>
+            The album id in the MusicBrainz database
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Responses.SongInfo.MUSICBRAINZ_ARTISTID">
+            <summary>
+            The artist id in the MusicBrainz database
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Responses.SongInfo.MUSICBRAINZ_ALBUMARTISTID">
+            <summary>
+            The album artist id in the MusicBrainz database
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Responses.SongInfo.MUSICBRAINZ_RELEASETRACKID">
+            <summary>
+            The release track id in the MusicBrainz database
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Responses.SongInfo.MUSICBRAINZ_TRACKID">
+            <summary>
+            The track id in the MusicBrainz database
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Responses.SongInfo.Artist">
+            <summary>
+            The artist name
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Responses.SongInfo.AlbumArtist">
+            <summary>
+            On multi-artist albums, this is the artist name which shall be used for the whole album
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Responses.SongInfo.ArtistSort">
+            <summary>
+            Same as artist, but for sorting
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Responses.SongInfo.AlbumArtistSort">
+            <summary>
+            Same as albumartist, but for sorting
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Responses.SongInfo.Title">
+            <summary>
+            The song title
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Responses.SongInfo.Album">
+            <summary>
+            The album name
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Responses.SongInfo.AlbumSort">
+            <summary>
+            Same as album, but for sorting
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Responses.SongInfo.Genre">
+            <summary>
+            The music genre
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Responses.SongInfo.Track">
+            <summary>
+            The decimal track number within the album
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Responses.SongInfo.Composer">
+            <summary>
+            The artist who composed the song
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Responses.SongInfo.Performer">
+            <summary>
+            The artist who performed the song
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Responses.SongInfo.Conductor">
+            <summary>
+            The conductor who conducted the song
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Responses.SongInfo.LastModified">
+            <summary>
+            the time stamp of the last modification of the underlying file
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Responses.SongInfo.Format">
+            <summary>
+            The audio format of the song (or an approximation to a format supported by MPD and the decoder plugin being used). 
+            When playing this file, the audio value in the status response should be the same
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Responses.SongInfo.Format_SampleRate">
+            <summary>
+            Sample rate part of the Format
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Responses.SongInfo.Format_Bits">
+            <summary>
+            Bits part of the Format
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Responses.SongInfo.Format_Channels">
+            <summary>
+            Channels part of the Format
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Responses.SongInfo.Pos">
+            <summary>
+            Song position in the queue
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Responses.SongInfo.Id">
+            <summary>
+            Song ID on the queue
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Responses.SongInfo.DisplayArtist">
+            <summary>
+            Artist name for display
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Responses.SongInfo.SongDisplayName">
+            <summary>
+            Song name for display
+            {DisplayArtist} - {Title}
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Responses.SongInfo.ReadAsync(System.IO.StreamReader)">
+            <summary>
+            Read a response from the stream
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Responses.SongInfo.ReadAll(System.IO.StreamReader)">
+            <summary>
+            Get all song info from stream
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Responses.SongInfo.ToString">
+            <summary>
+            Returns a string that represents the current object.
+            </summary>
+        </member>
         <member name="T:Simple.MPD.Responses.SongInfoCollection">
             <summary>
             A collection of songs information
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Responses.SongInfoCollection.Songs">
+            <summary>
+            All songs in the collection
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Responses.SongInfoCollection.ReadAsync(System.IO.StreamReader)">
+            <summary>
+            Read response from stream
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Responses.SongInfoCollection.GetEnumerator">
+            <summary>
+            Get the enumerator
             </summary>
         </member>
         <member name="T:Simple.MPD.Responses.Stats">

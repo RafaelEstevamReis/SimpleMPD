@@ -13,48 +13,141 @@ namespace Simple.MPD.Responses
     /// </summary>
     public class SongInfo : IResponse
     {
-
+        /// <summary>
+        /// Underlying file, NULL for directories
+        /// </summary>
         public string File { get; set; }
+        /// <summary>
+        /// Directory name, NULL for files, playlists, etc
+        /// </summary>
         public string Directory { get; set; }
+        /// <summary>
+        /// Playlist file path, NULL for songs and directories
+        /// </summary>
         public string PlayList { get; set; }
-        public string Name { get; set; }
 
+        /// <summary>
+        /// A name for this song. This is not the song title. The exact meaning of this tag is not well-defined in the standard
+        /// </summary>
+        public string Name { get; set; }
+        /// <summary>
+        /// Total time elapsed within the song
+        /// </summary>
         public TimeSpan Elapsed { get; set; }
+        /// <summary>
+        /// Duration of the song
+        /// </summary>
         public TimeSpan Duration { get; set; }
 
+        /// <summary>
+        /// The album id in the MusicBrainz database
+        /// </summary>
         public Guid[] MUSICBRAINZ_ALBUMID { get; set; }
+        /// <summary>
+        /// The artist id in the MusicBrainz database
+        /// </summary>
         public Guid[] MUSICBRAINZ_ARTISTID { get; set; }
+        /// <summary>
+        /// The album artist id in the MusicBrainz database
+        /// </summary>
         public Guid[] MUSICBRAINZ_ALBUMARTISTID { get; set; }
+        /// <summary>
+        /// The release track id in the MusicBrainz database
+        /// </summary>
         public Guid MUSICBRAINZ_RELEASETRACKID { get; set; }
+        /// <summary>
+        /// The track id in the MusicBrainz database
+        /// </summary>
         public Guid MUSICBRAINZ_TRACKID { get; set; }
-
+        /// <summary>
+        /// The artist name
+        /// </summary>
         public string Artist { get; set; }
+        /// <summary>
+        /// On multi-artist albums, this is the artist name which shall be used for the whole album
+        /// </summary>
         public string AlbumArtist { get; set; }
+        /// <summary>
+        /// Same as artist, but for sorting
+        /// </summary>
         public string ArtistSort { get; set; }
+        /// <summary>
+        /// Same as albumartist, but for sorting
+        /// </summary>
         public string AlbumArtistSort { get; set; }
+        /// <summary>
+        /// The song title
+        /// </summary>
         public string Title { get; set; }
+        /// <summary>
+        /// The album name
+        /// </summary>
         public string Album { get; set; }
+        /// <summary>
+        /// Same as album, but for sorting
+        /// </summary>
         public string AlbumSort { get; set; }
+        /// <summary>
+        /// The music genre
+        /// </summary>
         public string Genre { get; set; }
+        /// <summary>
+        /// The decimal track number within the album
+        /// </summary>
         public string Track { get; set; }
+        /// <summary>
+        /// The artist who composed the song
+        /// </summary>
         public string Composer { get; set; }
+        /// <summary>
+        /// The artist who performed the song
+        /// </summary>
         public string Performer { get; set; }
+        /// <summary>
+        /// The conductor who conducted the song
+        /// </summary>
         public string Conductor { get; set; }
+        /// <summary>
+        /// the time stamp of the last modification of the underlying file
+        /// </summary>
         public DateTime LastModified { get; set; }
+
         private string[] format = new string[0];
+        /// <summary>
+        /// The audio format of the song (or an approximation to a format supported by MPD and the decoder plugin being used). 
+        /// When playing this file, the audio value in the status response should be the same
+        /// </summary>
         public string Format
         {
             get => string.Join(":", format);
             set => format = value.Split(':');
         }
 
+        /// <summary>
+        /// Sample rate part of the Format
+        /// </summary>
         public int Format_SampleRate => parseFormatNumber(format[0]);
+        /// <summary>
+        /// Bits part of the Format
+        /// </summary>
         public int Format_Bits => parseFormatNumber(format[1]);
+        /// <summary>
+        /// Channels part of the Format
+        /// </summary>
         public int Format_Channels => parseFormatNumber(format[2]);
 
+        /// <summary>
+        /// Song position in the queue
+        /// </summary>
         public int Pos { get; set; }
+        /// <summary>
+        /// Song ID on the queue
+        /// </summary>
         public int Id { get; set; }
-
+        
+        /// <summary>
+        /// Artist name for display
+        /// </summary>
         public string DisplayArtist
         {
             get
@@ -66,6 +159,10 @@ namespace Simple.MPD.Responses
                 return Artist ?? "[Unkown]";
             }
         }
+        /// <summary>
+        /// Song name for display
+        /// {DisplayArtist} - {Title}
+        /// </summary>
         public string SongDisplayName
         {
             get
@@ -78,6 +175,10 @@ namespace Simple.MPD.Responses
                 return File ?? Directory ?? PlayList ?? "[Unkown]";
             }
         }
+
+        /// <summary>
+        /// Read a response from the stream
+        /// </summary>
         public async Task ReadAsync(StreamReader stream)
         {
             await Task.Run(() =>
@@ -186,7 +287,9 @@ namespace Simple.MPD.Responses
                     break;
             }
         }
-
+        /// <summary>
+        /// Get all song info from stream
+        /// </summary>
         public static IEnumerable<SongInfo> ReadAll(StreamReader stream)
         {
             SongInfo current = null;
@@ -205,7 +308,9 @@ namespace Simple.MPD.Responses
             }
             if (current != null) yield return current;
         }
-
+        /// <summary>
+        /// Returns a string that represents the current object.
+        /// </summary>
         public override string ToString()
         {
             if (Id > 0)
@@ -237,10 +342,14 @@ namespace Simple.MPD.Responses
     /// </summary>
     public class SongInfoCollection : IResponse, IEnumerable<SongInfo>
     {
+        /// <summary>
+        /// All songs in the collection
+        /// </summary>
         public SongInfo[] Songs { get; private set; }
 
-        public ICommand GetCommand() => null;
-
+        /// <summary>
+        /// Read response from stream
+        /// </summary>
         public async Task ReadAsync(StreamReader stream)
         {
             await Task.Run(() =>
@@ -254,6 +363,9 @@ namespace Simple.MPD.Responses
             });
         }
 
+        /// <summary>
+        /// Get the enumerator
+        /// </summary>
         public IEnumerator<SongInfo> GetEnumerator()
         {
             foreach (var s in Songs) yield return s;
