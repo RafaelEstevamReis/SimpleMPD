@@ -82,10 +82,10 @@ namespace Simple.MPD.Responses
             {
                 assingKeyValuePair(pair);
             }
-            return Task.CompletedTask;
+            return Helper.FrameworkHelper.GetCompletedTask();
         }
 
-        private void assingKeyValuePair((string Key, string Value) pair)
+        private void assingKeyValuePair(KeyValuePair<string,string> pair)
         {
             double dVal;
             switch (pair.Key.ToLower())
@@ -234,7 +234,7 @@ namespace Simple.MPD.Responses
                 list.Add(s);
             }
             Songs = list.ToArray();
-            return Task.CompletedTask;
+            return Helper.FrameworkHelper.GetCompletedTask();
         }
 
         public IEnumerator<SongInfo> GetEnumerator()

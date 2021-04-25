@@ -28,7 +28,7 @@ namespace Simple.MPD.Responses
             }
 
             Items = lst.ToArray();
-            return Task.CompletedTask;
+            return Helper.FrameworkHelper.GetCompletedTask();
         }
     }
 }

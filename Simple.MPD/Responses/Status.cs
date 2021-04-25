@@ -112,7 +112,7 @@ namespace Simple.MPD.Responses
                         break;
                 }
             }
-            return Task.CompletedTask;
+            return Helper.FrameworkHelper.GetCompletedTask();
         }
     }
 }

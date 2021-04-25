@@ -36,7 +36,7 @@ namespace Simple.MPD.Responses
 
             SubSystems = lst.ToArray();
 
-            return Task.CompletedTask;
+            return Helper.FrameworkHelper.GetCompletedTask();
         }
     }
 }

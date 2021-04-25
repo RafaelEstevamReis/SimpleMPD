@@ -14,7 +14,7 @@ namespace Simple.MPD.Responses
         /// <summary>
         /// Get response items pairs
         /// </summary>
-        public (string Key, string Value)[] Items { get; set; }
+        public  KeyValuePair<string, string>[] Items { get; set; }
         /// <summary>
         /// Get response items
         /// </summary>
@@ -29,13 +29,13 @@ namespace Simple.MPD.Responses
         /// </summary>
         public Task ReadAsync(StreamReader stream)
         {
-            List<(string Key, string Value)> lst = new List<(string Key, string Value)>();
+            var lst = new List< KeyValuePair<string, string>>();
             foreach (var i in Helper.ResponseHelper.ReadPairs(stream))
             {
                 lst.Add(i);
             }
             Items = lst.ToArray();
-            return Task.CompletedTask;
+            return Helper.FrameworkHelper.GetCompletedTask();
         }
     }
 }

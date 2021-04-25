@@ -68,6 +68,9 @@ namespace Simple.MPD.Netwroking
 #if NETSTANDARD
             reader = new StreamReader(TcpClient.GetStream(), Encoding.Default, false, 512, leaveOpen: true);
             writer = new StreamWriter(TcpClient.GetStream(), Encoding.Default, 512, leaveOpen: true);
+#elif NET45
+            reader = new StreamReader(TcpClient.GetStream());
+            writer = new StreamWriter(TcpClient.GetStream());
 #else
             reader = new StreamReader(TcpClient.GetStream(), leaveOpen: true);
             writer = new StreamWriter(TcpClient.GetStream(), leaveOpen: true);

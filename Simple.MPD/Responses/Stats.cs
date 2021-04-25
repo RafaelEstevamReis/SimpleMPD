@@ -68,12 +68,18 @@ namespace Simple.MPD.Responses
                         DB_PlayTime = int.Parse(pair.Value);
                         break;
                     case "db_update":
-                        DB_Update = DateTimeOffset.FromUnixTimeSeconds(int.Parse(pair.Value));
+                        int seconds = int.Parse(pair.Value);
+#if NET45
+                        DB_Update = new DateTime(1970, 1, 1, 0, 0, 0).AddSeconds(seconds);
+#else
+                        DB_Update = DateTimeOffset.FromUnixTimeSeconds(seconds);
+#endif
+
                         break;
                 }
             }
-            
-            return Task.CompletedTask;
+
+            return Helper.FrameworkHelper.GetCompletedTask();
         }
     }
 }
