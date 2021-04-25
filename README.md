@@ -5,14 +5,40 @@ A simple client MPD (Music Player Daemon) protocol implementation in C#
 Does it compile?
 > ![.NET Core](https://github.com/RafaelEstevamReis/SimpleMPD/workflows/.NET%20Core/badge.svg)
  
+## Installing
+
+Get from NuGet and start testing
+
 Can I mess with it ?
 > [![NuGet](https://buildstats.info/nuget/Simple.MPD)](https://www.nuget.org/packages/Simple.MPD)
 
+> PM> Install-Package Simple.MPD
+
+## Compatibility
+
+High compatibility, currently supports:
+* .Net 5
+* .Net Core 3.1
+* .Net Framework 4.5
+* .Net Standard 2.0
+  * .NetCore 2.0+
+  * .Net Framework 4.6.1+
+  * Mono 5.4+
+  * Xamarin.iOS 10.14+
+  * Xamarin.Android 8.0+
+  * UWP 10.0.16299+
+  * Unity 2018.1+
+
+# Table of Contents
 <!-- TOC -->
 - [Simple MPD](#simple-mpd)
+  - [Installing](#installing)
+  - [Compatibility](#compatibility)
+- [Table of Contents](#table-of-contents)
   - [What is MPD ?](#what-is-mpd-)
   - [Protocol documentation](#protocol-documentation)
-  - [What this repo does ?](#what-this-repo-does-)
+  - [What this lib does ?](#what-this-lib-does-)
+  - [License](#license)
 <!-- /TOC -->
 
 ## What is MPD ?
@@ -31,11 +57,11 @@ MPD Website: https://www.musicpd.org/
 
 > The **MPD** command protocol exchanges line-based text records between client and server over TCP. Once the client is connected to the server, they conduct a conversation until the client closes the connection. The conversation flow is always initiated by the client.
 
-## What this repo does ?
+## What this lib does ?
 
-Today ? Some cool stuff but not all, I'm still writing it. 
+Currently it has all crucial commands to understand and control the MPD server
 
-It connects, receives the Version and waits for commands, which I implemented:
+Current implemented commands
 
 * Ping
 * Close - Closes the socket as docs request
@@ -49,7 +75,7 @@ It connects, receives the Version and waits for commands, which I implemented:
 * Status - Current song info
 * CurrentSong - Current song Name and File
 * Consume - Set Consume mode On/Off
-* Crossfade - Set crossfade seconds
+* CrossFade - Set cross fade seconds
 * Random - Set Random mode On/Off
 * Repeat - Set Repeat mode On/Off
 * SetVol - Set volume value
@@ -61,7 +87,7 @@ It connects, receives the Version and waits for commands, which I implemented:
 * Add - Adds (recursively) to the queue
 * AddId - Add a file to the queue and return it's Id
 * Delete - Deletes a song from the queue
-* DeleteId - Deletes the song SONGID from the queue
+* DeleteId - Deletes the song SongId from the queue
 * Shuffle - Shuffles the queue
 * Swap - Swap two songs
 * Move - Move song to position
@@ -69,14 +95,20 @@ It connects, receives the Version and waits for commands, which I implemented:
 * LsInfo - Lists the contents of the directory URI
 * Find - find files - Case-Sensitive
 * Search - find files - Case-Insensitive
-* ListplayLists - List all playlists
+* ListPlayLists - List all playlists
 * ListPlaylistInfo - List files in playlist
 * Rename - Rename a playlist
 * Rm - Delete a playlist
 * Save - Save the queue as a playlist
 * Load - Load the queue as a playlist
-* PlaylistDelete - Deletes SONGPOS from the playlist
+* PlaylistDelete - Deletes SongPos from the playlist
 * PlaylistMove - Moves the song at position FROM to the position TO
 
 
 Once this code does something more useful, this section wil be replaced
+
+## License
+
+This library is licensed under the **MIT License**
+
+A short and simple permissive license with conditions only requiring preservation of copyright and license notices. Licensed works, modifications, and larger works may be distributed under different terms and without source code.
