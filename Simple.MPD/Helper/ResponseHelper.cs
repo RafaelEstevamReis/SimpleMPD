@@ -27,10 +27,12 @@ namespace Simple.MPD.Helper
                 }
 
                 idx = line.IndexOf(':');
-                var key = line[..idx].Trim();
+                if (idx < 0) continue;
+
+                var key = line.Substring(0, idx).Trim();
                 string value = string.Empty;
                 if (idx > 0)
-                    value = line[(idx + 1)..].Trim();
+                    value = line.Substring(idx + 1).Trim();
 
                 yield return (key, value);
             }

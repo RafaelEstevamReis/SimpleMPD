@@ -40,11 +40,16 @@ namespace Simple.MPD.Exceptions
         {
             // ACK [error@command_listNum] {current_command} message_text
             // ACK [2@0] {ping} wrong number of arguments for "ping"
-            string[] error = Text[5..Text.IndexOf(']')].Split('@');
-            string cmd = Text[(Text.IndexOf('{') + 1)..Text.IndexOf('}')];
+            int idx1 = Text.IndexOf(']');
+            string[] error = Text.Substring(5, idx1 - 5).Split('@'); // Text[5..idx].Split('@');
+
+            idx1 = Text.IndexOf('{') + 1;
+            int idx2 = Text.IndexOf('}');
+            string cmd = Text.Substring(idx1, idx2 - idx1); //[idx1..idx2];
 
             int err = int.Parse(error[0]);
-            return new FailureException(err, Text[(Text.IndexOf('}') + 2)..])
+            idx1 = Text.IndexOf('}') + 2;
+            return new FailureException(err, Text.Substring(idx1))
             {
                 Error = err,
                 CommandListNum = int.Parse(error[1]),
