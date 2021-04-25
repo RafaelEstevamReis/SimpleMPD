@@ -41,7 +41,7 @@ namespace Simple.MPD.Responses
         private string[] format = new string[0];
         public string Format
         {
-            get => string.Join(':', format);
+            get => string.Join(":", format);
             set => format = value.Split(':');
         }
 
