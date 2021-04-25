@@ -13,19 +13,26 @@ namespace Simple.MPD
         /// <summary>
         /// Recursive and SLOW call
         /// </summary>
-        public static Database ReadAll(this MPD mpd, Action<string> DirectoryProgressReport = null)
+        public static MpdDirectory ReadAll(this MPD mpd, Action<string> DirectoryProgressReport = null)
         {
-            var result = mpd.LsInfo("").Result;
+            return ReadAll(mpd, "", DirectoryProgressReport);
+        }
+        /// <summary>
+        /// Recursive and SLOW call
+        /// </summary>
+        public static MpdDirectory ReadAll(this MPD mpd, string FirstDirectory, Action<string> DirectoryProgressReport = null)
+        {
+            var result = mpd.LsInfo(FirstDirectory).Result;
 
-            Directory rootDir = processResult(mpd, result, DirectoryProgressReport);
+            MpdDirectory rootDir = processResult(mpd, result, DirectoryProgressReport);
             rootDir.Name = "";
 
-            return new Database(rootDir);
+            return rootDir;
         }
 
-        private static Directory processResult(MPD mpd, Responses.SongInfoCollection info, Action<string> DirectoryProgressReport)
+        private static MpdDirectory processResult(MPD mpd, Responses.SongInfoCollection info, Action<string> DirectoryProgressReport)
         {
-            List<Directory> lstDirs = new List<Directory>();
+            List<MpdDirectory> lstDirs = new List<MpdDirectory>();
 
             foreach (var d in info.Where(e => e.Directory != null))
             {
@@ -38,17 +45,18 @@ namespace Simple.MPD
                 lstDirs.Add(dir);
             }
 
-            return new Directory()
+            return new MpdDirectory()
             {
                 Files = info.Where(e => e.File != null).ToArray(),
                 Directories = lstDirs.ToArray(),
             };
         }
+
         /// <summary>
         /// Rerads a Local m3u file with MPD music locations and adds to queue
         /// </summary>
         /// <param name="mpd">MPD instance</param>
-        /// <param name="LocalFilePath">Local file, NOT MPD path</param>
+        /// <param name="LocalFilePath">Local file, NOT MPD's path</param>
         /// <param name="pathConverter">Function to convert local path to remote path</param>
         /// <returns>Tup´le with MPD file added and it's SongID</returns>
         public static IEnumerable<KeyValuePair<string, int>> AddLocalM3uFile(this MPD mpd, string LocalFilePath, Func<string, string> pathConverter = null)

@@ -1511,6 +1511,11 @@
             Scapes a text
             </summary>
         </member>
+        <member name="T:Simple.MPD.MpdExtension">
+            <summary>
+            MPD extenssions class
+            </summary>
+        </member>
         <member name="M:Simple.MPD.MpdExtension.ReadAll(Simple.MPD.MPD,System.Action{System.String})">
             <summary>
             Recursive and SLOW call
@@ -2006,6 +2011,16 @@
         <member name="M:Simple.MPD.Responses.Ok.ReadAsync(System.IO.StreamReader)">
             <summary>
             Read response from stream
+            </summary>
+        </member>
+        <member name="T:Simple.MPD.Responses.SongInfo">
+            <summary>
+            Song info response
+            </summary>
+        </member>
+        <member name="T:Simple.MPD.Responses.SongInfoCollection">
+            <summary>
+            A collection of songs information
             </summary>
         </member>
         <member name="T:Simple.MPD.Responses.Stats">
