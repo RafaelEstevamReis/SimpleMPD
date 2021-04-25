@@ -75,17 +75,19 @@ namespace Simple.MPD.Responses
                 return File ?? Directory ?? PlayList ?? "[Unkown]";
             }
         }
-        public Task ReadAsync(StreamReader stream)
+        public async Task ReadAsync(StreamReader stream)
         {
-            var values = Helper.ResponseHelper.ReadPairs(stream);
-            foreach (var pair in values)
+            await Task.Run(() =>
             {
-                assingKeyValuePair(pair);
-            }
-            return Helper.FrameworkHelper.GetCompletedTask();
+                var values = Helper.ResponseHelper.ReadPairs(stream);
+                foreach (var pair in values)
+                {
+                    assingKeyValuePair(pair);
+                }
+            });
         }
 
-        private void assingKeyValuePair(KeyValuePair<string,string> pair)
+        private void assingKeyValuePair(KeyValuePair<string, string> pair)
         {
             double dVal;
             switch (pair.Key.ToLower())
@@ -206,7 +208,7 @@ namespace Simple.MPD.Responses
             return $"Id: {Id} Pos: {Pos} {SongDisplayName}";
         }
 
-        static int parseFormatNumber(string formatSection) 
+        static int parseFormatNumber(string formatSection)
         {
             int.TryParse(formatSection, out int value);
             return value;
@@ -226,15 +228,17 @@ namespace Simple.MPD.Responses
 
         public ICommand GetCommand() => null;
 
-        public Task ReadAsync(StreamReader stream)
+        public async Task ReadAsync(StreamReader stream)
         {
-            List<SongInfo> list = new List<SongInfo>();
-            foreach (var s in SongInfo.ReadAll(stream))
+            await Task.Run(() =>
             {
-                list.Add(s);
-            }
-            Songs = list.ToArray();
-            return Helper.FrameworkHelper.GetCompletedTask();
+                List<SongInfo> list = new List<SongInfo>();
+                foreach (var s in SongInfo.ReadAll(stream))
+                {
+                    list.Add(s);
+                }
+                Songs = list.ToArray();
+            });
         }
 
         public IEnumerator<SongInfo> GetEnumerator()

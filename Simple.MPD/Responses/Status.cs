@@ -33,7 +33,11 @@ namespace Simple.MPD.Responses
 
         public string ErrorMessage { get; set; }
 
-        public Task ReadAsync(StreamReader stream)
+        public async Task ReadAsync(StreamReader stream)
+        {
+            await Task.Run(() => read(stream));
+        }
+        private void read(StreamReader stream)
         {
             var values = Helper.ResponseHelper.ReadPairs(stream);
             foreach (var pair in values)
@@ -112,7 +116,6 @@ namespace Simple.MPD.Responses
                         break;
                 }
             }
-            return Helper.FrameworkHelper.GetCompletedTask();
         }
     }
 }

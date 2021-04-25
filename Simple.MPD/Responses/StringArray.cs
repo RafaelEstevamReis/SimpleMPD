@@ -18,17 +18,19 @@ namespace Simple.MPD.Responses
         /// <summary>
         /// Read response from stream
         /// </summary>
-        public Task ReadAsync(StreamReader stream)
+        public async Task ReadAsync(StreamReader stream)
         {
-            List<string> lst = new List<string>();
-
-            foreach (var line in Helper.ResponseHelper.ReadLines(stream))
+            await Task.Run(() =>
             {
-                lst.Add(line);
-            }
+                List<string> lst = new List<string>();
 
-            Items = lst.ToArray();
-            return Helper.FrameworkHelper.GetCompletedTask();
+                foreach (var line in Helper.ResponseHelper.ReadLines(stream))
+                {
+                    lst.Add(line);
+                }
+
+                Items = lst.ToArray();
+            });
         }
     }
 }
