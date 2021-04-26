@@ -46,7 +46,7 @@ namespace Simple.MPD.Commands
         {
             string sName = Helper.EscapingHelper.Escape(Name);
             string sRange = Range?.ToString() ?? "" ;
-            await stream.WriteAsync($"load \"{sName}\" \"{sRange}\"\n");
+            await stream.WriteAsync($"load \"{sName}\" {sRange}\n");
         }
     }
 }
