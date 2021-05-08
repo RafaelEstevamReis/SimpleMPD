@@ -4,7 +4,7 @@ A simple client MPD (Music Player Daemon) protocol implementation in C#
 
 Does it compile?
 > ![.NET Core](https://github.com/RafaelEstevamReis/SimpleMPD/workflows/.NET%20Core/badge.svg)
- 
+
 ## Installing
 
 Get from NuGet and start testing
