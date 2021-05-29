@@ -65,10 +65,10 @@ namespace Simple.MPD.Netwroking
             if (TcpClient == null || TcpClient.Client == null) TcpClient = new TcpClient();
             await TcpClient.ConnectAsync(EndPoint.Address, EndPoint.Port);
 
-#if NETSTANDARD
+#if NETSTANDARD || NETCOREAPP2_1
             reader = new StreamReader(TcpClient.GetStream(), Encoding.Default, false, 512, leaveOpen: true);
             writer = new StreamWriter(TcpClient.GetStream(), Encoding.Default, 512, leaveOpen: true);
-#elif NET45
+#elif NETFRAMEWORK
             reader = new StreamReader(TcpClient.GetStream());
             writer = new StreamWriter(TcpClient.GetStream());
 #else
