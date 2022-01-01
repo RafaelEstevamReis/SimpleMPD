@@ -177,6 +177,11 @@ namespace Simple.MPD.Responses
                         AudioFormat = pair.Value;
                         break;
 
+                    case "xfade":
+                    case "crossfade":
+                        XFade = int.Parse(pair.Value);
+                        break;
+
                     case "updating_db":
                         Updating_DB = int.Parse(pair.Value);
                         break;
