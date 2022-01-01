@@ -36,7 +36,7 @@ namespace Simple.MPD.Commands
         /// </summary>
         public async Task WriteAsync(StreamWriter stream)
         {
-            await stream.WriteAsync($"consume { (ConsumeSong ? 1: 0) }\n");
+            await stream.WriteAsync($"consume { (ConsumeSong ? 1 : 0) }\n");
         }
     }
 }
