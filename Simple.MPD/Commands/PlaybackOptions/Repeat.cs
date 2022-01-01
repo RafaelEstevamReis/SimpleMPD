@@ -36,7 +36,7 @@ namespace Simple.MPD.Commands
         /// </summary>
         public async Task WriteAsync(StreamWriter stream)
         {
-            await stream.WriteAsync($"random { (SetRepeat ? 1 : 0) }\n");
+            await stream.WriteAsync($"repeat { (SetRepeat ? 1 : 0) }\n");
         }
     }
 }
