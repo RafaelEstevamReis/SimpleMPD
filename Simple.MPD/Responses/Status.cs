@@ -195,9 +195,8 @@ namespace Simple.MPD.Responses
         public override string ToString()
         {
             // timespan format was throwing an exception
-            return $@"[ARTIS NAME] - [SONG NAME]
-[{getPlayStatusName(State)}] #{Song}/{PlaylistLength}   {Elapsed.Minutes:00}:{Elapsed.Seconds:00}/{Duration.Minutes:00}:{Duration.Seconds:00} ({100 * Elapsed.TotalSeconds / Duration.TotalSeconds :00}%)
-volume: {Volume:00}%   repeat: {(Repeat?"on":"off")}   random: {(Random ? "on" : "off")}    single: {Single}   consume: {(Consume ? "on" : "off")}";
+            return $@"[{getPlayStatusName(State)}] #{Song}/{PlaylistLength}   {Elapsed.Minutes:00}:{Elapsed.Seconds:00}/{Duration.Minutes:00}:{Duration.Seconds:00} ({100 * Elapsed.TotalSeconds / Duration.TotalSeconds :00}%)
+volume: {Volume:00}%  repeat: {(Repeat?"on":"off")}  random: {(Random ? "on" : "off")}  single: {Single}  consume: {(Consume ? "on" : "off")} xfade: {XFade}s";
         }
         private static string getPlayStatusName(PlaybackState state)
         => state switch
