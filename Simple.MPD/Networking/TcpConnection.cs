@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Simple.MPD.Interfaces;
 
-namespace Simple.MPD.Netwroking
+namespace Simple.MPD.Networking
 {
     /// <summary>
     /// Implements IConnection with TCP
