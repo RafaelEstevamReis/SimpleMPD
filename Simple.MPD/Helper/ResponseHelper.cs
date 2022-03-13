@@ -9,6 +9,11 @@ namespace Simple.MPD.Helper
         internal static bool IsError(string response, out Exception ex)
         {
             ex = null;
+            if (response == null)
+            {
+                ex = new FailureException(0, "NULL RESPONSE");
+                return true;
+            }
             if (!response.StartsWith("ACK")) return false;
 
             ex = FailureException.FromResponseText(response);
