@@ -821,6 +821,11 @@
             the mount list has changed
             </summary>
         </member>
+        <member name="F:Simple.MPD.Commands.Idle.SubSystems.CONNECTION_LOST">
+            <summary>
+            Internal ENUM to notify a lost in the connection
+            </summary>
+        </member>
         <member name="P:Simple.MPD.Commands.Idle.CommandName">
             <summary>
             Command name
@@ -1957,63 +1962,63 @@
             Disposes object
             </summary>
         </member>
-        <member name="T:Simple.MPD.Netwroking.TcpConnection">
+        <member name="T:Simple.MPD.Networking.TcpConnection">
             <summary>
             Implements IConnection with TCP
             </summary>
         </member>
-        <member name="P:Simple.MPD.Netwroking.TcpConnection.EndPoint">
+        <member name="P:Simple.MPD.Networking.TcpConnection.EndPoint">
             <summary>
             Gets the endpoint
             </summary>
         </member>
-        <member name="P:Simple.MPD.Netwroking.TcpConnection.TcpClient">
+        <member name="P:Simple.MPD.Networking.TcpConnection.TcpClient">
             <summary>
             Gets TCP Client
             </summary>
         </member>
-        <member name="P:Simple.MPD.Netwroking.TcpConnection.IsConnected">
+        <member name="P:Simple.MPD.Networking.TcpConnection.IsConnected">
             <summary>
             Gets if the connection is active
             </summary>
         </member>
-        <member name="M:Simple.MPD.Netwroking.TcpConnection.#ctor(System.String,System.Int32)">
+        <member name="M:Simple.MPD.Networking.TcpConnection.#ctor(System.String,System.Int32)">
             <summary>
             Creates a new instance
             </summary>
         </member>
-        <member name="M:Simple.MPD.Netwroking.TcpConnection.#ctor(System.Net.IPEndPoint)">
+        <member name="M:Simple.MPD.Networking.TcpConnection.#ctor(System.Net.IPEndPoint)">
             <summary>
             Creates a new instance
             </summary>
         </member>
-        <member name="M:Simple.MPD.Netwroking.TcpConnection.TryConnectAsync">
+        <member name="M:Simple.MPD.Networking.TcpConnection.TryConnectAsync">
             <summary>
             Tries to connect
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Simple.MPD.Netwroking.TcpConnection.OpenAsync">
+        <member name="M:Simple.MPD.Networking.TcpConnection.OpenAsync">
             <summary>
             Opens the connection
             </summary>
         </member>
-        <member name="M:Simple.MPD.Netwroking.TcpConnection.Open">
+        <member name="M:Simple.MPD.Networking.TcpConnection.Open">
             <summary>
             Opens the connection
             </summary>
         </member>
-        <member name="M:Simple.MPD.Netwroking.TcpConnection.Close">
+        <member name="M:Simple.MPD.Networking.TcpConnection.Close">
             <summary>
             Closes the connection
             </summary>
         </member>
-        <member name="M:Simple.MPD.Netwroking.TcpConnection.GetReader">
+        <member name="M:Simple.MPD.Networking.TcpConnection.GetReader">
             <summary>
             Get reader stream
             </summary>
         </member>
-        <member name="M:Simple.MPD.Netwroking.TcpConnection.GetWriter">
+        <member name="M:Simple.MPD.Networking.TcpConnection.GetWriter">
             <summary>
             Get writter stream
             </summary>
