@@ -52,7 +52,13 @@ namespace Simple.MPD
         {
             if (Connection.IsConnected) return;
 
-            await Connection.OpenAsync();
+            try
+            {
+                await Connection.OpenAsync();
+                if (IsIdle) IsIdle = false;
+            }
+            catch (Exception ex) { }
+
             if (!Connection.IsConnected) throw new NotConnectedException();
 
             var version = new Responses.Version();
