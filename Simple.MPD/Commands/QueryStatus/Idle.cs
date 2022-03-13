@@ -84,6 +84,11 @@ namespace Simple.MPD.Commands
             /// the mount list has changed
             /// </summary>
             Mount,
+
+            /// <summary>
+            /// Internal ENUM to notify a lost in the connection
+            /// </summary>
+            CONNECTION_LOST,
         }
         /// <summary>
         /// Command name
