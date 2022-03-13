@@ -51,7 +51,7 @@ namespace Simple.MPD.Networking
         /// Tries to connect
         /// </summary>
         /// <returns></returns>
-        public async Task< bool> TryConnectAsync()
+        public async Task<bool> TryConnectAsync()
         {
             if (IsConnected) return true;
             await OpenAsync();
@@ -62,7 +62,13 @@ namespace Simple.MPD.Networking
         /// </summary>
         public async Task OpenAsync()
         {
-            if (TcpClient == null || TcpClient.Client == null) TcpClient = new TcpClient();
+            if (TcpClient != null && !TcpClient.Connected)
+            {
+                TcpClient.Close();
+                TcpClient = null;
+            }
+            TcpClient = new TcpClient();
+
             await TcpClient.ConnectAsync(EndPoint.Address, EndPoint.Port);
 
 #if NETSTANDARD || NETCOREAPP2_1
