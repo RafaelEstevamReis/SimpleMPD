@@ -53,12 +53,22 @@ namespace Simple.MPD
         {
             while (!cancelSource.IsCancellationRequested)
             {
-                var systems = await mpd.Idle(cancelSource.Token);
-
-                if (systems.Length > 0)
+                try
                 {
-                    await doNotifyAsync(systems);
+                    var systems = await mpd.Idle(cancelSource.Token);
+
+                    if (systems.Length > 0)
+                    {
+                        await doNotifyAsync(systems);
+                    }
                 }
+                catch(Exception ex)
+                {
+                    await doNotifyAsync(new Commands.Idle.SubSystems[] { Commands.Idle.SubSystems.CONNECTION_LOST });
+                    await Task.Delay(TimeSpan.FromSeconds(10));
+                }
+
+                await Task.Delay(100);
             }
         }
 
