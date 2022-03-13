@@ -1,5 +1,5 @@
 ﻿using Simple.MPD;
-using Simple.MPD.Netwroking;
+using Simple.MPD.Networking;
 using System;
 
 Console.WriteLine("Hello World!");
