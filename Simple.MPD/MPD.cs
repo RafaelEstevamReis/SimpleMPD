@@ -189,7 +189,7 @@ namespace Simple.MPD
             {
                 if (taskResponse.IsCompleted) break;
                 if (token.IsCancellationRequested) break;
-                await Task.Delay(50, token);
+                await Task.Delay(250, token);
             }
             // was cancelled ?
             if (!taskResponse.IsCompleted)
