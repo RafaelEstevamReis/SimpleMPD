@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq.Expressions;
 using System.Threading;
 using System.Threading.Tasks;
 using Simple.MPD.Exceptions;
@@ -540,7 +541,31 @@ namespace Simple.MPD
             var resp = await ExecuteCommandAsync(new Commands.Search(exp));
             return (Responses.SongInfoCollection)resp;
         }
-
+        /// <summary>
+        /// Lists unique tags values of the specified type. TYPE can be any tag supported by MPD
+        /// </summary>
+        public async Task<Responses.StringArray> List(string expression)
+        {
+            var resp = await ExecuteCommandAsync(new Commands.List(expression));
+            return (Responses.StringArray)resp;
+        }
+        /// <summary>
+        /// Lists unique tags values of the specified type
+        /// </summary>
+        public async Task<Responses.StringArray> List(Tags tag)
+        {
+            var resp = await ExecuteCommandAsync(new Commands.List(tag.ToString()));
+            return (Responses.StringArray)resp;
+        }
+        /// <summary>
+        /// Lists unique tags values of the specified type
+        /// </summary>
+        public async Task<Responses.StringArray> List(Tags tag, FilterMatch match, string search)
+        {
+            string exp = Commands.Find.ExpressionBuilder(tag, match, search);
+            var resp = await ExecuteCommandAsync(new Commands.List(exp));
+            return (Responses.StringArray)resp;
+        }
 
         // https://www.musicpd.org/doc/html/protocol.html
     }
