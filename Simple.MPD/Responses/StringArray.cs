@@ -1,8 +1,7 @@
-﻿using System;
+﻿using Simple.MPD.Interfaces;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
-using Simple.MPD.Interfaces;
 
 namespace Simple.MPD.Responses
 {
