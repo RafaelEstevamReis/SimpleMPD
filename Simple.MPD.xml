@@ -79,6 +79,36 @@
             Builds an filter Expression
             </summary>
         </member>
+        <member name="T:Simple.MPD.Commands.List">
+            <summary>
+            Executes "List"
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Commands.List.Expression">
+            <summary>
+            Expression to search/filter
+            </summary>
+        </member>
+        <member name="P:Simple.MPD.Commands.List.CommandName">
+            <summary>
+            Command name
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.List.#ctor(System.String)">
+            <summary>
+            Creates a new instance
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.List.GetResponseProcessor">
+            <summary>
+            Default Response processor
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.Commands.List.WriteAsync(System.IO.StreamWriter)">
+            <summary>
+            Writes command to stream
+            </summary>
+        </member>
         <member name="T:Simple.MPD.Commands.ListAll">
             <summary>
             Executes "ListAll" - avoid using this command
@@ -1925,6 +1955,16 @@
         <member name="M:Simple.MPD.MPD.Search(Simple.MPD.Tags,Simple.MPD.FilterMatch,System.String)">
             <summary>
             Search the database for songs matching expression (case-INsensitive)
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.MPD.List(System.String)">
+            <summary>
+            Lists unique tags values of the specified type. TYPE can be any tag supported by MPD
+            </summary>
+        </member>
+        <member name="M:Simple.MPD.MPD.List(Simple.MPD.Tags)">
+            <summary>
+            Lists unique tags values of the specified type
             </summary>
         </member>
         <member name="T:Simple.MPD.MpdNotifier">

@@ -17,9 +17,8 @@ Can I mess with it ?
 ## Compatibility
 
 High compatibility, currently supports:
-* .Net 5
+* .Net 6
 * .Net Core 3.1
-* .Net Framework 4.5
 * .Net Standard 2.0
   * .NetCore 2.0+
   * .Net Framework 4.6.1+
@@ -94,6 +93,7 @@ Current implemented commands
 * ListAll - Lists all songs and directories in URI. Do not use this command
 * LsInfo - Lists the contents of the directory URI
 * Find - find files - Case-Sensitive
+* List - list tags
 * Search - find files - Case-Insensitive
 * ListPlayLists - List all playlists
 * ListPlaylistInfo - List files in playlist
