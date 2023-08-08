@@ -37,7 +37,7 @@ namespace Simple.MPD.Commands
         public async Task WriteAsync(StreamWriter stream)
         {
             var expr = Helper.EscapingHelper.Escape(Expression);
-            await stream.WriteAsync($"list \"({expr})\"\n");
+            await stream.WriteAsync($"list {expr}\n");
         }
     }
 }

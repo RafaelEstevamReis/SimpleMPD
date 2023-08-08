@@ -557,6 +557,7 @@ namespace Simple.MPD
             var resp = await ExecuteCommandAsync(new Commands.List(tag.ToString()));
             return (Responses.StringArray)resp;
         }
+        /* I did not manage to make it work, it gives erros in the filter expr
         /// <summary>
         /// Lists unique tags values of the specified type
         /// </summary>
@@ -566,7 +567,7 @@ namespace Simple.MPD
             var resp = await ExecuteCommandAsync(new Commands.List(exp));
             return (Responses.StringArray)resp;
         }
-
+        */
         // https://www.musicpd.org/doc/html/protocol.html
     }
 }
