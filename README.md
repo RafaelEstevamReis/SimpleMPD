@@ -105,8 +105,6 @@ Current implemented commands
 * PlaylistMove - Moves the song at position FROM to the position TO
 
 
-Once this code does something more useful, this section wil be replaced
-
 ## License
 
 This library is licensed under the **MIT License**
